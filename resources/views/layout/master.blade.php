@@ -455,11 +455,11 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
-                    <p class="mb-1 pt-2 text-bold">Built by developers</p>
-                    <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
-                    <p class="mb-5">From colors, cards, typography to complex elements, you will find the full documentation.</p>
+                    <p class="mb-1 pt-2 text-bold">Built by Hotaru</p>
+                    <h5 class="font-weight-bolder">Hotaru UI Dashboard</h5>
+                    <p class="mb-5">From colors, cards, typography to complex elements, you will find the full documentation! (of me)</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
-                      Read More
+                      Read moree
                       <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -481,10 +481,10 @@
             <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('images/1.jpggi');">
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                <h5 class="text-white font-weight-bolder mb-4 pt-2">Work with me</h5>
-                <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about who take the opportunity first.</p>
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">Work with me, Hotaru!</h5>
+                <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about who take the opportunity first!!.</p>
                 <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
-                  Read More
+                  Read moree
                   <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                 </a>
               </div>
@@ -502,7 +502,7 @@
                 </div>
               </div>
               <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
-              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
+              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+100%</span>) than last week </p>
               <div class="container border-radius-lg">
                 <div class="row">
                   <div class="col-3 py-3 ps-0">
@@ -524,7 +524,7 @@
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Users</p>
                     </div>
-                    <h4 class="font-weight-bolder">36K</h4>
+                    <h4 class="font-weight-bolder">26M</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -574,7 +574,7 @@
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Sales</p>
                     </div>
-                    <h4 class="font-weight-bolder">435$</h4>
+                    <h4 class="font-weight-bolder">¥10,000</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>

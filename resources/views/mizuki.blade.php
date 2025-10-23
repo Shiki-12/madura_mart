@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>夜の東京 - Tokyo Nights Profile</title>
+    <title>夜の東京 - Tokyo Nights</title>
 
     <link rel="icon" type="image/png" href="images/come.jpeg">
     <link rel="apple-touch-icon" href="come.jpeg">
@@ -482,24 +482,24 @@
             <!-- Stats -->
             <div class="profile-stats">
                 <div class="stat-item">
-                    <span class="stat-number">89</span>
-                    <span class="stat-label">Posts 投稿</span>
+                    <span class="stat-number">10M</span>
+                    <span class="stat-label">Posts </span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1,234</span>
-                    <span class="stat-label">Followers フォロワー</span>
+                    <span class="stat-number">100M</span>
+                    <span class="stat-label">Followers </span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">567</span>
-                    <span class="stat-label">Following フォロー中</span>
+                    <span class="stat-number">100M</span>
+                    <span class="stat-label">Following</span>
                 </div>
             </div>
             
             <!-- Action Buttons -->
             <div class="profile-actions">
-                <button class="action-btn primary" onclick="followUser()">Follow フォロー</button>
-                <button class="action-btn" onclick="sendMessage()">Message メッセージ</button>
-                <button class="action-btn" onclick="shareProfile()">Share シェア</button>
+                <button class="action-btn primary" onclick="followUser()">Follow </button>
+                <button class="action-btn" onclick="sendMessage()">Message</button>
+                <button class="action-btn" onclick="shareProfile()">Share </button>
             </div>
         </div>
     </section>
