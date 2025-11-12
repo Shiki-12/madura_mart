@@ -6,9 +6,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/test', function () {
-//     return view('test');
-// });
+
+Route::get('/', function () {
+    // 'welcome' mengacu ke resources/views/welcome.blade.php
+    // 'title' => 'Dashboard' INI PENTING! (Lihat Peringatan di bawah)
+    return view('welcome', ['title' => 'Dashboard']);
+});
 
 Route::get('/mizuki', function () {
     return view('mizuki');
