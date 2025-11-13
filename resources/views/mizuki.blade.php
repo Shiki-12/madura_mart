@@ -10,13 +10,13 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
@@ -24,7 +24,7 @@
             overflow-x: hidden;
             position: relative;
         }
-        
+
         /* Animated Background Particles */
         .particles {
             position: fixed;
@@ -35,7 +35,7 @@
             z-index: 0;
             pointer-events: none;
         }
-        
+
         .particle {
             position: absolute;
             width: 3px;
@@ -45,14 +45,14 @@
             animation: float 15s infinite ease-in-out;
             box-shadow: 0 0 10px #ff006e;
         }
-        
+
         @keyframes float {
             0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
         }
-        
+
         /* Header */
         header {
             position: relative;
@@ -65,7 +65,7 @@
             backdrop-filter: blur(10px);
             border-bottom: 2px solid rgba(255, 0, 110, 0.3);
         }
-        
+
         .logo {
             font-size: 2rem;
             font-weight: 700;
@@ -75,17 +75,17 @@
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
         }
-        
+
         @keyframes glow {
             from { filter: drop-shadow(0 0 5px #ff006e); }
             to { filter: drop-shadow(0 0 20px #8338ec); }
         }
-        
+
         nav {
             display: flex;
             gap: 2rem;
         }
-        
+
         nav a {
             color: #ffffff;
             text-decoration: none;
@@ -95,7 +95,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         nav a::before {
             content: '';
             position: absolute;
@@ -106,16 +106,16 @@
             background: linear-gradient(90deg, transparent, #ff006e, transparent);
             transition: left 0.5s;
         }
-        
+
         nav a:hover::before {
             left: 100%;
         }
-        
+
         nav a:hover {
             border: 1px solid #ff006e;
             color: #ff006e;
         }
-        
+
         /* Profile Hero Section */
         .profile-hero {
             position: relative;
@@ -128,7 +128,7 @@
             text-align: center;
             padding: 4rem 2rem;
         }
-        
+
         .profile-container {
             background: rgba(26, 26, 46, 0.6);
             border: 2px solid rgba(255, 0, 110, 0.3);
@@ -140,12 +140,12 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: slideUp 1s ease-out;
         }
-        
+
         @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        
+
         /* Profile Image with Center Image */
         .profile-image-wrapper {
             position: relative;
@@ -153,7 +153,7 @@
             height: 250px;
             margin: 0 auto 2rem;
         }
-        
+
         .profile-image-border {
             position: absolute;
             inset: -5px;
@@ -162,12 +162,12 @@
             animation: rotate 3s linear infinite;
             padding: 5px;
         }
-        
+
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        
+
         .profile-image {
             position: relative;
             width: 100%;
@@ -180,24 +180,24 @@
             justify-content: center;
             z-index: 2;
         }
-        
+
         .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .profile-image-placeholder {
             font-size: 6rem;
             color: #ff006e;
         }
-        
+
         /* Center Image Container */
         .center-image-container {
             margin: 2rem 0;
             position: relative;
         }
-        
+
         .center-image-wrapper {
             max-width: 600px;
             margin: 0 auto;
@@ -208,19 +208,19 @@
             transition: all 0.3s ease;
             background: #1a1a2e;
         }
-        
+
         .center-image-wrapper:hover {
             transform: scale(1.02);
             border-color: #ff006e;
             box-shadow: 0 20px 50px rgba(255, 0, 110, 0.5);
         }
-        
+
         .center-image {
             width: 100%;
             height: auto;
             display: block;
         }
-        
+
         .center-image-placeholder {
             aspect-ratio: 16/9;
             display: flex;
@@ -230,7 +230,7 @@
             color: #ff006e;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
         }
-        
+
         /* Username and Bio */
         .profile-username {
             font-size: 2.5rem;
@@ -241,13 +241,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .profile-title {
             font-size: 1.2rem;
             color: #a0a0a0;
             margin-bottom: 1.5rem;
         }
-        
+
         .profile-bio {
             font-size: 1rem;
             color: #c0c0c0;
@@ -257,7 +257,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         /* Stats Row */
         .profile-stats {
             display: flex;
@@ -266,11 +266,11 @@
             margin-top: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .stat-item {
             text-align: center;
         }
-        
+
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
@@ -280,13 +280,13 @@
             background-clip: text;
             display: block;
         }
-        
+
         .stat-label {
             font-size: 0.9rem;
             color: #a0a0a0;
             margin-top: 0.5rem;
         }
-        
+
         /* Action Buttons */
         .profile-actions {
             display: flex;
@@ -295,7 +295,7 @@
             margin-top: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .action-btn {
             padding: 0.8rem 2rem;
             font-size: 1rem;
@@ -307,25 +307,25 @@
             transition: all 0.3s ease;
             font-family: 'Noto Sans JP', sans-serif;
         }
-        
+
         .action-btn:hover {
             background: #ff006e;
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
         }
-        
+
         .action-btn.primary {
             background: linear-gradient(45deg, #ff006e, #8338ec);
             border: none;
             color: white;
         }
-        
+
         .action-btn.primary:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 40px rgba(255, 0, 110, 0.5);
         }
-        
+
         /* Cards Section */
         .cards-section {
             position: relative;
@@ -335,7 +335,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .card {
             background: rgba(26, 26, 46, 0.6);
             border: 1px solid rgba(255, 0, 110, 0.2);
@@ -347,7 +347,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .card::before {
             content: '';
             position: absolute;
@@ -359,34 +359,34 @@
             transform: rotate(45deg);
             transition: all 0.5s ease;
         }
-        
+
         .card:hover::before {
             left: 100%;
         }
-        
+
         .card:hover {
             transform: translateY(-10px);
             border-color: #ff006e;
             box-shadow: 0 20px 60px rgba(255, 0, 110, 0.3);
         }
-        
+
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
             display: block;
         }
-        
+
         .card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #ff006e;
         }
-        
+
         .card p {
             color: #c0c0c0;
             line-height: 1.6;
         }
-        
+
         /* Footer */
         footer {
             position: relative;
@@ -397,31 +397,31 @@
             border-top: 2px solid rgba(255, 0, 110, 0.3);
             margin-top: 5rem;
         }
-        
+
         footer p {
             color: #a0a0a0;
             margin-bottom: 1rem;
         }
-        
+
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin-top: 2rem;
         }
-        
+
         .social-links a {
             color: #ff006e;
             font-size: 2rem;
             transition: all 0.3s ease;
             text-decoration: none;
         }
-        
+
         .social-links a:hover {
             transform: scale(1.2) rotate(10deg);
             filter: drop-shadow(0 0 10px #ff006e);
         }
-        
+
         /* Cursor Effect */
         .cursor-follower {
             position: fixed;
@@ -434,7 +434,7 @@
             transition: all 0.1s ease;
             transform: translate(-50%, -50%);
         }
-        
+
         @media (max-width: 768px) {
             .profile-username { font-size: 2rem; }
             nav { flex-direction: column; gap: 1rem; }
@@ -444,12 +444,12 @@
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor-follower"></div>
-    
+    {{-- <!-- Custom Cursor -->
+    <div class="cursor-follower"></div> --}}
+
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
-    
+
     <!-- Header -->
     <header>
         <div class="logo">夜の東京</div>
@@ -460,7 +460,7 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
-    
+
     <!-- Profile Hero Section -->
     <section class="profile-hero" id="home">
         <div class="profile-container">
@@ -471,14 +471,21 @@
                     <img src="images/mizuki_akiyama.jpeg" alt="Profile" class="w-full h-full object-cover">
                 </div>
             </div>
-            
+
             <!-- Username and Title -->
             <h1 class="profile-username">Mizuki Akiyama</h1>
             <p class="profile-title">Programmer code | プロジェクトセカイ カラフルステージ!</p>
-            
+
+             <!-- Center Image -->
+            <div class="center-image-container">
+                <div class="center-image-wrapper">
+                    <img src="images/banner_with_mizuki.jpeg" alt="Center Image" class="center-image">
+                </div>
+            </div>
+
             <!-- Bio -->
-            <p class="profile-bio">Creating beautiful experiences at the intersection of technology and art. Exploring the fusion of traditional Japanese aesthetics with modern design.</p>
-            
+            <p class="profile-bio">Mizuki a person that i love so much, maybe you all can't understand me, but his my precious wife...</p>
+
             <!-- Stats -->
             <div class="profile-stats">
                 <div class="stat-item">
@@ -494,7 +501,7 @@
                     <span class="stat-label">Following</span>
                 </div>
             </div>
-            
+
             <!-- Action Buttons -->
             <div class="profile-actions">
                 <button class="action-btn primary" onclick="followUser()">Follow </button>
@@ -503,8 +510,8 @@
             </div>
         </div>
     </section>
-    
-    <!-- Cards Section -->
+
+    {{-- <!-- Cards Section -->
     <section class="cards-section" id="portfolio">
         <div class="card">
             <span class="card-icon">🏮</span>
@@ -526,19 +533,19 @@
             <h3>Art</h3>
             <p>From traditional art forms to contemporary digital masterpieces.</p>
         </div>
-    </section>
-    
+    </section> --}}
+
     <!-- Footer -->
     <footer id="contact">
         <p>&copy; 2025 夜の東京 - Tokyo Nights. All rights reserved.</p>
         <p>The fusion of Japanese aesthetics and modern design 日本の美学と現代デザインの融合</p>
         <div class="social-links">
-            <a href="#" title="Twitter">✦</a>
-            <a href="#" title="Instagram">✧</a>
-            <a href="#" title="GitHub">★</a>
+            <a href="https://www.facebook.com/Shikii21/" target="_blank" title="Facebook">✦</a>
+            <a href="https://www.instagram.com/tar_ajasih/" target="_blank" title="Instagram">✧</a>
+            <a href="https://github.com/Shiki-12" target="_blank" title="GitHub">★</a>
         </div>
     </footer>
-    
+
     <script>
         // Particles Animation
         const particlesContainer = document.getElementById('particles');
@@ -550,14 +557,14 @@
             particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
             particlesContainer.appendChild(particle);
         }
-        
-        // Custom Cursor
-        const cursorFollower = document.querySelector('.cursor-follower');
-        document.addEventListener('mousemove', (e) => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        });
-        
+
+        // // Custom Cursor
+        // const cursorFollower = document.querySelector('.cursor-follower');
+        // document.addEventListener('mousemove', (e) => {
+        //     cursorFollower.style.left = e.clientX + 'px';
+        //     cursorFollower.style.top = e.clientY + 'px';
+        // });
+
         // Card Hover Effect
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
@@ -568,39 +575,39 @@
                 this.style.background = 'rgba(26, 26, 46, 0.6)';
             });
         });
-        
+
         // Profile Actions
         function followUser() {
             alert('Following user! フォローしました！');
         }
-        
+
         function sendMessage() {
             alert('Opening message... メッセージを開いています...');
         }
-        
+
         function shareProfile() {
             alert('Sharing profile! プロフィールをシェア！');
         }
-        
-        // Smooth Scroll for Navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // Add parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.profile-hero');
-            if (parallax) {
-                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        });
-    </script>
+
+    //     // Smooth Scroll for Navigation
+    //     document.querySelectorAll('nav a').forEach(anchor => {
+    //         anchor.addEventListener('click', function(e) {
+    //             e.preventDefault();
+    //             const target = document.querySelector(this.getAttribute('href'));
+    //             if (target) {
+    //                 target.scrollIntoView({ behavior: 'smooth' });
+    //             }
+    //         });
+    //     });
+
+    //     // Add parallax effect on scroll
+    //     window.addEventListener('scroll', () => {
+    //         const scrolled = window.pageYOffset;
+    //         const parallax = document.querySelector('.profile-hero');
+    //         if (parallax) {
+    //             parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+    //         }
+    //     });
+    // </script>
 </body>
 </html>

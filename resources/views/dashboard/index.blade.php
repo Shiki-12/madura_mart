@@ -24,16 +24,20 @@
             <li class="nav-item d-flex align-items-center">
               <div class="dropdown">
                 <a href="#" class="nav-link text-body font-weight-bold px-0 d-flex align-items-center dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-user me-sm-2"></i>
+                  <!-- Inline SVG user icon (more reliable than icon-font at varying zooms) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="me-sm-2" aria-hidden="true">
+                    <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" fill="#2c3e50" />
+                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" fill="#2c3e50" />
+                  </svg>
                   <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
                   <span class="badge badge-sm bg-gradient-success ms-2">{{ ucfirst(Auth::user()->role ?? 'user') }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="userDropdown">
+                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="userDropdown">
                   <li class="mb-2">
                     <a class="dropdown-item border-radius-md" href="#">
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <i class="fa fa-user avatar avatar-sm bg-gradient-primary text-white me-3 d-flex align-items-center justify-content-center"></i>
+                      <div class="d-flex py-1 align-items-center">
+                        <div class="icon icon-shape icon-sm bg-gradient-primary shadow text-center me-3">
+                          <i class="fa fa-user text-white text-lg opacity-10"></i>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="text-sm font-weight-normal mb-1">
@@ -46,9 +50,9 @@
                   </li>
                   <li class="mb-2">
                     <a class="dropdown-item border-radius-md" href="#">
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <i class="fa fa-cog avatar avatar-sm bg-gradient-info text-white me-3 d-flex align-items-center justify-content-center"></i>
+                      <div class="d-flex py-1 align-items-center">
+                        <div class="icon icon-shape icon-sm bg-gradient-info shadow text-center me-3">
+                          <i class="fa fa-cog text-white text-lg opacity-10"></i>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="text-sm font-weight-normal mb-1">
@@ -64,9 +68,9 @@
                     <form action="{{ route('logout') }}" method="POST" id="logoutForm">
                       @csrf
                       <button type="submit" class="dropdown-item border-radius-md text-danger" onclick="return confirm('Are you sure you want to logout?')">
-                        <div class="d-flex py-1">
-                          <div class="my-auto">
-                            <i class="fa fa-sign-out avatar avatar-sm bg-gradient-danger text-white me-3 d-flex align-items-center justify-content-center"></i>
+                        <div class="d-flex py-1 align-items-center">
+                          <div class="icon icon-shape icon-sm bg-gradient-danger shadow text-center me-3">
+                            <i class="fa fa-sign-out text-white text-lg opacity-10"></i>
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="text-sm font-weight-normal mb-1">
@@ -84,7 +88,11 @@
             @else
             <li class="nav-item d-flex align-items-center">
               <a href="{{ route('login') }}" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
+                <!-- Inline SVG user icon for Sign In link -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" class="me-sm-1" aria-hidden="true">
+                  <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" fill="#2c3e50" />
+                  <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" fill="#2c3e50" />
+                </svg>
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
             </li>

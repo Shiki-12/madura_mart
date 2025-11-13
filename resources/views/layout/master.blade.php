@@ -32,6 +32,36 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('layout/assets/css/soft-ui-dashboard.min.css') }}" rel="stylesheet" />
+  <!-- Ensure Font Awesome icons render clearly at 100% zoom -->
+  <style>
+    /* Force Font Awesome fallback fonts, smoothing and a sensible default color/size so icons stay visible */
+    .fa, .fas, .far, .fal, .fab, i[class^="fa-"], i[class*=" fa-"] {
+      font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome", sans-serif !important;
+      font-weight: 900 !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+      display: inline-block !important;
+      text-rendering: auto !important;
+      color: #2c3e50 !important; /* dark default so icon is visible */
+      font-size: 0.95rem !important;
+      line-height: 1 !important;
+    }
+
+    /* Some parent containers use white icons; ensure small badges / menu icons remain visible */
+    .nav-link .fa, .dropdown-item .fa, .navbar .fa {
+      color: inherit !important;
+    }
+
+    /* Toggler lines (three bars) should always be visible */
+    .sidenav-toggler-line {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background-color: rgba(0,0,0,0.6) !important;
+      margin: 3px 0 !important;
+      border-radius: 2px;
+    }
+  </style>
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
