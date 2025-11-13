@@ -20,15 +20,75 @@
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
+            @auth
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online Builder</a>
+              <div class="dropdown">
+                <a href="#" class="nav-link text-body font-weight-bold px-0 d-flex align-items-center dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user me-sm-2"></i>
+                  <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
+                  <span class="badge badge-sm bg-gradient-success ms-2">{{ ucfirst(Auth::user()->role ?? 'user') }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="userDropdown">
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="#">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="fa fa-user avatar avatar-sm bg-gradient-primary text-white me-3 d-flex align-items-center justify-content-center"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">Profile</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">View and edit your profile</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="#">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="fa fa-cog avatar avatar-sm bg-gradient-info text-white me-3 d-flex align-items-center justify-content-center"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">Settings</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">Account preferences</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form action="{{ route('logout') }}" method="POST" id="logoutForm">
+                      @csrf
+                      <button type="submit" class="dropdown-item border-radius-md text-danger" onclick="return confirm('Are you sure you want to logout?')">
+                        <div class="d-flex py-1">
+                          <div class="my-auto">
+                            <i class="fa fa-sign-out avatar avatar-sm bg-gradient-danger text-white me-3 d-flex align-items-center justify-content-center"></i>
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="text-sm font-weight-normal mb-1">
+                              <span class="font-weight-bold">Logout</span>
+                            </h6>
+                            <p class="text-xs text-secondary mb-0">Sign out from your account</p>
+                          </div>
+                        </div>
+                      </button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
             </li>
+            @else
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+              <a href="{{ route('login') }}" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
             </li>
+            @endauth
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -52,15 +112,15 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="layout/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        <img src="{{ asset('layout/assets/img/team-2.jpg') }}" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">Welcome</span> {{ Auth::user()->name ?? 'User' }}!
                         </h6>
                         <p class="text-xs text-secondary mb-0 ">
                           <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
+                          Just now
                         </p>
                       </div>
                     </div>
@@ -70,45 +130,15 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="layout/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                        <img src="{{ asset('layout/assets/img/small-logos/logo-spotify.svg') }}" class="avatar avatar-sm bg-gradient-dark  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                          <span class="font-weight-bold">New order</span> #{{ rand(10000, 99999) }}
                         </h6>
                         <p class="text-xs text-secondary mb-0 ">
                           <i class="fa fa-clock me-1"></i>
                           1 day
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
-                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                              <g transform="translate(1716.000000, 291.000000)">
-                                <g transform="translate(453.000000, 454.000000)">
-                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
-                        </h6>
-                        <p class="text-xs text-secondary mb-0 ">
-                          <i class="fa fa-clock me-1"></i>
-                          2 days
                         </p>
                       </div>
                     </div>
@@ -120,6 +150,27 @@
         </div>
       </div>
     </nav>
+
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show mx-4 mt-3" role="alert">
+      <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+      <span class="alert-text"><strong>Success!</strong> {{ session('success') }}</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show mx-4 mt-3" role="alert">
+      <span class="alert-icon"><i class="ni ni-support-16"></i></span>
+      <span class="alert-text"><strong>Error!</strong> {{ session('error') }}</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
@@ -767,4 +818,47 @@
         </div>
       </footer>
     </div>
+
+<style>
+.dropdown-item {
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item.text-danger:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.dropdown-item button {
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+
+.badge-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+}
+</style>
+
+<script>
+// Auto hide alerts after 5 seconds
+setTimeout(function() {
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach(function(alert) {
+    const bsAlert = new bootstrap.Alert(alert);
+    bsAlert.close();
+  });
+}, 5000);
+</script>
 @endsection
