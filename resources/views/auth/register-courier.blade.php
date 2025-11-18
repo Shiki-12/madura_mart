@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar - Madura Mart</title>
+    <title>Daftar Kurir - Madura Mart</title>
     <link rel="icon" type="image/png" href="{{ asset('images/come.jpeg') }}">
 
     <style>
@@ -17,7 +17,7 @@
 
         body {
             font-family: 'Instrument Sans', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -55,13 +55,13 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
         }
 
         .logo img {
@@ -120,8 +120,8 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #f5576c;
+            box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.1);
         }
 
         .password-wrapper {
@@ -184,15 +184,30 @@
         }
 
         .terms-checkbox a {
-            color: #667eea;
+            color: #f5576c;
             text-decoration: none;
             font-weight: 600;
+        }
+
+        .role-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.1rem;
         }
 
         .btn-register {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -205,7 +220,7 @@
 
         .btn-register:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
         }
 
         .btn-register:disabled {
@@ -222,14 +237,14 @@
         }
 
         .login-link a {
-            color: #667eea;
+            color: #f5576c;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
         .login-link a:hover {
-            color: #764ba2;
+            color: #f093fb;
         }
 
         .alert {
@@ -284,8 +299,8 @@
             <div class="logo">
                 <img src="{{ asset('images/come.jpeg') }}" alt="Madura Mart">
             </div>
-            <h2>Buat Akun Baru</h2>
-            <p>Daftar untuk mulai belanja</p>
+            <h2>Daftar sebagai Kurir</h2>
+            <p>Bergabunglah dengan tim kurir Madura Mart dan mulai menghasilkan penghasilan</p>
         </div>
 
         @if ($errors->any())
@@ -366,17 +381,22 @@
                 </div>
             </div>
 
-            <!-- Role is automatically set to 'customer' for this registration form -->
-            <input type="hidden" name="role" value="customer">
+            <!-- Role is automatically set to 'courier' for this registration form -->
+            <input type="hidden" name="role" value="courier">
+
+            <!-- Display the courier role badge -->
+            <div class="role-badge">
+                🚚 Mendaftar sebagai Kurir (Courier)
+            </div>
 
             <div class="terms-checkbox">
                 <input type="checkbox" id="terms" name="terms" required>
                 <label for="terms">
-                    Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> Madura Mart
+                    Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> Madura Mart untuk Kurir
                 </label>
             </div>
 
-            <button type="submit" class="btn-register" id="submitBtn">Daftar Sekarang</button>
+            <button type="submit" class="btn-register" id="submitBtn">Daftar sebagai Kurir</button>
         </form>
 
         <div class="login-link">

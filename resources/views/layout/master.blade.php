@@ -102,8 +102,9 @@
     <!-- Navbar -->
     @if ($title == 'Dashboard')
         @yield('dashboard')
-    @else
-        <h1>? this is {{ $title }} not Dashboard</h1>
+    @endif
+    @if ($title == 'Distributor')
+        @yield('distributor')
     @endif
 
   </main>

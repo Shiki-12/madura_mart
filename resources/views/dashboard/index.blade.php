@@ -8,9 +8,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{$title}}</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder mb-0">{{$title}}</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -49,16 +49,16 @@
                     </a>
                   </li>
                   <li class="mb-2">
-                    <a class="dropdown-item border-radius-md" href="#">
+                    <a class="dropdown-item border-radius-md" href="{{ route('register.courier.logout') }}">
                       <div class="d-flex py-1 align-items-center">
-                        <div class="icon icon-shape icon-sm bg-gradient-info shadow text-center me-3">
-                          <i class="fa fa-cog text-white text-lg opacity-10"></i>
+                        <div class="icon icon-shape icon-sm bg-gradient-primary shadow text-center me-3">
+                          <i class="fa fa-user text-white text-lg opacity-10"></i>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">Settings</span>
+                            <span class="font-weight-bold">Courier</span>
                           </h6>
-                          <p class="text-xs text-secondary mb-0">Account preferences</p>
+                          <p class="text-xs text-secondary mb-0">Register to become a courier</p>
                         </div>
                       </div>
                     </a>
@@ -758,7 +758,7 @@
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
                     <p class="mb-1 pt-2 text-bold">Built by Hotaru</p>
-                    <h5 class="font-weight-bolder">Hotaru UI Dashboard</h5>
+                    <h5 class="font-weight-bolder">Hotaru UI {{$title}}</h5>
                     <p class="mb-5">From colors, cards, typography to complex elements, you will find the full documentation! (of me)</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
                       Read moree

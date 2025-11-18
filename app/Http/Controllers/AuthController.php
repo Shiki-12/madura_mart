@@ -31,12 +31,12 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
         ], [
             'email.required' => 'Email harus diisi',
             'email.email' => 'Format email tidak valid',
             'password.required' => 'Password harus diisi',
-            'password.min' => 'Password minimal 6 karakter',
+            'password.min' => 'Password minimal 8 karakter',
         ]);
 
         if ($validator->fails()) {
@@ -63,7 +63,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
-            'role' => 'required|in:employee,owner',
+            'role' => 'required|in:customer,courier,admin,owner',
             'terms' => 'accepted',
         ], [
             'name.required' => 'Nama harus diisi',
@@ -110,5 +110,16 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')->with('success', 'Anda telah berhasil logout');
+    }
+
+    public function logoutAndRedirectCourier(Request $request)
+    {
+        if (Auth::check()) {
+            Log::info('User logged out for courier registration', ['user_id' => Auth::id(), 'email' => Auth::user()->email, 'ip' => $request->ip()]);
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+        return redirect()->route('register.courier');
     }
 }
