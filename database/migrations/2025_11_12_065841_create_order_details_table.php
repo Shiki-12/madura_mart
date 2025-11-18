@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade')->nullAble();
+            $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade')->nullAble();
             $table->string('serial_number_product', 10)->nullAble();
             $table->integer('selling_price')->default(0);
             $table->integer('sales_quantity')->default(0);
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('serial_number_product')
                 ->references('serial_number')
                 ->on('products')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->timestamps();

@@ -28,11 +28,13 @@ return new class extends Migration
         $table->foreign('note_number_purchase')
               ->references('note_number')
               ->on('purchases')
+              ->onUpdate('cascade')
               ->onDelete('cascade');
 
         $table->foreign('serial_number_product')
               ->references('serial_number')
               ->on('products')
+              ->onUpdate('cascade')
               ->onDelete('cascade');
 
         $table->timestamps();

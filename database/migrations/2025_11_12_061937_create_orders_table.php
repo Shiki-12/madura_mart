@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->date('order_date');
-            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade')->nullAble();
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->nullAble();
             $table->enum('status', ['pending', 'ordered', 'processed', 'shipped', 'arrived', 'finished', 'cancelled by customer', 'cancelled by seller'])->nullAble();
             $table->enum('payment_method', ['transfer', 'cash on delivery'])->default('cash on delivery');
             $table->integer('total_price')->default(0);

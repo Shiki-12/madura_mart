@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
             $table->date('delivery_date');
-            $table->foreignId('expedition_id')->constrained('expeditions')->onDelete('cascade')->nullAble();
-            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade')->nullAble();
+            $table->foreignId('expedition_id')->constrained('expeditions')->onUpdate('cascade')->onDelete('cascade')->nullAble();
+            $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade')->nullAble();
             $table->string('picture_proof');
             $table->integer('invoice');
             $table->timestamps();

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('note_number', 20)->unique();
+            $table->string('note_number', 15)->unique();
             $table->date('purchase_date');
-            $table->foreignId('distributor_id')->constrained('distributors')->onDelete('cascade')->nullAble();
+            $table->foreignId('distributor_id')->constrained('distributors')->onUpdate('cascade')->onDelete('cascade')->nullAble();
             $table->integer('total_price')->default(0);
             $table->timestamps();
         });
