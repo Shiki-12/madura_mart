@@ -70,6 +70,7 @@ How to USE THIS PROJECT FR
 2. npm install (jika belum)
 3. php artisan migrate (pastikan dulu saja wkwkwk)
 4. php artisan serve (selamat anda berhasil menjalankan project ini)
+5. php artisan key:generate
 
 command:
 php artisan make:model (Smth) -m
