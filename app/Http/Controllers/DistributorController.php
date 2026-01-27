@@ -18,16 +18,16 @@ class DistributorController extends Controller
     public function create()
     {
          return view('distributor.create', [
-            'title' => 'Tambah Distributor',
+            'title' => 'Create Distributor',
         ]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_distributor' => 'required|min:3|max:255',
-            'alamat'           => 'required',
-            'telepon'          => 'required|numeric',
+            'name' => 'required|min:3|max:50',
+            'address' => 'required|max:255',
+            'phone_number' => 'required|max:15',
         ]);
 
         Distributor::create($validated);
@@ -48,9 +48,9 @@ class DistributorController extends Controller
     public function update(Request $request, Distributor $distributor)
     {
         $validated = $request->validate([
-            'nama_distributor' => 'required|min:3|max:255',
-            'alamat'           => 'required',
-            'telepon'          => 'required|numeric',
+            'name' => 'required|min:3|max:50',
+            'address' => 'required|max:255',
+            'phone_number' => 'required|max:15',
         ]);
 
         $distributor->update($validated);

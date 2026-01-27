@@ -103,7 +103,7 @@
     @if ($title == 'Dashboard')
         @yield('dashboard')
     @endif
-    @if ($title == 'Distributor')
+    @if(Request::is('distributors*'))
         @yield('distributor')
     @endif
 
@@ -366,10 +366,10 @@
   <script>
     (function() {
       const images = [
-        'images/icon-kyurarin1.webp',
-        'images/icon-kyurarin2.webp',
-        'images/icon-kyurarin3.webp',
-        'images/icon-kyurarin4.webp'
+        "{{ asset('images/icon-kyurarin1.webp') }}",
+        "{{ asset('images/icon-kyurarin2.webp') }}",
+        "{{ asset('images/icon-kyurarin3.webp') }}",
+        "{{ asset('images/icon-kyurarin4.webp') }}"
       ];
 
       let currentIndex = 0;
@@ -381,7 +381,7 @@
         logoImage.src = images[currentIndex];
       }, 1000);
     })();
-  </script>
+</script>
 </body>
 
 </html>
