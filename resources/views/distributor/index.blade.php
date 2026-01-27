@@ -205,6 +205,9 @@
                     <div class="card-header pb-0">
                         <h6>Authors table</h6>
                     </div>
+                   <a class="btn bg-gradient-dark mb-3" href="{{ route('distributors.create') }}">
+    <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Distributor
+</a>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">

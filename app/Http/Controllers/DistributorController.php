@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Distributor;
 use Illuminate\Http\Request;
 
 class DistributorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('distributor.index', [
@@ -17,51 +15,52 @@ class DistributorController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+         return view('distributor.create', [
+            'title' => 'Tambah Distributor',
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_distributor' => 'required|min:3|max:255',
+            'alamat'           => 'required',
+            'telepon'          => 'required|numeric',
+        ]);
+
+        Distributor::create($validated);
+
+        return redirect()->route('distributors.index')->with('success', 'Data berhasil disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Distributor $distributor)
     {
-        //
+        return view('distributor.show', compact('distributor'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Distributor $distributor)
     {
-        //
+        return view('distributor.edit', compact('distributor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Distributor $distributor)
     {
-        //
+        $validated = $request->validate([
+            'nama_distributor' => 'required|min:3|max:255',
+            'alamat'           => 'required',
+            'telepon'          => 'required|numeric',
+        ]);
+
+        $distributor->update($validated);
+
+        return redirect()->route('distributors.index')->with('success', 'Data berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Distributor $distributor)
     {
-        //
+        $distributor->delete();
+        return redirect()->route('distributors.index')->with('success', 'Data berhasil dihapus');
     }
 }
