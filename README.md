@@ -70,7 +70,6 @@ cd madura_mart
 **Step 2: Install dependencies**
 ```bash
 composer install
-npm install
 ```
 
 **Step 3: Environment setup**
@@ -95,12 +94,7 @@ DB_PASSWORD=
 php artisan migrate
 ```
 
-**Step 6: Build frontend assets**
-```bash
-npm run dev
-```
-
-**Step 7: Start the server**
+**Step 6: Start the server**
 ```bash
 php artisan serve
 ```
@@ -267,39 +261,6 @@ storage/
             ├── image1.jpg
             ├── image2.png
             └── .gitkeep
-```
-
----
-
-## Alternative: Cloud Storage (AWS S3)
-
-If you prefer cloud storage:
-
-**1. Install AWS SDK:**
-```bash
-composer require aws/aws-sdk-php
-```
-
-**2. Update `.env`:**
-```env
-FILESYSTEM_DISK=s3
-
-AWS_ACCESS_KEY_ID=your_key
-AWS_SECRET_ACCESS_KEY=your_secret
-AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=your-bucket-name
-AWS_USE_PATH_STYLE_URLS=false
-```
-
-**3. Upload images:**
-```php
-$path = $request->file('picture')->store('expeditions', 's3');
-// File is now on S3
-```
-
-**4. Display in views:**
-```blade
-<img src="{{ Storage::disk('s3')->url($expedition->picture) }}" alt="">
 ```
 
 ---
@@ -895,4 +856,4 @@ For issues, questions, or contributions, please contact the project maintainer.
 
 ---
 
-**Happy coding! 🚀**
+**Happy coding! 🚀 from Shiki-21**
