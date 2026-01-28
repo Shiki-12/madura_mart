@@ -134,10 +134,9 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
     <script>
-        // Fungsi untuk Konfirmasi Cancel
         function confirmCancel(event) {
             event.preventDefault();
             Swal.fire({
@@ -145,7 +144,7 @@
                 text: "Data yang sudah diisi akan hilang!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#344767', // Warna gelap sesuai tema
+                confirmButtonColor: '#344767',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, batalkan!',
                 cancelButtonText: 'Tidak'
@@ -156,23 +155,27 @@
             });
         }
 
-        // Logic untuk Konfirmasi Submit Form
-        document.getElementById('create-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            Swal.fire({
-                title: 'Simpan Data?',
-                text: "Pastikan data yang diinput sudah benar.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#344767', // Warna gelap sesuai tema
-                cancelButtonColor: '#82d616', // Warna hijau (optional) atau merah
-                confirmButtonText: 'Ya, Simpan!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.submit();
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('create-form');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Simpan Data?',
+                        text: "Pastikan data yang diinput sudah benar.",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#344767',
+                        cancelButtonColor: '#82d616',
+                        confirmButtonText: 'Ya, Simpan!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    });
+                });
+            }
         });
     </script>
 @endsection

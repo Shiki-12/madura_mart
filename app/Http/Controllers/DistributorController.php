@@ -27,7 +27,7 @@ class DistributorController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3|max:50',
             'address' => 'required|max:255',
-            'phone_number' => 'required|max:15',
+            'phone_number' => 'required|max:30',
         ]);
 
         Distributor::create($validated);
@@ -50,7 +50,7 @@ class DistributorController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3|max:50',
             'address' => 'required|max:255',
-            'phone_number' => 'required|max:15',
+            'phone_number' => 'required|max:30',
         ]);
 
         $distributor->update($validated);
