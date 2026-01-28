@@ -91,7 +91,7 @@ DB_PASSWORD=
 
 **Step 5: Run migrations**
 ```bash
-php artisan migrate
+php artisan migrate:fresh
 ```
 
 **Step 6: Start the server**
@@ -197,20 +197,18 @@ This is the **recommended approach** for this project.
 
 https://drive.google.com/drive/folders/19Gf0l67piawa67zF95-R145cXQNb0BM_?usp=sharing
 
-**2. Configure storage disk in `config/filesystems.php`:**
+**2. Configure Image**
 
 And just put it on public/images
 
 
 #### File Structure After Setup:
 ```
-storage/
-└── app/
-    └── public/
-        └── expeditions/
-            ├── image1.jpg
-            ├── image2.png
-            └── .gitkeep
+public/
+└── images/
+    ├── mas.jpeg
+    ├── kurisu.png
+    └── .gitkeep
 ```
 
 ---
@@ -521,114 +519,6 @@ php artisan tinker
 php artisan serve --host=0.0.0.0 --port=8000
 ```
 
----
-
-## Troubleshooting
-
-### Database Errors
-
-**"SQLSTATE[HY000]: General error: 1030"**
-```bash
-php artisan cache:clear
-php artisan config:clear
-php artisan view:clear
-```
-
-**"Class not found"**
-```bash
-composer dump-autoload
-```
-
-**Migration fails**
-```bash
-php artisan migrate:rollback
-php artisan migrate
-```
-
-### Permission Issues
-
-```bash
-# Fix storage permissions
-chmod -R 775 storage bootstrap/cache
-chown -R www-data:www-data storage bootstrap
-
-# Fix public directory
-chmod -R 755 public
-```
-
-### Images Not Displaying
-
-1. Verify storage symbolic link:
-   ```bash
-   php artisan storage:link
-   ls -la public/storage
-   ```
-
-2. Check image exists:
-   ```bash
-   ls -la storage/app/public/expeditions/
-   ```
-
-3. Check permissions:
-   ```bash
-   chmod -R 755 storage/app/public
-   ```
-
-4. Verify view code:
-   ```blade
-   {{-- Correct --}}
-   <img src="{{ asset('storage/' . $expedition->picture) }}" alt="">
-   <img src="{{ Storage::url($expedition->picture) }}" alt="">
-   ```
-
-### Mail Not Working
-
-Configure in `.env`:
-```env
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=your_username
-MAIL_PASSWORD=your_password
-MAIL_FROM_ADDRESS="hello@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
-```
-
-### Session Issues
-
-Ensure database is migrated:
-```bash
-php artisan migrate
-```
-
-Check session configuration in `.env`:
-```env
-SESSION_DRIVER=database
-SESSION_LIFETIME=120
-```
-
----
-
-## Development Tips
-
-### Local Development
-
-**Watch file changes:**
-```bash
-npm run dev
-```
-
-**Run in background:**
-```bash
-php artisan serve &
-npm run dev &
-```
-
-**Database testing:**
-```bash
-php artisan migrate:fresh --seed
-```
-
 ### Debugging
 
 **Using dd() function:**
@@ -658,8 +548,6 @@ tail -f storage/logs/laravel.log
 ### Production Build
 
 ```bash
-# Build assets
-npm run build
 
 # Optimize Laravel
 php artisan config:cache
@@ -682,12 +570,13 @@ php artisan cache:clear
 
 ## Support & Contact
 
-**Project Created By:** Shiki-12  
+**Project Created By:** Shiki-12
+**My Profile Github:** https://github.com/Shiki-12    
 **Last Updated:** January 2026  
 **Laravel Version:** 12.0+  
 **PHP Version:** 8.2+  
 
-For issues, questions, or contributions, please contact the project maintainer.
+For issues, questions, or contributions, please contact me.
 
 ---
 
