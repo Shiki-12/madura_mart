@@ -1,182 +1,10 @@
 @extends('layout.master')
+
 @section('menu')
     @include('layout.menu')
 @endsection
-@section('distributor')
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
-        navbar-scroll="true">
-        <div class="container-fluid py-1 px-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ $title }}</li>
-                </ol>
-                <h6 class="font-weight-bolder mb-0">{{ $title }}</h6>
-            </nav>
-            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group">
-                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Type here...">
-                    </div>
-                </div>
-                <ul class="navbar-nav  justify-content-end">
-                    @auth
-                        <li class="nav-item d-flex align-items-center">
-                            <div class="dropdown">
-                                <a href="#"
-                                    class="nav-link text-body font-weight-bold px-0 d-flex align-items-center dropdown-toggle"
-                                    id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <!-- Inline SVG user icon (more reliable than icon-font at varying zooms) -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" class="me-sm-2" aria-hidden="true">
-                                        <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z"
-                                            fill="#2c3e50" />
-                                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" fill="#2c3e50" />
-                                    </svg>
-                                    <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
-                                    <span
-                                        class="badge badge-sm bg-gradient-success ms-2">{{ ucfirst(Auth::user()->role ?? 'user') }}</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="userDropdown">
-                                    <li class="mb-2">
-                                        <a class="dropdown-item border-radius-md" href="#">
-                                            <div class="d-flex py-1 align-items-center">
-                                                <div
-                                                    class="icon icon-shape icon-sm bg-gradient-primary shadow text-center me-3">
-                                                    <i class="fa fa-user text-white text-lg opacity-10"></i>
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">Profile</span>
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">View and edit your profile</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="mb-2">
-                                        <a class="dropdown-item border-radius-md" href="{{ route('register.courier.logout') }}">
-                                            <div class="d-flex py-1 align-items-center">
-                                                <div
-                                                    class="icon icon-shape icon-sm bg-gradient-primary shadow text-center me-3">
-                                                    <i class="fa fa-user text-white text-lg opacity-10"></i>
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">Courier</span>
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">Register to become a courier</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <form action="{{ route('logout') }}" method="POST" id="logoutForm">
-                                            @csrf
-                                            <button type="submit" class="dropdown-item border-radius-md text-danger"
-                                                onclick="return confirm('Are you sure you want to logout?')">
-                                                <div class="d-flex py-1 align-items-center">
-                                                    <div
-                                                        class="icon icon-shape icon-sm bg-gradient-danger shadow text-center me-3">
-                                                        <i class="fa fa-sign-out text-white text-lg opacity-10"></i>
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="text-sm font-weight-normal mb-1">
-                                                            <span class="font-weight-bold">Logout</span>
-                                                        </h6>
-                                                        <p class="text-xs text-secondary mb-0">Sign out from your account</p>
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    @else
-                        <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('login') }}" class="nav-link text-body font-weight-bold px-0">
-                                <!-- Inline SVG user icon for Sign In link -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" class="me-sm-1" aria-hidden="true">
-                                    <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" fill="#2c3e50" />
-                                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" fill="#2c3e50" />
-                                </svg>
-                                <span class="d-sm-inline d-none">Sign In</span>
-                            </a>
-                        </li>
-                    @endauth
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item px-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0">
-                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-bell cursor-pointer"></i>
-                        </a>
-                        <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
-                            aria-labelledby="dropdownMenuButton">
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex py-1">
-                                        <div class="my-auto">
-                                            <img src="{{ asset('layout/assets/img/team-2.jpg') }}"
-                                                class="avatar avatar-sm  me-3 ">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="text-sm font-weight-normal mb-1">
-                                                <span class="font-weight-bold">Welcome</span>
-                                                {{ Auth::user()->name ?? 'User' }}!
-                                            </h6>
-                                            <p class="text-xs text-secondary mb-0 ">
-                                                <i class="fa fa-clock me-1"></i>
-                                                Just now
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="javascript:;">
-                                    <div class="d-flex py-1">
-                                        <div class="my-auto">
-                                            <img src="{{ asset('layout/assets/img/small-logos/logo-spotify.svg') }}"
-                                                class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="text-sm font-weight-normal mb-1">
-                                                <span class="font-weight-bold">New order</span> #{{ rand(10000, 99999) }}
-                                            </h6>
-                                            <p class="text-xs text-secondary mb-0 ">
-                                                <i class="fa fa-clock me-1"></i>
-                                                1 day
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
+@section('distributor')
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show mx-4 mt-3" role="alert">
             <span class="alert-icon"><i class="ni ni-like-2"></i></span>
@@ -197,60 +25,90 @@
         </div>
     @endif
 
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Authors table</h6>
+                        <h6>{{ $title }} table</h6>
                     </div>
-                   <a class="btn bg-gradient-dark mb-3" href="{{ route('distributors.create') }}">
-    <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Distributor
-</a>
+
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            No.</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Distributor Name</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Address</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Phone Number</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                            No.
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Distributor Name
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Address
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Phone Number
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $no => $data)
-                                    <tr>
-                                        <td class="text-xs font-weight-bold mb-8">
-                                            {{ $no + 1 }}.
-                                        </td>
-                                        <td class="text-xs font-weight-bold mb-8">
-                                            {{ $data->name }}
-                                        </td>
-                                        <td class="text-xs font-weight-bold mb-8">
-                                            {{ $data->address }}
-                                        </td>
-                                        <td class="text-xs font-weight-bold mb-8">
-                                            {{ $data->phone_number }}
-                                        </td>
-                                    </tr>
+                                    @foreach ($distributors as $no => $item)
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">{{ $no + 1 }}</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->name }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->address }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->phone_number }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                                    {{-- Tombol Edit --}}
+                                                    <a href="{{ route('distributors.edit', $item->id) }}"
+                                                        class="btn btn-link text-warning text-gradient px-3 mb-0"
+                                                        data-bs-toggle="tooltip" data-bs-title="Edit Data">
+                                                        <i class="ni ni-ruler-pencil me-2"></i>Edit
+                                                    </a>
+
+                                                    {{-- Tombol Delete --}}
+                                                    <form action="{{ route('distributors.destroy', $item->id) }}"
+                                                        method="POST" class="d-inline"
+                                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                                            data-bs-toggle="tooltip" data-bs-title="Hapus Data">
+                                                            <i class="ni ni-fat-remove me-2"></i>Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="px-4 py-3 text-end">
+                            <a class="btn bg-gradient-dark mb-0" href="{{ route('distributors.create') }}">
+                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Distributor
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- Projects Table (Code from user input kept intact) --}}
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -264,14 +122,11 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Project</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Budget</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
                                             Completion</th>
                                         <th></th>
                                     </tr>
@@ -505,38 +360,31 @@
                 </div>
             </div>
         </div>
-        <footer class="footer pt-3  ">
+
+        <footer class="footer pt-3">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6 mb-lg-0 mb-4">
                         <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
+                            © <script>document.write(new Date().getFullYear())</script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
                             for a better web.
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                    target="_blank">Creative Tim</a>
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                    target="_blank">About Us</a>
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                    target="_blank">Blog</a>
+                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                    target="_blank">License</a>
+                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
                             </li>
                         </ul>
                     </div>

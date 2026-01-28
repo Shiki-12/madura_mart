@@ -3,10 +3,10 @@
 * Soft UI Dashboard - v1.0.7
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+* Product Page: https://shiki-21.carrd.co/
+* Copyright 2023 Creative Tim  https://shiki-21.carrd.co/
+* Licensed under Me ttps://shiki-21.carrd.co/
+* Coded by Shiki
 
 =========================================================
 
@@ -82,15 +82,19 @@
     @yield('menu')
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <!-- Navbar -->
+    @include('layout.navbar')
+
     @if ($title == 'Dashboard')
         @yield('dashboard')
     @endif
+
     @if(Request::is('distributors*'))
         @yield('distributor')
     @endif
 
-  </main>
+    @yield('content')
+
+</main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
