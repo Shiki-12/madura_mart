@@ -41,16 +41,20 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             No.
                                         </th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Distributor Name
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Address
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Phone Number
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Action
                                         </th>
                                     </tr>
@@ -59,34 +63,37 @@
                                     @foreach ($distributors as $no => $item)
                                         <tr>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ $no + 1 }}</span>
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $no + 1 }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->name }}</span>
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->name }}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->address }}</span>
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->address }}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ $item->phone_number }}</span>
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->phone_number }}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                                     {{-- Tombol Edit --}}
                                                     <a href="{{ route('distributors.edit', $item->id) }}"
-                                                        class="btn btn-link text-warning text-gradient px-3 mb-0"
+                                                        class="btn btn-link text-warning text-gradient px-3 mb-0 confirm-edit"
                                                         data-bs-toggle="tooltip" data-bs-title="Edit Data">
                                                         <i class="ni ni-ruler-pencil me-2"></i>Edit
                                                     </a>
 
                                                     {{-- Tombol Delete --}}
                                                     <form action="{{ route('distributors.destroy', $item->id) }}"
-                                                        method="POST" class="d-inline"
-                                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                        method="POST" class="d-inline delete-form">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                                        <button type="button"
+                                                            class="btn btn-link text-danger text-gradient px-3 mb-0 btn-delete"
                                                             data-bs-toggle="tooltip" data-bs-title="Hapus Data">
                                                             <i class="ni ni-fat-remove me-2"></i>Delete
                                                         </button>
@@ -99,7 +106,8 @@
                             </table>
                         </div>
                         <div class="px-4 py-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('distributors.create') }}">
+                            <a class="btn bg-gradient-dark mb-0" id="btn-add-distributor"
+                                href="{{ route('distributors.create') }}">
                                 <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Distributor
                             </a>
                         </div>
@@ -122,11 +130,14 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Project</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Budget</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
                                             Completion</th>
                                         <th></th>
                                     </tr>
@@ -366,25 +377,33 @@
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6 mb-lg-0 mb-4">
                         <div class="copyright text-center text-sm text-muted text-lg-start">
-                            © <script>document.write(new Date().getFullYear())</script>,
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
+                                Tim</a>
                             for a better web.
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
+                                    target="_blank">Creative Tim</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
+                                    target="_blank">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
+                                    target="_blank">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
+                                    target="_blank">License</a>
                             </li>
                         </ul>
                     </div>
@@ -425,6 +444,9 @@
         }
     </style>
 
+    <!-- SweetAlert2 Library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // Auto hide alerts after 5 seconds
         setTimeout(function() {
@@ -434,5 +456,86 @@
                 bsAlert.close();
             });
         }, 5000);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Logika untuk Tombol Delete ---
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const form = this.closest('form');
+
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data distributor ini akan dihapus secara permanen!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#344767', // Warna merah khas 'danger'
+                        cancelButtonColor: '#82d616', // Warna hijau khas 'success'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); // Eksekusi penghapusan jika dikonfirmasi
+                        }
+                    });
+                });
+            });
+
+            // --- Logika untuk Tombol Edit (Jika diperlukan) ---
+            const editLinks = document.querySelectorAll('.confirm-edit');
+
+            editLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Hentikan navigasi langsung
+                    const url = this.getAttribute('href');
+
+                    Swal.fire({
+                        title: 'Edit Data?',
+                        text: "Anda akan diarahkan ke halaman pengubahan data.",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#344767',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, Lanjutkan',
+                        cancelButtonText: 'Kembali'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnAdd = document.getElementById('btn-add-distributor');
+
+            if (btnAdd) {
+                btnAdd.addEventListener('click', function(e) {
+                    e.preventDefault(); // Menahan link agar tidak langsung pindah halaman
+                    const targetUrl = this.getAttribute('href');
+
+                    Swal.fire({
+                        title: 'Tambah Distributor Baru?',
+                        text: "Anda akan diarahkan ke formulir pengisian data distributor.",
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#344767', // Warna gelap sesuai tema gradient-dark
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, Lanjutkan',
+                        cancelButtonText: 'Batal',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = targetUrl; // Navigasi manual jika klik 'Ya'
+                        }
+                    });
+                });
+            }
+        });
     </script>
 @endsection
