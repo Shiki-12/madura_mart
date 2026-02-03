@@ -53,33 +53,46 @@ class DistributorController extends Controller
         return view('distributor.show', compact('distributor'));
     }
 
-    public function update(Request $request, $id)
+public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'phone_number' => 'required|string|max:30',
+        // 1. Validasi Input
+        // Tetap gunakan validasi unique yang mengabaikan ID sendiri agar aman dari error SQL
+        $validated = $request->validate([
+            'name' => 'required|string|max:50|unique:distributors,name,' . $id,
+            'address' => 'required|string|max:255',
+            'phone_number' => 'required|numeric',
+        ], [
+            'name.unique' => 'Nama Distributor ini sudah terdaftar, mohon gunakan nama lain.',
+            'name.max' => 'Nama Distributor tidak boleh lebih dari 50 karakter.',
         ]);
+
+        // 2. Ambil Data Lama dari Database
         $distributor = Distributor::findOrFail($id);
 
-        $namaLama = $distributor->name;
-        $cekDuplikat = Distributor::where('name', $request->name)
-            ->where('address', $request->address)
-            ->where('phone_number', $request->phone_number)
-            ->where('id', '!=', $id)
-            ->first();
-
-        if ($cekDuplikat) {
-            return redirect()->route('distributors.edit', $id)->with('error', 'Distributor '.$request->name.' data with the same address '.$request->address.' and phone number '.$request->phone_number.' already exists. Please use different data.');
+        // 3. LOGIKA DETEKSI "TIDAK ADA PERUBAHAN"
+        // Kita bandingkan data input ($request) dengan data lama ($distributor)
+        if (
+            $request->name == $distributor->name &&
+            $request->address == $distributor->address &&
+            $request->phone_number == $distributor->phone_number
+        ) {
+            // JIKA SEMUA SAMA: Kembalikan dengan pesan Error
+            // redirect()->back() akan mengembalikan user ke halaman Edit
+            return redirect()->back()->with('error', 'Tidak ada perubahan data yang dilakukan.');
         }
 
+        // Simpan nama lama untuk pesan sukses (opsional)
+        $namaLama = $distributor->name;
+
+        // 4. Lakukan Update (Hanya jika lolos pengecekan di atas)
         $distributor->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
         ]);
 
-        return redirect()->route('distributors.index')->with('success', 'The Distributor Data, '.$namaLama.' become '.$request->name.', has been successfully updated');
+        return redirect()->route('distributors.index')
+            ->with('success', 'Data Distributor ' . $namaLama . ' berhasil diubah menjadi ' . $request->name);
     }
 
     public function destroy($id)

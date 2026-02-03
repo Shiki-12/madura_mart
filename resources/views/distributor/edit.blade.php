@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
 
-                        {{-- Menampilkan Error Validasi (Wajib ada agar user tahu jika input salah/duplikat dari controller) --}}
+                        {{-- 1. Menampilkan Error Validasi (Laravel Validation) --}}
                         @if ($errors->any())
                             <div class="alert alert-danger mx-4 mt-3">
                                 <ul class="mb-0">
@@ -28,11 +28,10 @@
                         @endif
 
                         {{-- Form Start --}}
-                        {{-- PENTING: Saya menambahkan id="edit-form" agar bisa dipanggil di JavaScript --}}
                         <form id="edit-form" action="{{ route('distributors.update', $distributor->id) }}" method="POST"
                             class="p-4">
                             @csrf
-                            @method('PUT') {{-- Method PUT untuk Update data --}}
+                            @method('PUT')
 
                             <div class="form-group">
                                 <label for="name">Nama Distributor</label>
@@ -50,11 +49,10 @@
                                 <input type="text" class="form-control" id="phone_number" name="phone_number"
                                     value="{{ old('phone_number', $distributor->phone_number) }}" required>
                             </div>
+
                             <div class="d-flex justify-content-end mt-4">
-                                {{-- Tambahkan 'me-2' di sini untuk jarak ke kanan --}}
                                 <a href="#" onclick="confirmCancel(event)"
                                     class="btn bg-gradient-light mt-4 mb-0 me-2">Batal</a>
-
                                 <button type="submit" class="btn bg-gradient-dark mt-4 mb-0">Simpan Perubahan</button>
                             </div>
                         </form>
@@ -85,51 +83,81 @@
     </div>
 
     {{-- Script SweetAlert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // 1. Fungsi Konfirmasi Batal (Cancel)
+        // ==========================================================
+        // LOGIKA 1: MENANGKAP SESSION ERROR DARI CONTROLLER
+        // (Jika user klik simpan tapi tidak mengubah apa-apa)
+        // ==========================================================
+        @if(session('error'))
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Tidak Ada Perubahan',
+                    text: "{{ session('error') }}", // Pesan: "Tidak ada perubahan data yang dilakukan."
+                    icon: 'info', // Pakai icon info agar lebih sopan daripada error
+                    showCancelButton: true,
+                    confirmButtonColor: '#344767',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Edit Lagi',
+                    cancelButtonText: 'Batalkan Edit (Kembali)'
+                }).then((result) => {
+                    // Jika user memilih tombol Cancel (Batalkan Edit),
+                    // Kita anggap mereka memang tidak jadi mengedit, langsung lempar ke Index.
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "{{ route('distributors.index') }}";
+                    }
+                });
+            });
+        @endif
+
+        // ==========================================================
+        // LOGIKA 2: KONFIRMASI TOMBOL BATAL MANUAL
+        // ==========================================================
         function confirmCancel(event) {
-            event.preventDefault(); // Mencegah link langsung pindah halaman
+            event.preventDefault();
 
             Swal.fire({
                 title: 'Batalkan Edit?',
                 text: "Perubahan yang belum disimpan akan hilang!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#344767', // Warna gelap (sesuai tema)
-                cancelButtonColor: '#d33', // Warna merah
+                confirmButtonColor: '#344767',
+                cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, Batalkan!',
                 cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect ke halaman index jika user klik Ya
                     window.location.href = "{{ route('distributors.index') }}";
                 }
             });
         }
 
-        // 2. Fungsi Konfirmasi Simpan (Submit Form)
+        // ==========================================================
+        // LOGIKA 3: KONFIRMASI SAAT KLIK TOMBOL SIMPAN
+        // ==========================================================
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('edit-form'); // Pastikan ID sesuai dengan tag <form>
+            const form = document.getElementById('edit-form');
 
             if (form) {
                 form.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Tahan proses submit asli
+                    event.preventDefault(); // Tahan dulu, jangan langsung submit
+
+                    // Ambil nilai input saat ini untuk cek sederhana (Optional, tapi controller sudah handle)
+                    // Kita serahkan validasi berat ke Backend, di sini konfirmasi saja.
 
                     Swal.fire({
                         title: 'Simpan Perubahan?',
-                        text: "Pastikan data yang diubah sudah benar.",
+                        text: "Pastikan data sudah benar.",
                         icon: 'question',
                         showCancelButton: true,
-                        confirmButtonColor: '#344767', // Warna tombol konfirmasi
-                        cancelButtonColor: '#82d616', // Warna tombol batal (hijau muda/sesuaikan)
+                        confirmButtonColor: '#344767',
+                        cancelButtonColor: '#82d616',
                         confirmButtonText: 'Ya, Simpan!',
                         cancelButtonText: 'Cek Lagi'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Jika user klik Ya, baru form dikirim ke server
-                            this.submit();
+                            this.submit(); // Kirim form ke controller
                         }
                     });
                 });
