@@ -156,7 +156,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                                            <p class="text-sm font-weight-bold mb-0">$10,500</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">working</span>
