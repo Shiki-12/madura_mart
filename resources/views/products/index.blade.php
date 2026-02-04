@@ -17,7 +17,7 @@
         </div>
         <div>
             <a href="{{ route('products.create') }}" class="btn bg-gradient-dark mb-0">
-                <i class="fas fa-plus me-1"></i> Add New Product
+                <i class="fas fa-plus me-1"></i> Add New Products
             </a>
         </div>
     </div>
