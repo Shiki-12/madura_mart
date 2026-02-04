@@ -7,21 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-    'serial_number',
-    'name',
-    'type',
-    'expiration_date',
-    'price',
-    'stock',
-    'picture',
-    'is_active',
-];
+        'distributor_id', // Tambahan
+        'serial_number',
+        'name',
+        'type',
+        'description',    // Tambahan
+        'expiration_date',
+        'price',
+        'stock',
+        'picture',
+        'is_active',
+    ];
 
-protected $casts = [
-    'expiration_date' => 'date',
-    'price' => 'integer',
-    'stock' => 'integer',
-    'is_active' => 'boolean',
-];
+    protected $casts = [
+        'expiration_date' => 'date',
+        'price' => 'integer',
+        'stock' => 'integer',
+        'is_active' => 'boolean',
+    ];
 
+    // Relasi: Produk dimiliki oleh satu Distributor
+    public function distributor()
+    {
+        return $this->belongsTo(Distributor::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Distributor;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Penting untuk hapus gambar
@@ -10,10 +11,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        // 1. Mulai Query Builder
         $query = Product::query();
-
-        // 2. Logika Search (Nama Produk atau SKU)
         if ($request->has('search') && $request->search != null) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -51,8 +49,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // Kirim data distributor ke view agar bisa dipilih
         return view('products.create', [
             'title' => 'Add New Product',
+            'distributors' => Distributor::all(),
         ]);
     }
 
@@ -61,44 +61,47 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validasi Input
-        // Serial number harus unique di tabel products
-        // Gambar opsional, tapi jika ada harus berupa image (jpg/png) max 2MB
         $validated = $request->validate([
+            'distributor_id' => 'required|exists:distributors,id', // Validasi distributor
             'serial_number' => 'required|string|max:20|unique:products,serial_number',
             'name' => 'required|string|max:50',
             'type' => 'required|string|max:50',
+            'description' => 'nullable|string', // Validasi deskripsi
             'expiration_date' => 'nullable|date',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|numeric|min:0',
+            'price' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ], [
-            'serial_number.unique' => 'Serial Number (SKU) ini sudah digunakan.',
-            'picture.max' => 'Ukuran gambar maksimal 2MB.',
-            'picture.image' => 'File harus berupa gambar.',
         ]);
 
-        // 2. Handle Upload Gambar
         $path = null;
         if ($request->hasFile('picture')) {
-            // Simpan ke folder 'storage/app/public/product-images'
-            // Pastikan Anda sudah menjalankan: php artisan storage:link
             $path = $request->file('picture')->store('product-images', 'public');
         }
 
-        // 3. Simpan ke Database
         Product::create([
+            'distributor_id' => $request->distributor_id,
             'serial_number' => $request->serial_number,
             'name' => $request->name,
-            'type' => $request->type, // Ini dari Select Option
+            'type' => $request->type,
+            'description' => $request->description,
             'expiration_date' => $request->expiration_date,
             'price' => $request->price,
             'stock' => $request->stock,
-            'picture' => $path, // Simpan path filenya saja string
+            'picture' => $path,
+            'is_active' => true,
         ]);
 
-        // 4. Redirect dengan Pesan Sukses
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
+    }
+
+    public function show(string $id)
+    {
+        $product = Product::with('distributor')->findOrFail($id);
+
+        return view('products.show', [
+            'title' => 'Product Detail',
+            'product' => $product,
+        ]);
     }
 
     public function edit(string $id)
@@ -108,31 +111,27 @@ class ProductController extends Controller
         return view('products.edit', [
             'title' => 'Edit Product',
             'product' => $product,
+            'distributors' => Distributor::all(), // Kirim list distributor lagi
         ]);
     }
 
     public function update(Request $request, string $id)
     {
-        // 1. Validasi
         $validated = $request->validate([
+            'distributor_id' => 'required|exists:distributors,id',
             'serial_number' => 'required|string|max:20|unique:products,serial_number,'.$id,
             'name' => 'required|string|max:50',
             'type' => 'required|string|max:50',
+            'description' => 'nullable|string',
             'expiration_date' => 'nullable|date',
             'price' => 'required|integer|min:0',
             'stock' => 'required|integer|min:0',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            // 'is_active' tidak perlu divalidasi karena kita handle manual di bawah
         ]);
 
         $product = Product::findOrFail($id);
-
-        // 2. Handle Checkbox Status
-        // Jika checkbox dicentang, request akan punya 'is_active' -> true
-        // Jika tidak dicentang, request tidak punya 'is_active' -> false
         $isActive = $request->has('is_active');
 
-        // 3. Handle Gambar
         $path = $product->picture;
         if ($request->hasFile('picture')) {
             if ($product->picture && Storage::disk('public')->exists($product->picture)) {
@@ -141,16 +140,17 @@ class ProductController extends Controller
             $path = $request->file('picture')->store('product-images', 'public');
         }
 
-        // 4. Update Database
         $product->update([
+            'distributor_id' => $request->distributor_id,
             'serial_number' => $request->serial_number,
             'name' => $request->name,
             'type' => $request->type,
+            'description' => $request->description,
             'expiration_date' => $request->expiration_date,
             'price' => $request->price,
             'stock' => $request->stock,
             'picture' => $path,
-            'is_active' => $isActive, // Simpan status baru
+            'is_active' => $isActive,
         ]);
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
