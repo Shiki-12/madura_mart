@@ -23,4 +23,9 @@ class Purchase extends Model
     {
         return $this->belongsTo(Distributor::class);
     }
+
+    public function details()
+    {
+        return $this->hasMany(PurchaseDetail::class);
+    }
 }

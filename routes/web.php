@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('test', TestController::class);
     Route::resource('distributors', DistributorController::class);
     Route::resource('purchase', PurchaseController::class);
+    Route::post('/purchase/check-unique', [App\Http\Controllers\PurchaseController::class, 'checkUniqueNoteNumber'])->name('purchase.check-unique');
     Route::post('/distributors/check-duplicate', [DistributorController::class, 'checkDuplicate'])->name('distributors.check-duplicate');
     Route::post('/distributors/check-unique', [DistributorController::class, 'checkUnique'])->name('distributors.check-unique');
     Route::put('/products/{id}/toggle', [ProductController::class, 'toggleStatus'])->name('products.toggle');
