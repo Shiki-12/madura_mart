@@ -169,4 +169,27 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
     }
+    // Update di app/Http/Controllers/ProductController.php
+
+    public function checkUnique(Request $request)
+    {
+        $field = $request->input('field');
+        $value = $request->input('value');
+        $ignoreId = $request->input('ignore_id'); // ID produk yang sedang diedit (jika ada)
+
+        if (! in_array($field, ['serial_number', 'name'])) {
+            return response()->json(['exists' => false]);
+        }
+
+        $query = Product::where($field, $value);
+
+        // Jika ada ignore_id, kecualikan ID tersebut dari pencarian
+        if ($ignoreId) {
+            $query->where('id', '!=', $ignoreId);
+        }
+
+        $exists = $query->exists();
+
+        return response()->json(['exists' => $exists]);
+    }
 }

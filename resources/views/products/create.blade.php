@@ -35,7 +35,7 @@
                                                 class="position-relative border-2 border-dashed border-secondary rounded-3 d-flex align-items-center justify-content-center bg-light overflow-hidden"
                                                 style="height: 350px; cursor: pointer; transition: all 0.3s ease;">
 
-                                                {{-- 1. Placeholder Content (Icon & Text) --}}
+                                                {{-- 1. Placeholder Content --}}
                                                 <div id="placeholder-content" class="text-center p-4"
                                                     style="pointer-events: none;">
                                                     <div class="mb-3">
@@ -47,12 +47,12 @@
                                                     <p class="text-xxs text-muted mb-0">Recommended: 500x500px (JPG/PNG)</p>
                                                 </div>
 
-                                                {{-- 2. Image Preview (Hidden by default) --}}
+                                                {{-- 2. Image Preview --}}
                                                 <img id="img-preview" src=""
                                                     class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover d-none"
                                                     style="pointer-events: none;">
 
-                                                {{-- 3. Drag Overlay (Muncul saat drag) --}}
+                                                {{-- 3. Drag Overlay --}}
                                                 <div id="drop-overlay"
                                                     class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 d-flex align-items-center justify-content-center"
                                                     style="transition: opacity 0.2s; pointer-events: none;">
@@ -64,7 +64,7 @@
                                             <input type="file" class="d-none" id="picture" name="picture"
                                                 accept="image/*">
 
-                                            {{-- Tombol Kecil di Bawah (Opsional) --}}
+                                            {{-- Tombol Kecil --}}
                                             <div class="text-center mt-3">
                                                 <button type="button" class="btn btn-sm btn-outline-dark mb-0"
                                                     onclick="document.getElementById('picture').click()">
@@ -86,24 +86,35 @@
 
                                             {{-- BARIS 1: SKU & NAMA --}}
                                             <div class="row">
-                                                <div class="col-md-6 mb-3">
+                                                {{-- SERIAL NUMBER (Validasi Real-time) --}}
+                                                <div class="col-md-6 mb-3 position-relative">
                                                     <label class="form-label text-xs font-weight-bold text-uppercase">Serial
                                                         Number (SKU)</label>
-                                                    <input type="text" class="form-control" name="serial_number"
-                                                        value="{{ old('serial_number') }}" placeholder="Ex: KKA-001"
-                                                        required>
+                                                    <input type="text" class="form-control" id="serial_number"
+                                                        name="serial_number" value="{{ old('serial_number') }}"
+                                                        placeholder="Ex: KKA-001" maxlength="20" required>
+                                                    {{-- Pesan Error Realtime --}}
+                                                    <div id="serial_error" class="invalid-feedback text-xs">
+                                                        Serial Number already exists!
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6 mb-3">
+
+                                                {{-- PRODUCT NAME (Validasi Real-time - Opsional) --}}
+                                                <div class="col-md-6 mb-3 position-relative">
                                                     <label
                                                         class="form-label text-xs font-weight-bold text-uppercase">Product
                                                         Name</label>
-                                                    <input type="text" class="form-control" name="name"
+                                                    <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ old('name') }}" placeholder="Ex: Kapal Api Coffee"
                                                         required>
+                                                    {{-- Pesan Error Realtime --}}
+                                                    <div id="name_error" class="invalid-feedback text-xs">
+                                                        Product Name already exists!
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            {{-- BARIS 2: DISTRIBUTOR & KATEGORI (Baru) --}}
+                                            {{-- BARIS 2: DISTRIBUTOR & KATEGORI --}}
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label
@@ -131,7 +142,7 @@
                                                 </div>
                                             </div>
 
-                                            {{-- BARIS 3: DESKRIPSI (Baru) --}}
+                                            {{-- BARIS 3: DESKRIPSI --}}
                                             <div class="mb-3">
                                                 <label
                                                     class="form-label text-xs font-weight-bold text-uppercase">Description</label>
@@ -166,8 +177,9 @@
                                             <div class="d-flex justify-content-end mt-4">
                                                 <a href="#" onclick="confirmCancel(event)"
                                                     class="btn btn-light m-0 me-2">Cancel</a>
-                                                <button type="submit" class="btn bg-gradient-primary m-0">Save
-                                                    Product</button>
+                                                {{-- ID tombol submit penting untuk disabled logic --}}
+                                                <button type="submit" id="btn-submit"
+                                                    class="btn bg-gradient-primary m-0">Save Product</button>
                                             </div>
                                         </div>
                                     </div>
@@ -181,7 +193,7 @@
         </div>
     </div>
 
-    {{-- Style Tambahan untuk Dashed Border --}}
+    {{-- Style Tambahan --}}
     <style>
         .border-dashed {
             border-style: dashed !important;
@@ -200,6 +212,16 @@
         .object-fit-cover {
             object-fit: cover;
         }
+
+        /* Style untuk form invalid agar lebih jelas */
+        .form-control.is-invalid {
+            border-color: #fd5c70;
+            padding-right: calc(1.5em + 0.75rem);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23fd5c70'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23fd5c70' stroke='none'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
     </style>
 
     {{-- Scripts --}}
@@ -207,45 +229,105 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- PREVENT DEFAULT ---
-            window.addEventListener('dragover', e => e.preventDefault(), false);
-            window.addEventListener('drop', e => e.preventDefault(), false);
+            // --- 1. REAL-TIME VALIDATION LOGIC ---
+            const serialInput = document.getElementById('serial_number');
+            const nameInput = document.getElementById('name');
+            const submitBtn = document.getElementById('btn-submit');
 
-            // --- DRAG & DROP LOGIC ---
+            // Fungsi cek database
+            function checkDuplicate(inputElement, fieldName) {
+                const value = inputElement.value;
+                if (value.length < 3) return; // Minimal 3 huruf baru cek
+
+                fetch("{{ route('products.check-unique') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify({
+                            field: fieldName,
+                            value: value
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.exists) {
+                            // Jika ada di DB: Merahkan input & Matikan tombol
+                            inputElement.classList.add('is-invalid');
+                            submitBtn.disabled = true;
+                            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        } else {
+                            // Jika aman: Hijaukan/Normalkan input
+                            inputElement.classList.remove('is-invalid');
+                            inputElement.classList.add('is-valid');
+
+                            // Cek apakah semua input aman sebelum nyalakan tombol
+                            checkAllInputs();
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Cek status keseluruhan tombol submit
+            function checkAllInputs() {
+                const invalids = document.querySelectorAll('.is-invalid');
+                if (invalids.length === 0) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+
+            // Pasang Event Listener (Blur = saat user pindah kolom / selesai ngetik)
+            if (serialInput) {
+                serialInput.addEventListener('blur', function() {
+                    checkDuplicate(this, 'serial_number');
+                });
+                // Hapus merah saat user mulai mengetik ulang
+                serialInput.addEventListener('input', function() {
+                    this.classList.remove('is-invalid', 'is-valid');
+                });
+            }
+
+            if (nameInput) {
+                nameInput.addEventListener('blur', function() {
+                    checkDuplicate(this, 'name');
+                });
+                nameInput.addEventListener('input', function() {
+                    this.classList.remove('is-invalid', 'is-valid');
+                });
+            }
+
+
+            // --- 2. DRAG & DROP LOGIC ---
             const dropArea = document.getElementById('drop-area');
             const fileInput = document.getElementById('picture');
             const imgPreview = document.getElementById('img-preview');
             const placeholder = document.getElementById('placeholder-content');
 
             if (dropArea) {
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, () => dropArea.classList.add('drag-over'), false);
-                });
-                ['dragleave', 'drop'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, () => dropArea.classList.remove('drag-over'),
-                        false);
-                });
-
-                dropArea.addEventListener('drop', handleDrop, false);
+                ['dragenter', 'dragover'].forEach(eventName => dropArea.addEventListener(eventName, e => {
+                    e.preventDefault();
+                    dropArea.classList.add('drag-over');
+                }));
+                ['dragleave', 'drop'].forEach(eventName => dropArea.addEventListener(eventName, e => {
+                    e.preventDefault();
+                    dropArea.classList.remove('drag-over');
+                }));
+                dropArea.addEventListener('drop', handleDrop);
                 dropArea.addEventListener('click', () => fileInput.click());
             }
 
-            if (fileInput) {
-                fileInput.addEventListener('change', function() {
-                    previewImage(this);
-                });
-            }
+            if (fileInput) fileInput.addEventListener('change', () => previewImage(fileInput));
 
             function handleDrop(e) {
-                e.preventDefault();
-                e.stopPropagation();
                 const files = e.dataTransfer.files;
                 if (files.length > 0) {
                     if (!files[0].type.startsWith('image/')) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Format Salah',
-                            text: 'Mohon upload file gambar (JPG/PNG).',
+                            text: 'Mohon upload file gambar.',
                             confirmButtonColor: '#344767'
                         });
                         return;
@@ -269,7 +351,7 @@
                 }
             }
 
-            // --- SUBMIT CONFIRMATION ---
+            // --- 3. SUBMIT CONFIRMATION ---
             const form = document.getElementById('create-product-form');
             if (form) {
                 form.addEventListener('submit', function(event) {
@@ -279,7 +361,7 @@
                         text: "Pastikan data sudah benar.",
                         icon: 'question',
                         showCancelButton: true,
-                        confirmButtonColor: '#344767',
+                        confirmButtonColor: '#cb0c9f',
                         cancelButtonColor: '#82d616',
                         confirmButtonText: 'Ya, Simpan!',
                         cancelButtonText: 'Cek Lagi'

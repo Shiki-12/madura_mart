@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', function () {
     return view('welcome', ['title' => 'Welcome']);
@@ -33,9 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('test', TestController::class);
     Route::resource('distributors', DistributorController::class);
+    Route::resource('purchase', PurchaseController::class);
     Route::post('/distributors/check-duplicate', [DistributorController::class, 'checkDuplicate'])->name('distributors.check-duplicate');
     Route::post('/distributors/check-unique', [DistributorController::class, 'checkUnique'])->name('distributors.check-unique');
     Route::put('/products/{id}/toggle', [ProductController::class, 'toggleStatus'])->name('products.toggle');
+    Route::post('/products/check-unique', [App\Http\Controllers\ProductController::class, 'checkUnique'])->name('products.check-unique');
     Route::resource('products', ProductController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

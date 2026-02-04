@@ -110,11 +110,15 @@
                                     </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
+                                            {{-- GAMBAR PRODUK (DENGAN CLICK EVENT) --}}
                                             <div>
                                                 @if ($product->picture)
+                                                    {{-- Tambahkan onclick --}}
                                                     <img src="{{ asset('storage/' . $product->picture) }}"
-                                                        class="avatar avatar-sm me-3 rounded" alt="{{ $product->name }}"
-                                                        style="width: 40px; height: 40px; object-fit: cover;">
+                                                        class="avatar avatar-sm me-3 rounded cursor-pointer product-img-preview" 
+                                                        alt="{{ $product->name }}"
+                                                        style="width: 40px; height: 40px; object-fit: cover;"
+                                                        onclick="showImagePreview(this.src, '{{ $product->name }}')">
                                                 @else
                                                     <img src="https://placehold.co/100x100/grey/white?text=No+Img"
                                                         class="avatar avatar-sm me-3 rounded" alt="No Image">
@@ -140,7 +144,6 @@
                                         </span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        {{-- LOGIKA BADGE STATUS --}}
                                         @if (!$product->is_active)
                                             <span class="badge bg-secondary text-xs">Inactive</span>
                                         @elseif($product->stock <= 0)
@@ -193,6 +196,37 @@
         </div>
     </div>
 
+    {{-- MODAL PREVIEW IMAGE (LIGHTBOX) --}}
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg bg-transparent">
+                <div class="modal-body p-0 text-center">
+                    <img id="previewImageSrc" src="" class="img-fluid rounded shadow-lg" style="max-height: 80vh;" alt="Preview">
+                    <h6 id="previewImageTitle" class="mt-3 text-white font-weight-bold"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- CSS CUSTOM --}}
+    <style>
+        .cursor-pointer {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .cursor-pointer:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Background modal gelap transparan */
+        #imagePreviewModal .modal-content {
+            background: none;
+        }
+        .modal-backdrop.show {
+            opacity: 0.85; /* Lebih gelap agar fokus */
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success'))
@@ -205,6 +239,7 @@
             });
         @endif
 
+        // FUNGSI CONFIRM DELETE
         function confirmDelete(event, id, name) {
             event.preventDefault();
             Swal.fire({
@@ -221,6 +256,17 @@
                     document.getElementById('delete-form-' + id).submit();
                 }
             });
+        }
+
+        // FUNGSI PREVIEW IMAGE
+        function showImagePreview(src, title) {
+            // Set sumber gambar dan judul
+            document.getElementById('previewImageSrc').src = src;
+            document.getElementById('previewImageTitle').innerText = title;
+            
+            // Tampilkan Modal Bootstrap
+            var myModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+            myModal.show();
         }
     </script>
 @endsection
