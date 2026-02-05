@@ -11,10 +11,24 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+    // --- HELPER: Tentukan User harus dilempar ke mana ---
+    private function redirectBasedOnRole()
+    {
+        $role = Auth::user()->role;
+
+        // Jika Staff (Owner, Admin, Cashier) -> Masuk Dashboard
+        if (in_array($role, ['owner', 'admin', 'cashier'])) {
+            return redirect()->route('dashboard.index');
+        }
+
+        // Jika Customer / Courier -> Masuk Halaman Depan (Home)
+        return redirect()->route('home');
+    }
+
     public function showLogin()
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard.index');
+            return $this->redirectBasedOnRole();
         }
         return view('auth.login', ['title' => 'Login']);
     }
@@ -22,7 +36,7 @@ class AuthController extends Controller
     public function showRegister()
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard.index');
+            return $this->redirectBasedOnRole();
         }
         return view('auth.register', ['title' => 'Register']);
     }
@@ -36,7 +50,6 @@ class AuthController extends Controller
             'email.required' => 'Email harus diisi',
             'email.email' => 'Format email tidak valid',
             'password.required' => 'Password harus diisi',
-            'password.min' => 'Password minimal 8 karakter',
         ]);
 
         if ($validator->fails()) {
@@ -48,12 +61,19 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            Log::info('User logged in', ['user_id' => Auth::id(), 'email' => Auth::user()->email, 'ip' => $request->ip()]);
-            return redirect()->intended(route('dashboard.index'))
-                ->with('success', 'Login berhasil! Selamat datang ' . Auth::user()->name);
+            Log::info('User logged in', ['id' => Auth::id(), 'role' => Auth::user()->role]);
+
+            // PERBAIKAN: Redirect sesuai Role
+            if (in_array(Auth::user()->role, ['owner', 'admin', 'cashier'])) {
+                return redirect()->intended(route('dashboard.index'))
+                    ->with('success', 'Welcome back, ' . Auth::user()->name);
+            } else {
+                // Customer ke Home
+                return redirect()->route('home')
+                    ->with('success', 'Selamat datang di Madura Mart!');
+            }
         }
 
-        Log::warning('Failed login attempt', ['email' => $request->email, 'ip' => $request->ip()]);
         return back()->withErrors(['email' => 'Email atau password salah'])->withInput($request->only('email'));
     }
 
@@ -63,20 +83,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
-            'role' => 'required|in:customer,courier,admin,owner',
             'terms' => 'accepted',
-        ], [
-            'name.required' => 'Nama harus diisi',
-            'name.max' => 'Nama maksimal 255 karakter',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah terdaftar',
-            'password.required' => 'Password harus diisi',
-            'password.min' => 'Password minimal 8 karakter',
-            'password.confirmed' => 'Konfirmasi password tidak cocok',
-            'role.required' => 'Role harus dipilih',
-            'role.in' => 'Role tidak valid',
-            'terms.accepted' => 'Anda harus menyetujui Syarat & Ketentuan',
+            // Role dihapus dari validasi input, karena kita set manual
         ]);
 
         if ($validator->fails()) {
@@ -84,42 +92,36 @@ class AuthController extends Controller
         }
 
         try {
+            // PERBAIKAN KEAMANAN:
+            // Paksa role jadi 'customer'.
+            // Jangan biarkan input form menentukan role admin/owner.
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role' => $request->role,
+                'role' => 'customer', // <--- HARDCODED CUSTOMER
             ]);
 
-            Log::info('New user registered', ['user_id' => $user->id, 'email' => $user->email, 'role' => $user->role, 'ip' => $request->ip()]);
+            Log::info('New customer registered', ['id' => $user->id]);
+            
             Auth::login($user);
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard.index')
-                ->with('success', 'Registrasi berhasil! Selamat datang ' . $user->name);
+            // Customer baru daftar langsung ke Home, bukan Dashboard
+            return redirect()->route('home')
+                ->with('success', 'Registrasi berhasil! Selamat belanja.');
+
         } catch (\Exception $e) {
-            Log::error('Registration failed', ['email' => $request->email, 'error' => $e->getMessage()]);
-            return back()->withErrors(['error' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'])->withInput();
+            Log::error('Register fail', ['error' => $e->getMessage()]);
+            return back()->withErrors(['error' => 'Gagal registrasi.'])->withInput();
         }
     }
 
     public function logout(Request $request)
     {
-        Log::info('User logged out', ['user_id' => Auth::id(), 'email' => Auth::user()->email, 'ip' => $request->ip()]);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')->with('success', 'Anda telah berhasil logout');
-    }
-
-    public function logoutAndRedirectCourier(Request $request)
-    {
-        if (Auth::check()) {
-            Log::info('User logged out for courier registration', ['user_id' => Auth::id(), 'email' => Auth::user()->email, 'ip' => $request->ip()]);
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-        }
-        return redirect()->route('register.courier');
     }
 }

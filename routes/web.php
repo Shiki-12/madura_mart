@@ -7,6 +7,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome', ['title' => 'Welcome']);
@@ -35,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('test', TestController::class);
     Route::resource('distributors', DistributorController::class);
     Route::resource('purchase', PurchaseController::class);
+    Route::resource('sales', SalesController::class);
     Route::post('/purchase/check-unique', [App\Http\Controllers\PurchaseController::class, 'checkUniqueNoteNumber'])->name('purchase.check-unique');
     Route::post('/distributors/check-duplicate', [DistributorController::class, 'checkDuplicate'])->name('distributors.check-duplicate');
     Route::post('/distributors/check-unique', [DistributorController::class, 'checkUnique'])->name('distributors.check-unique');
@@ -42,4 +45,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/check-unique', [App\Http\Controllers\ProductController::class, 'checkUnique'])->name('products.check-unique');
     Route::resource('products', ProductController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::prefix('reports')->name('reports.')->group(function () {
+    Route::get('/sale', [ReportController::class, 'saleReport'])->name('sale');
+    Route::get('/sale/print', [ReportController::class, 'printSaleReport'])->name('sale.print');
+}); 
+
+Route::get('/home', function () {
+    return "<h1>Ini Halaman Depan Toko (Storefront)</h1><p>Customer belanja di sini.</p> <form action='".route('logout')."' method='POST'>".csrf_field()."<button type='submit'>Logout</button></form>";
+})->name('home');
+
+Route::get('/', function() {
+    return redirect()->route('home');
 });
