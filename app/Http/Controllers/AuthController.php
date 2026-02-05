@@ -6,8 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -15,7 +15,7 @@ class AuthController extends Controller
     private function redirectBasedOnRole()
     {
         // Pastikan ada user yg login
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login');
         }
 
@@ -35,6 +35,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return $this->redirectBasedOnRole();
         }
+
         return view('auth.login', ['title' => 'Login']);
     }
 
@@ -43,6 +44,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return $this->redirectBasedOnRole();
         }
+
         return view('auth.register', ['title' => 'Register']);
     }
 
@@ -60,12 +62,22 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
 
+        // Coba Login
         if (Auth::attempt($credentials, $remember)) {
+
+            // --- CEK STATUS AKTIF ---
+            if (Auth::user()->is_active == 0) {
+                Auth::logout(); // Tendang keluar
+
+                return back()->withErrors(['email' => 'Akun Anda masih dalam peninjauan Admin (Pending).']);
+            }
+            // ------------------------
+
             $request->session()->regenerate();
-            
-            // LOGIKA BARU: Redirect sesuai Role
+            Log::info('User logged in', ['id' => Auth::id(), 'role' => Auth::user()->role]);
+
             return $this->redirectBasedOnRole()
-                ->with('success', 'Selamat datang kembali, ' . Auth::user()->name);
+                ->with('success', 'Selamat datang kembali, '.Auth::user()->name);
         }
 
         return back()->withErrors(['email' => 'Email atau password salah'])->withInput($request->only('email'));
@@ -103,7 +115,7 @@ class AuthController extends Controller
                 ->with('success', 'Registrasi berhasil! Selamat berbelanja.');
 
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Gagal registrasi: ' . $e->getMessage()])->withInput();
+            return back()->withErrors(['error' => 'Gagal registrasi: '.$e->getMessage()])->withInput();
         }
     }
 
@@ -112,6 +124,41 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('login')->with('success', 'Anda telah berhasil logout');
+    }
+
+    // Menangani Submit Form Register Courier
+    public function storeCourier(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|numeric', // Tambahan wajib HP
+            'password' => 'required|min:8|confirmed',
+            'terms' => 'accepted',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_number' => $request->phone,
+                'password' => Hash::make($request->password),
+                'role' => 'courier',     // Role Kurir
+                'is_active' => false,    // PENTING: Status Non-Aktif (Pending)
+            ]);
+
+            // Jangan auto-login! Redirect ke halaman login dengan pesan.
+            return redirect()->route('login')
+                ->with('success', 'Lamaran terkirim! Admin akan memverifikasi akun Anda dalam 1x24 jam.');
+
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Gagal mendaftar: '.$e->getMessage()])->withInput();
+        }
     }
 }

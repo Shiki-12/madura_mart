@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('layout/assets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('layout/assets/img/favicon.png') }}">
     <title>
-        Madura Mart - {{ $title }}
+        Madura Mart - @yield('title', $title ?? '')
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -98,7 +98,7 @@
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         @include('layout.navbar')
 
-        @if ($title == 'Dashboard')
+        @if (($title ?? '') == 'Dashboard')
             @yield('dashboard')
         @endif
 
