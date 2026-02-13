@@ -2,24 +2,45 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        Schema::disableForeignKeyConstraints();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            UsersTableSeeder::class,
+            DistributorsTableSeeder::class,
+            ExpeditionsTableSeeder::class,
+            ProductsTableSeeder::class,
+            PurchasesTableSeeder::class,
+            OrdersTableSeeder::class,
+            SalesTableSeeder::class,
+            DeliveriesTableSeeder::class,
+            PurchaseDetailsTableSeeder::class,
+            SaleDetailsTableSeeder::class,
+            OrderDetailsTableSeeder::class,
+            OrderItemsTableSeeder::class,
         ]);
+
+        Schema::enableForeignKeyConstraints();
+        $this->call(UsersTableSeeder::class);
+        $this->call(DistributorsTableSeeder::class);
+        $this->call(ExpeditionsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(PurchasesTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
+        $this->call(DeliveriesTableSeeder::class);
+        $this->call(SalesTableSeeder::class);
+        $this->call(PurchaseDetailsTableSeeder::class);
+        $this->call(SaleDetailsTableSeeder::class);
+        $this->call(OrderDetailsTableSeeder::class);
+        $this->call(OrderItemsTableSeeder::class);
     }
 }
