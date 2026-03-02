@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>夜の東京 - Tokyo Nights</title>
 
-    <link rel="icon" type="image/png" href="images/come.jpeg">
-    <link rel="apple-touch-icon" href="come.jpeg">
+    <link rel="icon" type="image/png" href="images/pfp_mizuki.jpeg">
+    <link rel="apple-touch-icon" href="pfp_mizuki.jpeg">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
@@ -47,10 +48,25 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
         }
 
         /* Header */
@@ -77,8 +93,13 @@
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 5px #ff006e); }
-            to { filter: drop-shadow(0 0 20px #8338ec); }
+            from {
+                filter: drop-shadow(0 0 5px #ff006e);
+            }
+
+            to {
+                filter: drop-shadow(0 0 20px #8338ec);
+            }
         }
 
         nav {
@@ -142,8 +163,15 @@
         }
 
         @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Profile Image with Center Image */
@@ -164,8 +192,13 @@
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .profile-image {
@@ -436,13 +469,26 @@
         }
 
         @media (max-width: 768px) {
-            .profile-username { font-size: 2rem; }
-            nav { flex-direction: column; gap: 1rem; }
-            .profile-stats { gap: 1.5rem; }
-            .profile-container { padding: 2rem; }
+            .profile-username {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .profile-stats {
+                gap: 1.5rem;
+            }
+
+            .profile-container {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
     {{-- <!-- Custom Cursor -->
     <div class="cursor-follower"></div> --}}
@@ -476,7 +522,7 @@
             <h1 class="profile-username">Mizuki Akiyama</h1>
             <p class="profile-title">Programmer code | プロジェクトセカイ カラフルステージ!</p>
 
-             <!-- Center Image -->
+            <!-- Center Image -->
             <div class="center-image-container">
                 <div class="center-image-wrapper">
                     <img src="images/banner_with_mizuki.jpeg" alt="Center Image" class="center-image">
@@ -484,7 +530,8 @@
             </div>
 
             <!-- Bio -->
-            <p class="profile-bio">Mizuki a person that i love so much, maybe you all can't understand me, but his my precious wife...</p>
+            <p class="profile-bio">Mizuki a person that i love so much, maybe you all can't understand me, but he is my
+                precious wife...</p>
 
             <!-- Stats -->
             <div class="profile-stats">
@@ -589,25 +636,27 @@
             alert('Sharing profile! プロフィールをシェア！');
         }
 
-    //     // Smooth Scroll for Navigation
-    //     document.querySelectorAll('nav a').forEach(anchor => {
-    //         anchor.addEventListener('click', function(e) {
-    //             e.preventDefault();
-    //             const target = document.querySelector(this.getAttribute('href'));
-    //             if (target) {
-    //                 target.scrollIntoView({ behavior: 'smooth' });
-    //             }
-    //         });
-    //     });
+        //     // Smooth Scroll for Navigation
+        //     document.querySelectorAll('nav a').forEach(anchor => {
+        //         anchor.addEventListener('click', function(e) {
+        //             e.preventDefault();
+        //             const target = document.querySelector(this.getAttribute('href'));
+        //             if (target) {
+        //                 target.scrollIntoView({ behavior: 'smooth' });
+        //             }
+        //         });
+        //     });
 
-    //     // Add parallax effect on scroll
-    //     window.addEventListener('scroll', () => {
-    //         const scrolled = window.pageYOffset;
-    //         const parallax = document.querySelector('.profile-hero');
-    //         if (parallax) {
-    //             parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
-    //         }
-    //     });
-    // </script>
+        //     // Add parallax effect on scroll
+        //     window.addEventListener('scroll', () => {
+        //         const scrolled = window.pageYOffset;
+        //         const parallax = document.querySelector('.profile-hero');
+        //         if (parallax) {
+        //             parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+        //         }
+        //     });
+        //
+    </script>
 </body>
+
 </html>

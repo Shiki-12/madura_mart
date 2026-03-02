@@ -18,7 +18,7 @@
                             {{-- Gambar Ilustrasi --}}
                             <div class="col-md-5 text-center mb-4 mb-md-0">
                                 <div class="position-relative">
-                                    <img src="{{ asset('images/makise.png') }}"
+                                    <img src="{{ asset('images/create_banner.png') }}"
                                          alt="Illustration"
                                          class="img-fluid border-radius-lg shadow-sm"
                                          style="max-height: 450px; width: 100%; object-fit: cover;">

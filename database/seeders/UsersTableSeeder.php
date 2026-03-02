@@ -39,17 +39,17 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'name' => 'Fatar Gaza',
-                'email' => 'uknowndonp@gmail.com',
+                'email' => 'admin@linux.com',
                 'email_verified_at' => NULL,
-                'password' => '$2y$12$etkCHYhz6RJIDGepUum8H.VwBncaSSWiCdbZCZJAiDHm3IfPMAUF6',
+                'password' => '$2y$12$bMdET8/d5OR8sdp5QJDxU.e1r6H.d.JPLTrCgx43fuIDJ9OWgbSZW',
                 'role' => 'owner',
                 'is_active' => 1,
                 'address' => NULL,
                 'phone_number' => NULL,
-                'picture' => 'profile_pictures/S46rsvMewrizYXbO0uBr7mvwZiJd7AFCpr0SV2CB.jpg',
-                'remember_token' => 'OJBBMwm3943H0sW5MmHWbyNCkhiPYvcCEHmOEwxMVPzBGysi79U4zvcrFVK0',
+                'picture' => 'profile_pictures/1TCfQInll9Ok618Yn9TJr1R1DJVRGS3XonBxEk3o.jpg',
+                'remember_token' => '7aGvVUbV5A3ETVzFmnLSlvcPamFMVUF5Q5lfJqcNEBsZCMioUgwBSa2Y4suP',
                 'created_at' => '2026-02-05 15:29:05',
-                'updated_at' => '2026-02-13 16:05:39',
+                'updated_at' => '2026-03-02 00:53:34',
             ),
         ));
         

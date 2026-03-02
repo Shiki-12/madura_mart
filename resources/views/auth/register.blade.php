@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - Madura Mart</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/come.jpeg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/pfp_mizuki.jpeg') }}">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
@@ -41,6 +42,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -249,6 +251,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -278,24 +281,25 @@
         }
     </style>
 </head>
+
 <body>
     <div class="register-container">
         <div class="register-header">
             <div class="logo">
-                <img src="{{ asset('images/come.jpeg') }}" alt="Madura Mart">
+                <img src="{{ asset('images/pfp_mizuki.jpeg') }}" alt="Madura Mart">
             </div>
             <h2>Buat Akun Baru</h2>
             <p>Daftar untuk mulai belanja</p>
         </div>
 
         @if ($errors->any())
-        <div class="alert alert-danger show">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert alert-danger show">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <form action="{{ route('register.post') }}" method="POST" id="registerForm">
@@ -304,26 +308,14 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="name">Nama Lengkap</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="John Doe"
-                        value="{{ old('name') }}"
-                        required
-                    >
+                    <input type="text" id="name" name="name" placeholder="John Doe"
+                        value="{{ old('name') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="nama@email.com"
-                        value="{{ old('email') }}"
-                        required
-                    >
+                    <input type="email" id="email" name="email" placeholder="nama@email.com"
+                        value="{{ old('email') }}" required>
                 </div>
             </div>
 
@@ -331,14 +323,8 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div class="password-wrapper">
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Minimal 8 karakter"
-                            required
-                            oninput="checkPasswordStrength()"
-                        >
+                        <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required
+                            oninput="checkPasswordStrength()">
                         <button type="button" class="password-toggle" onclick="togglePassword('password')">
                             👁️
                         </button>
@@ -352,14 +338,10 @@
                 <div class="form-group">
                     <label for="password_confirmation">Konfirmasi Password</label>
                     <div class="password-wrapper">
-                        <input
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            placeholder="Ulangi password"
-                            required
-                        >
-                        <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation')">
+                        <input type="password" id="password_confirmation" name="password_confirmation"
+                            placeholder="Ulangi password" required>
+                        <button type="button" class="password-toggle"
+                            onclick="togglePassword('password_confirmation')">
                             👁️
                         </button>
                     </div>
@@ -372,7 +354,8 @@
             <div class="terms-checkbox">
                 <input type="checkbox" id="terms" name="terms" required>
                 <label for="terms">
-                    Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> Madura Mart
+                    Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan
+                        Privasi</a> Madura Mart
                 </label>
             </div>
 
@@ -465,4 +448,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -91,7 +91,7 @@ DB_PASSWORD=
 
 **Step 5: Run migrations**
 ```bash
-php artisan migrate:fresh
+php artisan migrate:fresh --seed
 ```
 
 **Step 6: Start the server**
@@ -100,6 +100,16 @@ php artisan serve
 ```
 
 Access at: `http://localhost:8000`
+
+---
+
+## Credetials
+
+**How to Login**
+```bash
+email : admin@linux.com
+password : adminpassword
+```
 
 ---
 
@@ -138,6 +148,10 @@ FILESYSTEM_DISK=local
 ```
 
 ---
+
+## User Roles (for acces dashboard)
+
+
 
 ## Database Setup
 
@@ -206,8 +220,8 @@ And just put it on public/images
 ```
 public/
 └── images/
-    ├── mas.jpeg
-    ├── kurisu.png
+    ├── create_banner.png
+    ├── welcome_banner.png
     └── .gitkeep
 ```
 
