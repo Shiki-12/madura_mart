@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CourierController;
+use App\Http\Controllers\CourierManagementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
@@ -104,13 +107,37 @@ Route::middleware(['auth', 'role:owner,admin'])->group(function () {
     // Modul Sales (Kasir Barang Keluar)
     Route::resource('sales', SalesController::class);
 
+    // Modul Orders
     Route::resource('orders', OrderController::class);
 
+    // =====================================================
+    // Modul Clients (Customer Management)
+    // =====================================================
+    Route::resource('clients', ClientController::class);
+
+    // =====================================================
+    // Modul Courier Management (Admin Panel)
+    // =====================================================
+    Route::resource('courier-management', CourierManagementController::class)->only(['index', 'update', 'destroy']);
+    Route::resource('expeditions', ExpeditionController::class);
+
+    // =====================================================
     // Modul Laporan (Reports)
-    // Jika Admin tidak boleh lihat uang, pindahkan ini ke grup 'role:owner' di bawah
+    // =====================================================
     Route::prefix('reports')->name('reports.')->group(function () {
+        // Sale Reports
         Route::get('/sale', [ReportController::class, 'saleReport'])->name('sale');
         Route::get('/sale/print', [ReportController::class, 'printSaleReport'])->name('sale.print');
+
+        // Distributor Reports
+        Route::get('/distributor', [ReportController::class, 'distributorReport'])->name('distributor');
+        Route::get('/distributor/print', [ReportController::class, 'printDistributorReport'])->name('distributor.print');
+
+        // Product Reports
+        Route::get('/product', [ReportController::class, 'productReport'])->name('product');
+
+        // Order Reports
+        Route::get('/order', [ReportController::class, 'orderReport'])->name('order');
     });
 
     // Test Controller
@@ -124,9 +151,9 @@ Route::middleware(['auth', 'role:owner,admin'])->group(function () {
 | Akses: Hanya Courier.
 */
 Route::middleware(['auth', 'role:courier'])->prefix('courier')->name('courier.')->group(function () {
-    // Halaman kerja kurir (lihat tugas, update status)
-    // Pastikan CourierController sudah dibuat: php artisan make:controller CourierController
     Route::get('/', [CourierController::class, 'index'])->name('index');
+    Route::get('/orders/{id}', [CourierController::class, 'show'])->name('show');
+    Route::put('/orders/{id}', [CourierController::class, 'update'])->name('update');
 });
 
 /*

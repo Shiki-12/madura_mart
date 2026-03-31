@@ -79,12 +79,16 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer bg-white border-top-0 d-flex justify-content-end py-3">
-                {{ $sales->links() }}
-            </div>
+            @if ($sales->hasPages())
+                <div class="card-footer border-0 d-flex justify-content-center pt-3 pb-3">
+                    {{ $sales->withQueryString()->links() }}
+                </div>
+            @endif
         </div>
     </div>
+@endsection
 
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if(session('success'))

@@ -13,9 +13,15 @@ class OrderItem extends Model
         'order_id', 'product_id', 'product_name', 'quantity', 'price', 'subtotal'
     ];
 
+    // Relasi ke Order (Header)
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
     // Relasi ke Produk (untuk ambil gambar/info terbaru)
     public function product()
     {
-        return $this->belongsTo(Product::class)->withTrashed(); // withTrashed jaga2 kalau produk dihapus
+        return $this->belongsTo(Product::class);
     }
 }

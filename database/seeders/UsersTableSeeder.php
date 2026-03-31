@@ -46,13 +46,17 @@ class UsersTableSeeder extends Seeder
                 'is_active' => 1,
                 'address' => NULL,
                 'phone_number' => NULL,
-                'picture' => 'profile_pictures/1TCfQInll9Ok618Yn9TJr1R1DJVRGS3XonBxEk3o.jpg',
+                'picture' => 'profile_pictures/default.jpeg',
                 'remember_token' => '7aGvVUbV5A3ETVzFmnLSlvcPamFMVUF5Q5lfJqcNEBsZCMioUgwBSa2Y4suP',
                 'created_at' => '2026-02-05 15:29:05',
                 'updated_at' => '2026-03-02 00:53:34',
             ),
         ));
         
-        
+        // Generate 20 new customers
+        \App\Models\User::factory()->count(20)->customer()->create();
+
+        // Generate 5 new couriers
+        \App\Models\User::factory()->count(5)->courier()->create();
     }
 }

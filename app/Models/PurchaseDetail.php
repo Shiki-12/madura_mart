@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseDetail extends Model
 {
+    use HasFactory;
     // Sesuaikan fillable dengan kolom baru di migration
     protected $fillable = [
         'purchase_id',

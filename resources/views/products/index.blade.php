@@ -190,9 +190,11 @@
                 </div>
             </div>
 
-            <div class="card-footer bg-white border-top-0 d-flex justify-content-end py-3">
-                {{ $products->links() }}
-            </div>
+            @if ($products->hasPages())
+                <div class="card-footer border-0 d-flex justify-content-center pt-3 pb-3">
+                    {{ $products->withQueryString()->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
@@ -226,7 +228,9 @@
             opacity: 0.85; /* Lebih gelap agar fokus */
         }
     </style>
+@endsection
 
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success'))
@@ -260,11 +264,8 @@
 
         // FUNGSI PREVIEW IMAGE
         function showImagePreview(src, title) {
-            // Set sumber gambar dan judul
             document.getElementById('previewImageSrc').src = src;
             document.getElementById('previewImageTitle').innerText = title;
-            
-            // Tampilkan Modal Bootstrap
             var myModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
             myModal.show();
         }

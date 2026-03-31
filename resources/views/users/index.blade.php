@@ -12,8 +12,8 @@
         {{-- Header Section: Title, Search, & Button --}}
         <div class="row align-items-center mb-4">
             <div class="col-lg-6 col-7">
-                <h4 class="font-weight-bolder text-white mb-0">User Management</h4>
-                <p class="text-white opacity-8 text-sm">Manage access, approve couriers, and handle roles.</p>
+                <h4 class="font-weight-bolder text-dark mb-0">User Management</h4>
+                <p class="text-secondary text-sm">Manage access, approve couriers, and handle roles.</p>
             </div>
             <div class="col-lg-6 col-5 text-end">
                 <div class="d-flex justify-content-end align-items-center gap-3">
@@ -59,7 +59,7 @@
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Joined Date</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" width="15%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,7 +144,8 @@
                                             </td>
 
                                             {{-- Actions --}}
-                                            <td class="align-middle text-end px-4">
+                                            <td class="align-middle text-center">
+                                                <div class="d-flex justify-content-center align-items-center gap-2">
 
                                                 {{-- TOMBOL APPROVE (Hanya muncul jika user belum aktif) --}}
                                                 @if (!$user->is_active)
@@ -191,6 +192,7 @@
                                                         </button>
                                                     </form>
                                                 @endif
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty
@@ -212,42 +214,40 @@
                     </div>
 
                     {{-- Pagination --}}
-                    <div class="card-footer bg-white border-top-0 d-flex justify-content-end py-3">
-                        {{ $users->withQueryString()->links() }}
-                    </div>
+                    @if ($users->hasPages())
+                        <div class="card-footer border-0 d-flex justify-content-center pt-3 pb-3">
+                            {{ $users->withQueryString()->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- Script for Tooltips --}}
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
-
     <style>
-        /* Hover Effect for Table Rows */
         .hover-row:hover {
             background-color: #f8f9fa;
             transition: background-color 0.3s ease;
         }
-
-        /* Input Group Styling */
         .input-group-text {
             transition: all 0.2s ease;
         }
-
         .input-group:focus-within .input-group-text {
             border-color: #5e72e4;
             color: #5e72e4;
         }
-
         .input-group:focus-within .form-control {
             border-color: #5e72e4;
             box-shadow: none;
         }
     </style>
+@endsection
+
+@section('scripts')
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 @endsection

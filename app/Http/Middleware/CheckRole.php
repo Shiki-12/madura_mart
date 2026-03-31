@@ -23,10 +23,23 @@ class CheckRole
         }
 
         // 2. Cek Apakah Role User ada di daftar yang dibolehkan
-        // $roles adalah array yang dikirim dari route, misal: ['admin', 'owner']
         if (!in_array(Auth::user()->role, $roles)) {
-            // Jika role tidak cocok (misal Customer mencoba masuk Admin Area)
-            abort(403, 'Unauthorized Access - Anda tidak memiliki izin ke halaman ini.');
+            // Graceful redirect instead of raw 403
+            $role = Auth::user()->role;
+
+            if ($role === 'courier') {
+                return redirect()->route('courier.index')
+                    ->with('error', 'Access denied — you do not have permission to view that page.');
+            }
+
+            if ($role === 'customer') {
+                return redirect()->route('home')
+                    ->with('error', 'Access denied — you do not have permission to view that page.');
+            }
+
+            // For admin/owner trying to access wrong area, send back
+            return redirect()->back()
+                ->with('error', 'Access denied — you do not have permission to view that page.');
         }
 
         return $next($request);

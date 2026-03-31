@@ -103,9 +103,11 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer bg-white border-top-0">
-                    {{ $orders->links() }}
-                </div>
+                @if ($orders->hasPages())
+                    <div class="card-footer border-0 d-flex justify-content-center pt-3 pb-3">
+                        {{ $orders->withQueryString()->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

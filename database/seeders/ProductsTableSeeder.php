@@ -30,7 +30,7 @@ class ProductsTableSeeder extends Seeder
                 'expiration_date' => '2126-02-13',
                 'price' => 5000,
                 'stock' => 120,
-                'picture' => 'product-images/ey9OrBK0KfvEJyWKDN5Edw5JepfFzyEuj6na15Xl.jpg',
+                'picture' => null,
                 'is_active' => 1,
                 'created_at' => '2026-02-13 15:26:41',
                 'updated_at' => '2026-02-13 15:26:41',
@@ -46,7 +46,7 @@ class ProductsTableSeeder extends Seeder
                 'expiration_date' => '2026-07-13',
                 'price' => 21450,
                 'stock' => 14,
-                'picture' => 'product-images/12Miz3rh1D2qvwrahRx44qsNeHoFa40gFgNHDQjR.jpg',
+                'picture' => null,
                 'is_active' => 1,
                 'created_at' => '2026-02-13 15:28:04',
                 'updated_at' => '2026-02-13 15:29:25',
@@ -62,13 +62,21 @@ class ProductsTableSeeder extends Seeder
                 'expiration_date' => '2026-03-13',
                 'price' => 10000000,
                 'stock' => 3,
-                'picture' => 'product-images/9haR8hcXI06IGnxZh8WIsAh1TjoidpA0tlPykHe4.jpg',
+                'picture' => null,
                 'is_active' => 1,
                 'created_at' => '2026-02-13 15:30:49',
                 'updated_at' => '2026-02-13 15:30:49',
             ),
         ));
         
-        
+        // Generate 50 new products
+        $distributors = \App\Models\Distributor::pluck('id')->toArray();
+        if (!empty($distributors)) {
+            for ($i = 0; $i < 50; $i++) {
+                \App\Models\Product::factory()->create([
+                    'distributor_id' => \Illuminate\Support\Arr::random($distributors)
+                ]);
+            }
+        }
     }
 }

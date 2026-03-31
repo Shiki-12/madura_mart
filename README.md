@@ -1,85 +1,86 @@
-# Madura Mart - E-Commerce Management System
+<div align="center">
+  <h1>Madura Mart</h1>
+  <p><strong>A comprehensive E-Commerce, POS, and Inventory Management System</strong></p>
+</div>
 
-A comprehensive Laravel-based e-commerce and inventory management system designed for distribution and sales operations.
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [System Requirements](#system-requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Database Setup](#database-setup)
-- [Image Storage](#image-storage)
-- [Deployment](#deployment)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [Troubleshooting](#troubleshooting)
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP Version">
+  <img src="https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel Version">
+  <img src="https://img.shields.io/badge/MySQL-5.7+-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap 5">
+</p>
 
 ---
 
 ## Overview
 
-Madura Mart is a full-stack Laravel application for managing:
-- **Product Catalog**: Track products with serial numbers, types, and pricing
-- **Distributors**: Manage distributor information and contact details
-- **Purchases**: Record purchase orders from distributors
-- **Sales**: Track sales transactions and details
-- **Orders**: Manage customer orders and order details
-- **Deliveries**: Track delivery logistics and status
-- **Expeditions**: Manage shipping partners and their information
-- **User Authentication**: Multi-role user system with role-based access
+**Madura Mart** is a robust, full-stack Laravel application designed to streamline distribution, procurement, inventory, and point-of-sale (POS) operations. Built with a beautiful and responsive **Soft UI Dashboard**, it provides deep analytics and role-based access control for owners, customers, and field couriers.
+
+## Key Features
+
+- **Role-Based Access Control**: Secure multi-role system (Owner/Admin, Customer, Courier).
+- **Inventory Management**: Track products, stock levels, expiration dates, and custom pricing.
+- **Procurement (Purchases)**: Record inward stock flows from distributors and manage supplier relationships.
+- **Point of Sale (Sales)**: Fast and efficient daily sales transaction tracking.
+- **Courier & Logistics Hub**: Assign expeditions, manage internal couriers, and track localized deliveries.
+- **Advanced Analytics**: Comprehensive, real-time reporting dashboards for products, distributors, sales, and overall business health.
+- **Responsive UI**: A mobile-friendly interface leveraging Bootstrap 5.
 
 ---
 
-## Features
+## User Roles
 
-- ✅ User authentication (Admin, Distributor, Courier)
-- ✅ Product and inventory management
-- ✅ Purchase order management
-- ✅ Sales tracking and reporting
-- ✅ Order and delivery management
-- ✅ Distributor management
-- ✅ Expedition/shipping partner management
-- ✅ Dashboard with analytics
-- ✅ Database-backed sessions
-- ✅ Responsive UI with Soft UI Dashboard
+| Role | Access Level | Description |
+|---|---|---|
+| **Owner / Admin** | Complete Access | Full access to all management modules, financial reports, user approvals, and system configurations. |
+| **Customer** | Client Portal | Can view available products, place orders, and track their personal purchase histories. |
+| **Courier** | Delivery Portal | Access to the Courier Dashboard to view assigned deliveries, update shipping statuses, and process completions. |
 
 ---
 
-## System Requirements
+## Tech Stack
 
-- **PHP**: ^8.2
-- **MySQL**: 5.7 or higher
-- **Node.js**: 16+ (for frontend assets)
-- **Composer**: Latest version
-- **Git**: For version control
+- **Framework**: Laravel 11.x
+- **Backend**: PHP 8.2+
+- **Database**: MySQL 5.7+
+- **Frontend**: Blade Templating, Bootstrap 5, Vanilla JS
+- **UI Architecture**: Soft UI Dashboard
+- **Styling**: SweetAlert2 (Alerts), FontAwesome (Icons)
 
 ---
 
-## Installation
+## Installation & Setup
 
-### Quick Start (Local Development)
+### 1. Requirements
+Ensure you have the following installed on your local machine:
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL
 
-**Step 1: Clone the repository**
+### 2. Getting Started
+
+Clone the repository and enter the directory:
 ```bash
 git clone <repository-url>
 cd madura_mart
 ```
 
-**Step 2: Install dependencies**
+Install PHP and Node dependencies:
 ```bash
 composer install
+npm install
+npm run build
 ```
 
-**Step 3: Environment setup**
+Set up your environment variables:
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-**Step 4: Database configuration**
-Edit `.env` and set your database credentials:
+### 3. Database Configuration
+Update your `.env` file with your local database credentials:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -89,508 +90,51 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Step 5: Run migrations**
+Migrate the database and seed it with realistic dummy data:
 ```bash
 php artisan migrate:fresh --seed
 ```
+*(Note: The seeder will automatically generate products, transactions, and user accounts).*
 
-**Step 6: Start the server**
+### 4. Storage & Assets
+Link the local storage to serve uploaded resources (like profile pictures):
+```bash
+php artisan storage:link
+```
+
+### 5. Launch the Application
+Start the local development server:
 ```bash
 php artisan serve
 ```
-
-Access at: `http://localhost:8000`
-
----
-
-## Credetials
-
-**How to Login**
-```bash
-email : admin@linux.com
-password : adminpassword
-```
+Visit `http://localhost:8000` in your browser.
 
 ---
 
-## Configuration
+## Default Credentials
 
-### Environment Variables (.env)
+After running the database seeders, you can access the system using the master owner account:
 
-```env
-# Application
-APP_NAME=MaduraMart
-APP_ENV=local
-APP_KEY=base64:YFV2/9CqXuTt4ZsM40GsT0AYDZ8n9IEE0TNzb4nCQ2k=
-APP_DEBUG=true
-APP_URL=http://localhost
+- **Email**: `admin@linux.com`
+- **Password**: `password`
 
-# Database
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=madura_mart
-DB_USERNAME=root
-DB_PASSWORD=
-
-# Session
-SESSION_DRIVER=database
-SESSION_LIFETIME=120
-
-# Cache
-CACHE_STORE=database
-
-# Queue
-QUEUE_CONNECTION=database
-
-# Filesystem
-FILESYSTEM_DISK=local
-```
+*(Other dummy accounts for couriers and customers are auto-generated with the password `password` if you wish to test different role views).*
 
 ---
 
-## User Roles (for acces dashboard)
+## Core Database Architecture
 
+The system revolves around these primary operational flows:
 
-
-## Database Setup
-
-### Migrations Included
-
-The following tables are created automatically via migrations:
-
-| Table | Purpose |
-|-------|---------|
-| `users` | User accounts and authentication |
-| `distributors` | Distributor company information |
-| `expeditions` | Shipping/logistics partners |
-| `products` | Product catalog |
-| `purchases` | Purchase orders from distributors |
-| `purchase_details` | Line items in purchase orders |
-| `orders` | Customer orders |
-| `order_details` | Line items in customer orders |
-| `sales` | Sales transactions |
-| `sale_details` | Line items in sales |
-| `deliveries` | Delivery tracking |
-
-### Run Migrations
-
-```bash
-# Fresh install
-php artisan migrate:fresh
-
-# Standard migration
-php artisan migrate
-
-# Rollback
-php artisan migrate:rollback
-
-# Reset all
-php artisan migrate:reset
-```
+1. **Procurement Flow**: `Distributors` -> `Purchases` -> `Purchase Details` -> `Products` (Increases Stock)
+2. **Sales Flow (POS)**: `Sales` -> `Sale Details` -> `Products` (Decreases Stock)
+3. **Logistics Flow**: `Orders` -> `Deliveries` -> `Expeditions / Couriers`
 
 ---
 
-## Image Storage
+## Credits & Contact
 
-### Why NOT include `public/images` in version control?
+**Project Created By:** Shiki-12 / Shiki-21  
+**GitHub Profile:** [https://github.com/Shiki-12](https://github.com/Shiki-12)  
 
-- **Repository bloat**: Images significantly increase clone/pull times
-- **Merge conflicts**: Multiple developers uploading images causes conflicts
-- **Deployment complexity**: Different images on different environments
-- **Storage waste**: Version history keeps old image versions
-- **Security**: Accidental sensitive images in repo history
-
-### Recommended Solution: Laravel Storage with Symbolic Link
-
-This is the **recommended approach** for this project.
-
-#### Setup Steps:
-
-**1. Get the Images from my drive:**
-
-https://drive.google.com/drive/folders/19Gf0l67piawa67zF95-R145cXQNb0BM_?usp=sharing
-
-**2. Configure Image**
-
-And just put it on public/images
-
-
-#### File Structure After Setup:
-```
-public/
-└── images/
-    ├── create_banner.png
-    ├── welcome_banner.png
-    └── .gitkeep
-```
-
----
-
-## Deployment
-
-### Pre-Deployment Checklist
-
-- [ ] Test all features locally
-- [ ] Run `php artisan test`
-- [ ] Update `.env` with production database credentials
-- [ ] Set `APP_DEBUG=false`
-- [ ] Generate production key: `php artisan key:generate`
-- [ ] Optimize application: `php artisan optimize`
-- [ ] Build assets: `npm run build`
-- [ ] Set up image storage strategy
-- [ ] Configure database backups
-
-## Project Structure
-
-```
-madura_mart/
-├── app/
-│   ├── Console/
-│   │   └── Commands/
-│   │       └── MakeAuthSetup.php
-│   ├── Http/
-│   │   └── Controllers/
-│   │       ├── AuthController.php          # Authentication logic
-│   │       ├── DashboardController.php     # Dashboard views
-│   │       ├── DistributorController.php   # Distributor CRUD
-│   │       ├── TestController.php          # Testing endpoints
-│   │       └── Controller.php              # Base controller
-│   ├── Models/                             # Eloquent models
-│   │   ├── User.php
-│   │   ├── Distributor.php
-│   │   ├── Product.php
-│   │   ├── Purchase.php
-│   │   ├── PurchaseDetail.php
-│   │   ├── Order.php
-│   │   ├── OrderDetail.php
-│   │   ├── Sale.php
-│   │   ├── SaleDetail.php
-│   │   ├── Delivery.php
-│   │   └── Expedition.php
-│   └── Providers/
-│       └── AppServiceProvider.php
-│
-├── database/
-│   ├── migrations/                         # Database schema
-│   ├── factories/
-│   │   └── UserFactory.php
-│   └── seeders/
-│       └── DatabaseSeeder.php
-│
-├── resources/
-│   ├── views/
-│   │   ├── auth/                           # Login/Register pages
-│   │   │   ├── login.blade.php
-│   │   │   ├── register.blade.php
-│   │   │   └── register-courier.blade.php
-│   │   ├── dashboard/                      # Dashboard pages
-│   │   │   └── index.blade.php
-│   │   ├── distributor/                    # Distributor management
-│   │   │   ├── index.blade.php
-│   │   │   ├── create.blade.php
-│   │   │   └── edit.blade.php
-│   │   ├── layout/                         # Layout templates
-│   │   │   ├── master.blade.php
-│   │   │   ├── menu.blade.php
-│   │   │   └── navbar.blade.php
-│   │   ├── test/
-│   │   │   └── test.blade.php
-│   │   ├── mizuki.blade.php
-│   │   └── welcome.blade.php
-│   ├── js/
-│   │   ├── app.js
-│   │   └── bootstrap.js
-│   └── css/
-│       └── app.css
-│
-├── routes/
-│   ├── web.php                             # Web routes
-│   └── console.php                         # Console routes
-│
-├── storage/
-│   ├── app/
-│   │   └── public/                         # User-uploaded files
-│   ├── framework/
-│   │   ├── cache/
-│   │   ├── sessions/
-│   │   └── views/
-│   └── logs/
-│
-├── public/
-│   ├── layout/                             # Static assets (CSS, JS, fonts)
-│   │   └── assets/
-│   │       ├── css/
-│   │       ├── js/
-│   │       ├── fonts/
-│   │       └── img/
-│   ├── images/                             # .gitignored (use storage instead)
-│   └── index.php                           # Entry point
-│
-├── config/
-│   ├── app.php
-│   ├── auth.php
-│   ├── database.php
-│   ├── filesystems.php
-│   ├── session.php
-│   └── ...
-│
-├── bootstrap/
-│   ├── app.php
-│   ├── providers.php
-│   └── cache/
-│
-├── tests/
-│   ├── Feature/
-│   └── Unit/
-│
-├── vendor/                                 # Composer packages
-├── .env                                    # Environment variables
-├── .env.example
-├── .gitignore
-├── composer.json
-├── composer.lock
-├── package.json
-├── package-lock.json
-├── vite.config.js
-├── phpunit.xml
-├── artisan
-└── README.md
-```
-
----
-
-## Models Overview
-
-### User
-```php
-// Authentication and user accounts
-Fields: id, name, email, password, email_verified_at, created_at, updated_at
-```
-
-### Distributor
-```php
-// Supplier/distributor information
-Fields: id, name, address, phone_number, timestamps
-```
-
-### Product
-```php
-// Product catalog
-Fields: id, serial_number (unique), name, type, price, stock, description, timestamps
-```
-
-### Purchase & PurchaseDetail
-```php
-// Purchase orders from distributors
-Purchase: id, note_number, purchase_date, distributor_id, timestamps
-PurchaseDetail: id, note_number_purchase, product_id, quantity, price, timestamps
-```
-
-### Sale & SaleDetail
-```php
-// Sales transactions
-Sale: id, sale_date, total_price, timestamps
-SaleDetail: id, sale_id, product_id, quantity, price, timestamps
-```
-
-### Order & OrderDetail
-```php
-// Customer orders
-Order: id, order_date, total_price, status, timestamps
-OrderDetail: id, order_id, product_id, quantity, price, timestamps
-```
-
-### Delivery
-```php
-// Delivery tracking
-Fields: id, delivery_date, order_id, expedition_id, status, timestamps
-```
-
-### Expedition
-```php
-// Shipping partners/couriers
-Fields: id, name, address, phone_number, picture, timestamps
-```
-
----
-
-## API Documentation
-
-### Authentication Routes
-
-```php
-// Public routes (accessible to everyone)
-GET  /              Home page
-GET  /mizuki        Profile page
-
-// Authentication
-GET  /register      Registration form
-POST /register      Create new account
-GET  /login         Login form
-POST /login         Authenticate user
-GET  /logout        Logout user
-```
-
-### Protected Routes (require login)
-
-```php
-// Dashboard
-GET  /dashboard     Main dashboard
-
-// Distributor Management
-GET     /distributor           List all distributors
-POST    /distributor           Store new distributor
-GET     /distributor/create    Create form
-GET     /distributor/{id}      Show distributor details
-GET     /distributor/{id}/edit Edit form
-PUT     /distributor/{id}      Update distributor
-DELETE  /distributor/{id}      Delete distributor
-```
-
-### Controller Examples
-
-**AuthController.php:**
-```php
-class AuthController extends Controller
-{
-    public function login(Request $request)
-    {
-        // Validates email/password
-        // Authenticates user
-        // Returns redirect or response
-    }
-
-    public function register(Request $request)
-    {
-        // Validates registration data
-        // Creates new user
-        // Returns success message
-    }
-
-    public function logout(Request $request)
-    {
-        // Logs out user
-        // Clears session
-    }
-}
-```
-
-**DistributorController.php:**
-```php
-class DistributorController extends Controller
-{
-    public function index()
-    {
-        // Returns all distributors
-        return view('distributor.index', [
-            'distributors' => Distributor::all()
-        ]);
-    }
-
-    public function store(Request $request)
-    {
-        // Validates input
-        // Creates distributor
-        // Returns redirect with message
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Validates input
-        // Updates distributor
-        // Returns redirect with message
-    }
-}
-```
-
----
-
-## Common Commands
-
-```bash
-# Generate new model with migration
-php artisan make:model ModelName -m
-
-# Create controller
-php artisan make:controller ControllerName
-
-# Generate migration
-php artisan make:migration create_table_name
-
-# Clear caches
-php artisan cache:clear
-php artisan config:clear
-php artisan view:clear
-
-# Run tests
-php artisan test
-
-# Tinker (interactive shell)
-php artisan tinker
-
-# Serve application
-php artisan serve --host=0.0.0.0 --port=8000
-```
-
-### Debugging
-
-**Using dd() function:**
-```php
-dd($variable);  // Dump and die
-dump($variable); // Just dump
-```
-
-**Using Log:**
-```php
-use Illuminate\Support\Facades\Log;
-
-Log::info('Debug message', ['variable' => $value]);
-Log::debug('Debug:', $data);
-Log::error('Error:', $error);
-```
-
-**View logs:**
-```bash
-tail -f storage/logs/laravel.log
-```
-
----
-
-## Performance Optimization
-
-### Production Build
-
-```bash
-
-# Optimize Laravel
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-php artisan optimize
-```
-
-### Caching
-
-```bash
-# Cache configuration
-php artisan config:cache
-
-# Clear all caches
-php artisan cache:clear
-```
-
----
-
-## Support & Contact
-
-**Project Created By:** Shiki-12    
-**My Profile Github:** https://github.com/Shiki-12   
-**Laravel Version:** 12.0+  
-**PHP Version:** 8.2+  
-
-For issues, questions, or contributions, please contact me.
-
----
-
-**Happy coding! 🚀 from Shiki-21**
+Happy Coding!

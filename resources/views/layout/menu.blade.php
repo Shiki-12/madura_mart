@@ -1,4 +1,60 @@
 <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+    <style>
+        .sidenav, #sidenav-collapse-main {
+            -ms-overflow-style: none !important;  /* IE and Edge */
+            scrollbar-width: none !important;  /* Firefox */
+            height: calc(100vh - 100px) !important;
+            padding-bottom: 2rem !important;
+        }
+        .sidenav::-webkit-scrollbar,
+        .navbar-collapse::-webkit-scrollbar,
+        #sidenav-collapse-main::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        /* Jaga jarak vertikal biar padat dan muat di layar */
+        #sidenav-collapse-main .nav-link {
+            padding-top: 0.45rem !important;
+            padding-bottom: 0.45rem !important;
+            margin-top: 1px !important;
+            margin-bottom: 1px !important;
+        }
+
+        /* GEDEIN KOTAK ICON (Dari 30px ke 36px) */
+        #sidenav-collapse-main .icon.icon-sm {
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
+            min-height: 36px !important;
+        }
+
+        /* GEDEIN GAMBAR SVG DI DALAM ICON */
+        #sidenav-collapse-main .icon.icon-sm svg {
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+        /* Responsif untuk layar HP/Tablet */
+        @media (max-width: 991.98px) {
+            #sidenav-collapse-main .nav-link {
+                padding-top: 0.6rem !important;
+                padding-bottom: 0.6rem !important;
+            }
+            #sidenav-collapse-main .icon.icon-sm {
+                width: 38px !important;
+                height: 38px !important;
+                min-width: 38px !important;
+                min-height: 38px !important;
+            }
+            #sidenav-collapse-main .icon.icon-sm svg {
+                width: 22px !important;
+                height: 22px !important;
+            }
+        }
+    </style>
     <ul class="navbar-nav">
 
         {{-- ========================================================= --}}
@@ -43,14 +99,13 @@
 
         {{-- CLIENTS --}}
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('clients*') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ Request::is('clients*') ? 'active' : '' }}" href="{{ route('clients.index') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="{{ Request::is('clients*') ? 'white' : '#67748e' }}" class="bi bi-table"
+                        fill="{{ Request::is('clients*') ? 'white' : '#67748e' }}" class="bi bi-people-fill"
                         viewBox="0 0 16 16">
-                        <path
-                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
                     </svg>
                 </div>
                 <span class="nav-link-text ms-1">Clients</span>
@@ -135,13 +190,13 @@
             </a>
         </li>
 
-        {{-- COURIER --}}
+        {{-- COURIER MANAGEMENT --}}
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('couriers*') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ Request::is('courier-management*') || Request::is('expeditions*') ? 'active' : '' }}" href="{{ route('courier-management.index') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="{{ Request::is('couriers*') ? 'white' : '#67748e' }}" class="bi bi-bicycle"
+                        fill="{{ Request::is('courier-management*') || Request::is('expeditions*') ? 'white' : '#67748e' }}" class="bi bi-bicycle"
                         viewBox="0 0 16 16">
                         <path
                             d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5m1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139zM8 9.057 9.598 6.5H6.402zM4.937 9.5a2 2 0 0 0-.487-.877l-.548.877zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53z" />
@@ -176,15 +231,13 @@
 
         {{-- ========================================================= --}}
         {{-- REPORTS (BISA ADMIN / OWNER - TERGANTUNG KEBIJAKAN) --}}
-        {{-- ========================================================= --}}
-
-        <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">REPORTS</h6>
+        <li class="nav-item mt-2">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6 mb-1">REPORTS</h6>
         </li>
 
         {{-- DISTRIBUTOR REPORTS --}}
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('reports/distributor*') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ Request::is('reports/distributor*') ? 'active' : '' }}" href="{{ route('reports.distributor') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -216,7 +269,7 @@
 
         {{-- PRODUCT REPORTS --}}
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('reports/product*') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ Request::is('reports/product*') ? 'active' : '' }}" href="{{ route('reports.product') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1"
@@ -245,7 +298,7 @@
 
         {{-- ORDER REPORTS --}}
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('reports/order*') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ Request::is('reports/order*') ? 'active' : '' }}" href="{{ route('reports.order') }}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
