@@ -116,7 +116,10 @@ Visit `http://localhost:8000` in your browser.
 After running the database seeders, you can access the system using the master owner account:
 
 - **Email**: `admin@linux.com`
-- **Password**: `password`
+- **Password**: `adminpassword`
+
+- **Email**: `test@example.com`
+- **Password**: `tes12345`
 
 *(Other dummy accounts for couriers and customers are auto-generated with the password `password` if you wish to test different role views).*
 
