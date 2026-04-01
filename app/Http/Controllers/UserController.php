@@ -128,6 +128,14 @@ class UserController extends Controller
         // Ambil data user yang sedang login
         $user = auth()->user();
 
+        // Customer mendapatkan tampilan public (tanpa layout dashboard admin)
+        if ($user->role === 'customer') {
+            return view('public.profile', [
+                'title' => 'Profil Saya',
+                'user' => $user,
+            ]);
+        }
+
         return view('auth.profile', [
             'title' => 'My Profile',
             'user' => $user,

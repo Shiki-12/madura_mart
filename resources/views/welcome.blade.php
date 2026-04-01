@@ -1566,8 +1566,8 @@
                             </span>
                         </span>
                         <span>
-                            Go to my Github
-                            <a href="https://github.com/shiki-12" target="_blank"
+                            Go to github madura_mart
+                            <a href="https://github.com/shiki-12/madura_mart" target="_blank"
                                 class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                 <span>Shiki-12</span>
                                 <svg width="10" height="11" viewBox="0 0 10 11" fill="none"

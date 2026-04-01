@@ -7,6 +7,7 @@ use App\Http\Controllers\CourierManagementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ExpeditionController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome', ['title' => 'Welcome to Madura Mart']);
 })->name('root');
+
+// Landing Page Publik (Storefront)
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Halaman Mizuki (Info/Profil?)
 Route::get('/mizuki', function () {
@@ -67,12 +71,7 @@ Route::middleware('auth')->group(function () {
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Halaman Depan Toko (Khusus Customer/User Umum)
-    Route::get('/home', function () {
-        return '<h1>Ini Halaman Depan Toko (Storefront)</h1>
-                <p>Halo, <b>'.auth()->user()->name."</b>! Silakan belanja di sini.</p>
-                <form action='".route('logout')."' method='POST'>".csrf_field()."<button type='submit'>Logout</button></form>";
-    })->name('home');
+    // Halaman Depan Toko — sekarang ditangani oleh HomeController di area publik
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
