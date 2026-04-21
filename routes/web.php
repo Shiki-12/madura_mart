@@ -36,6 +36,11 @@ Route::get('/mizuki', function () {
     return view('mizuki', ['title' => 'Mizuki']);
 })->name('mizuki');
 
+// Halaman Lagu (Music Player Page)
+Route::get('/lagu', function () {
+    return view('lagu', ['title' => 'Lagu']);
+})->name('lagu');
+
 // Utility: Logout dulu sebelum register kurir (agar session bersih)
 Route::get('/register-courier-logout', [AuthController::class, 'logoutAndRedirectCourier'])->name('register.courier.logout');
 

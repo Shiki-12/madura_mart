@@ -1043,6 +1043,10 @@
 
                 <div class="mm-nav-links-wrap d-none d-lg-flex">
                     <ul class="mm-nav-links">
+                        <li><a href="{{ url('/') }}">Welcome</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ url('/mizuki') }}">Mizuki</a></li>
+                        <li><a href="{{ url('/lagu') }}">Lagu</a></li>
                         <li><a href="#beranda">Beranda</a></li>
                         <li><a href="#tentang">Tentang Kami</a></li>
                         <li><a href="#keunggulan">Keunggulan</a></li>
@@ -1096,6 +1100,10 @@
     <!-- Mobile Nav Overlay -->
     <div class="mm-mobile-nav" id="mobileNav">
         <button class="mm-mobile-close" id="mobileNavClose" aria-label="Close navigation">&times;</button>
+        <a href="{{ url('/') }}" onclick="closeMobileNav()">Welcome</a>
+        <a href="{{ route('home') }}" onclick="closeMobileNav()">Home</a>
+        <a href="{{ url('/mizuki') }}" onclick="closeMobileNav()">Mizuki</a>
+        <a href="{{ url('/lagu') }}" onclick="closeMobileNav()">Lagu</a>
         <a href="#beranda" onclick="closeMobileNav()">Beranda</a>
         <a href="#tentang" onclick="closeMobileNav()">Tentang Kami</a>
         <a href="#keunggulan" onclick="closeMobileNav()">Keunggulan</a>

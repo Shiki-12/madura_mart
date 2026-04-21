@@ -90,6 +90,10 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+```env
+YT_API_KEY="" (you can get it from https://console.cloud.google.com/)
+```
+
 Migrate the database and seed it with realistic dummy data:
 ```bash
 php artisan migrate:fresh --seed

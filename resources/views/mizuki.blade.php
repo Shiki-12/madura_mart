@@ -500,10 +500,10 @@
     <header>
         <div class="logo">夜の東京</div>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="{{ url('/') }}">Welcome</a>
+            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ url('/mizuki') }}">Mizuki</a>
+            <a href="{{ url('/lagu') }}">Lagu</a>
         </nav>
     </header>
 
