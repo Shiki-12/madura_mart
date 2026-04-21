@@ -53,7 +53,7 @@
                             <div class="d-flex justify-content-end mt-4">
                                 <a href="#" onclick="confirmCancel(event)"
                                     class="btn bg-gradient-light mt-4 mb-0 me-2">Batal</a>
-                                <button type="submit" class="btn bg-gradient-dark mt-4 mb-0">Simpan Perubahan</button>
+                                <button type="submit" class="btn bg-gradient-warning mt-4 mb-0">Simpan Perubahan</button>
                             </div>
                         </form>
                         {{-- Form End --}}

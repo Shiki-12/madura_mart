@@ -115,7 +115,7 @@
 
                 <div class="card-footer bg-white text-center pt-0 border-0 pb-4">
                      {{-- Tombol Print --}}
-                     <button onclick="window.print()" class="btn bg-gradient-dark w-100 mb-2">
+                     <button onclick="window.print()" class="btn bg-gradient-warning w-100 mb-2">
                         <i class="fas fa-print me-2"></i> Print Receipt
                     </button>
                     

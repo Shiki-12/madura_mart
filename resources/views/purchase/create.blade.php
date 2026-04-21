@@ -148,7 +148,7 @@
 
                             <div class="d-flex justify-content-end mt-5">
                                 <a href="{{ route('purchase.index') }}" class="btn btn-light m-0 me-2">Cancel</a>
-                                <button type="submit" id="btn-submit" class="btn bg-gradient-dark m-0">Save Purchase</button>
+                                <button type="submit" id="btn-submit" class="btn bg-gradient-warning m-0">Save Purchase</button>
                             </div>
                         </form>
                     </div>

@@ -171,7 +171,7 @@
                                 <i class="fas fa-trash me-1"></i> Delete Invoice
                             </button>
                         </form>
-                        <button class="btn bg-gradient-dark mb-0 ms-2" onclick="window.print()">
+                        <button class="btn bg-gradient-warning mb-0 ms-2" onclick="window.print()">
                             <i class="fas fa-print me-1"></i> Print Invoice
                         </button>
                     </div>

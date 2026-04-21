@@ -81,7 +81,7 @@
                             </h5>
                         </div>
                         <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
+                            <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
                                 <i class="fas fa-check-double text-lg text-white opacity-10"></i>
                             </div>
                         </div>

@@ -16,7 +16,7 @@
                 <p class="text-muted small mb-0">Manage incoming goods and distributor invoices</p>
             </div>
             <div>
-                <a href="{{ route('purchase.create') }}" class="btn bg-gradient-dark mb-0">
+                <a href="{{ route('purchase.create') }}" class="btn bg-gradient-warning mb-0">
                     <i class="fas fa-plus me-1"></i> New Purchase
                 </a>
             </div>

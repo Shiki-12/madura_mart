@@ -173,7 +173,7 @@
                         onclick="navbarFixed(this)">
                 </div>
                 <hr class="horizontal dark my-sm-4">
-                <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free
+                <a class="btn bg-gradient-warning w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free
                     Download</a>
                 <a class="btn btn-outline-dark w-100"
                     href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View

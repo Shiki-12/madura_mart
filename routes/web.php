@@ -82,11 +82,11 @@ Route::middleware('auth')->group(function () {
 | 4. AREA ADMIN & OWNER (Dashboard Pusat)
 |--------------------------------------------------------------------------
 | Akses: Owner dan Admin.
-| Courier & Customer DILARANG MASUK.
+| Courier & Customer DILARANG MASUK. fr
 */
 Route::middleware(['auth', 'role:owner,admin'])->group(function () {
 
-    // Dashboard Utama
+    // Dashboard Utamanya
     Route::resource('dashboard', DashboardController::class);
 
     // Modul Produk (Master Barang)

@@ -102,7 +102,7 @@
 
                             {{-- Tombol Aksi --}}
                             <div class="d-flex justify-content-end gap-2 mt-3">
-                                <button type="submit" class="btn bg-gradient-dark mb-0">
+                                <button type="submit" class="btn bg-gradient-warning mb-0">
                                     <i class="fas fa-save me-1"></i> Update Profile
                                 </button>
                             </div>

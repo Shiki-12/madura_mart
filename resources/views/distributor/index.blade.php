@@ -106,7 +106,7 @@
                             </table>
                         </div>
                         <div class="px-4 py-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0" id="btn-add-distributor"
+                            <a class="btn bg-gradient-warning mb-0" id="btn-add-distributor"
                                 href="{{ route('distributors.create') }}">
                                 <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Distributor
                             </a>

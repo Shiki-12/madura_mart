@@ -140,7 +140,7 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center px-3">
-                                        <div class="avatar me-3 bg-gradient-dark rounded shadow-sm d-flex align-items-center justify-content-center"
+                                        <div class="avatar me-3 bg-gradient-primary rounded shadow-sm d-flex align-items-center justify-content-center"
                                             style="width: 36px; height: 36px;">
                                             <i class="fas fa-building text-white text-xs"></i>
                                         </div>

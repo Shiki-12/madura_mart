@@ -85,7 +85,7 @@
                                         <div class="text-end">
                                             <a href="#" onclick="confirmCancel(event)" class="btn bg-gradient-light mt-4 mb-0">Cancel</a>
                                             {{-- ID submit-btn penting untuk JS --}}
-                                            <button type="submit" id="submit-btn" class="btn bg-gradient-dark mt-4 mb-0">Submit</button>
+                                            <button type="submit" id="submit-btn" class="btn bg-gradient-warning mt-4 mb-0">Submit</button>
                                         </div>
                                     </form>
                                 </div>

@@ -113,7 +113,7 @@
                 </div>
 
                 <div class="card-footer bg-white border-top pt-3 text-end">
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn bg-gradient-dark mb-0">
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn bg-gradient-warning mb-0">
                         <i class="fas fa-edit me-1"></i> Edit Product
                     </a>
                 </div>
