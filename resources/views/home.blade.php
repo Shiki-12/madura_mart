@@ -1047,6 +1047,9 @@
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ url('/mizuki') }}">Mizuki</a></li>
                         <li><a href="{{ url('/lagu') }}">Lagu</a></li>
+                        @auth
+                            <li><a href="{{ route('shop.index') }}">Belanja</a></li>
+                        @endauth
                         <li><a href="#beranda">Beranda</a></li>
                         <li><a href="#tentang">Tentang Kami</a></li>
                         <li><a href="#keunggulan">Keunggulan</a></li>
@@ -1104,6 +1107,9 @@
         <a href="{{ route('home') }}" onclick="closeMobileNav()">Home</a>
         <a href="{{ url('/mizuki') }}" onclick="closeMobileNav()">Mizuki</a>
         <a href="{{ url('/lagu') }}" onclick="closeMobileNav()">Lagu</a>
+        @auth
+            <a href="{{ route('shop.index') }}" onclick="closeMobileNav()">Belanja</a>
+        @endauth
         <a href="#beranda" onclick="closeMobileNav()">Beranda</a>
         <a href="#tentang" onclick="closeMobileNav()">Tentang Kami</a>
         <a href="#keunggulan" onclick="closeMobileNav()">Keunggulan</a>
@@ -1164,7 +1170,7 @@
 
                     <div class="mm-hero-actions">
                         @auth
-                            <a href="{{ route('home') }}" class="mm-btn-primary" id="hero-cta-primary">
+                            <a href="{{ route('shop.index') }}" class="mm-btn-primary" id="hero-cta-primary">
                                 Mulai Belanja
                                 <i class="fas fa-arrow-right" style="font-size:0.9rem!important;color:#fff!important;"></i>
                             </a>
@@ -1356,7 +1362,7 @@
                 <h2>Siap Belanja Lebih Mudah?</h2>
                 <p>Bergabung dengan ribuan pelanggan Madura Mart dan nikmati belanja kebutuhan harian tanpa repot.</p>
                 @auth
-                    <a href="{{ route('home') }}" class="mm-btn-primary" id="cta-bottom">
+                    <a href="{{ route('shop.index') }}" class="mm-btn-primary" id="cta-bottom">
                         Belanja Sekarang
                         <i class="fas fa-arrow-right" style="font-size:0.9rem!important;color:#fff!important;"></i>
                     </a>

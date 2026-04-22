@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         // 5. Ambil data (Latest)
         // Saya ganti get() jadi simplePaginate(10) agar pagination jalan jika data banyak
-        $products = $query->latest()->simplePaginate(10)->withQueryString();
+        $products = $query->latest()->paginate(10)->withQueryString();
 
         return view('products.index', [
             'title' => 'Products',

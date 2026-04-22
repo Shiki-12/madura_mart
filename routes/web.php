@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+
+    // Belanja (Shop) - Semua user yang login bisa akses
+    Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+    Route::post('/shop/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
 });
 
 /*
@@ -142,10 +147,11 @@ Route::middleware(['auth', 'role:owner,admin'])->group(function () {
 
         // Order Reports
         Route::get('/order', [ReportController::class, 'orderReport'])->name('order');
-    });
 
-    // Test Controller
-    Route::resource('test', TestController::class);
+        // Purchase Reports
+        Route::get('/purchase', [ReportController::class, 'purchaseReport'])->name('purchase');
+        Route::get('/purchase/print', [ReportController::class, 'printPurchaseReport'])->name('purchase.print');
+    });
 });
 
 /*

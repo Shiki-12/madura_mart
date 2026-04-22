@@ -310,4 +310,77 @@ class ReportController extends Controller
             'paymentBreakdown' => $paymentBreakdown,
         ]);
     }
+
+    // ================================================================
+    // PURCHASE REPORTS
+    // ================================================================
+
+    public function purchaseReport(Request $request)
+    {
+        $startDate = $request->input('start_date', Carbon::now()->startOfMonth()->format('Y-m-d'));
+        $endDate = $request->input('end_date', Carbon::now()->format('Y-m-d'));
+
+        $purchases = Purchase::with(['distributor', 'details.product'])
+            ->whereDate('purchase_date', '>=', $startDate)
+            ->whereDate('purchase_date', '<=', $endDate)
+            ->latest()
+            ->get();
+
+        $totalExpenditure = $purchases->sum('total_price');
+        $totalNotes = $purchases->count();
+        $totalItems = 0;
+        foreach ($purchases as $purchase) {
+            $totalItems += $purchase->details->sum('purchase_amount');
+        }
+
+        $avgPerNote = $totalNotes > 0 ? round($totalExpenditure / $totalNotes) : 0;
+
+        $topProducts = PurchaseDetail::select('product_id', DB::raw('SUM(purchase_amount) as total_qty'), DB::raw('SUM(subtotal) as total_spent'))
+            ->whereHas('purchase', function ($q) use ($startDate, $endDate) {
+                $q->whereDate('purchase_date', '>=', $startDate)
+                  ->whereDate('purchase_date', '<=', $endDate);
+            })
+            ->groupBy('product_id')
+            ->with('product')
+            ->orderByDesc('total_spent')
+            ->limit(5)
+            ->get();
+
+        return view('reports.purchase.index', [
+            'title'            => 'Purchase Reports',
+            'purchases'        => $purchases,
+            'startDate'        => $startDate,
+            'endDate'          => $endDate,
+            'totalExpenditure' => $totalExpenditure,
+            'totalNotes'       => $totalNotes,
+            'totalItems'       => $totalItems,
+            'avgPerNote'       => $avgPerNote,
+            'topProducts'      => $topProducts,
+        ]);
+    }
+
+    public function printPurchaseReport(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        if (!$startDate || !$endDate) {
+            return redirect()->back()->with('error', 'Please select date range first.');
+        }
+
+        $purchases = Purchase::with(['distributor', 'details.product'])
+            ->whereDate('purchase_date', '>=', $startDate)
+            ->whereDate('purchase_date', '<=', $endDate)
+            ->oldest()
+            ->get();
+
+        $totalExpenditure = $purchases->sum('total_price');
+
+        return view('reports.purchase.print', [
+            'purchases'        => $purchases,
+            'startDate'        => $startDate,
+            'endDate'          => $endDate,
+            'totalExpenditure' => $totalExpenditure,
+        ]);
+    }
 }
