@@ -70,6 +70,22 @@
                                     </a>
                                 </li>
 
+                                {{-- Menu Belanja --}}
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="{{ route('shop.index') }}">
+                                        <div class="d-flex py-1 align-items-center">
+                                            <div class="icon icon-shape icon-sm bg-gradient-success shadow text-center me-2 rounded-2">
+                                                <i class="fa fa-shopping-basket text-white text-xs opacity-10"></i>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-0">
+                                                    <span class="font-weight-bold">Mulai Belanja</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
                                 <li>
                                     <hr class="dropdown-divider my-1">
                                 </li>
