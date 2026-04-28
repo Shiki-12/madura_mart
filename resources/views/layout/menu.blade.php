@@ -1,60 +1,4 @@
 <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-    <style>
-        .sidenav, #sidenav-collapse-main {
-            -ms-overflow-style: none !important;  /* IE and Edge */
-            scrollbar-width: none !important;  /* Firefox */
-            height: calc(100vh - 100px) !important;
-            padding-bottom: 2rem !important;
-        }
-        .sidenav::-webkit-scrollbar,
-        .navbar-collapse::-webkit-scrollbar,
-        #sidenav-collapse-main::-webkit-scrollbar {
-            display: none !important;
-            width: 0 !important;
-            height: 0 !important;
-            background: transparent !important;
-        }
-
-        /* Jaga jarak vertikal biar padat dan muat di layar */
-        #sidenav-collapse-main .nav-link {
-            padding-top: 0.45rem !important;
-            padding-bottom: 0.45rem !important;
-            margin-top: 1px !important;
-            margin-bottom: 1px !important;
-        }
-
-        /* GEDEIN KOTAK ICON (Dari 30px ke 36px) */
-        #sidenav-collapse-main .icon.icon-sm {
-            width: 36px !important;
-            height: 36px !important;
-            min-width: 36px !important;
-            min-height: 36px !important;
-        }
-
-        /* GEDEIN GAMBAR SVG DI DALAM ICON */
-        #sidenav-collapse-main .icon.icon-sm svg {
-            width: 20px !important;
-            height: 20px !important;
-        }
-
-        /* Responsif untuk layar HP/Tablet */
-        @media (max-width: 991.98px) {
-            #sidenav-collapse-main .nav-link {
-                padding-top: 0.6rem !important;
-                padding-bottom: 0.6rem !important;
-            }
-            #sidenav-collapse-main .icon.icon-sm {
-                width: 38px !important;
-                height: 38px !important;
-                min-width: 38px !important;
-                min-height: 38px !important;
-            }
-            #sidenav-collapse-main .icon.icon-sm svg {
-                width: 22px !important;
-                height: 22px !important;
-            }
-        }
-    </style>
     <ul class="navbar-nav">
 
         {{-- ========================================================= --}}
@@ -78,20 +22,6 @@
             </a>
         </li>
 
-        {{-- SHOP / BELANJA --}}
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('shop*') ? 'active' : '' }}" href="{{ route('shop.index') }}">
-                <div
-                    class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="{{ Request::is('shop*') ? 'white' : '#67748e' }}" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
-                </div>
-                <span class="nav-link-text ms-1">Shop</span>
-            </a>
-        </li>
 
         {{-- PRODUCTS --}}
         <li class="nav-item">
@@ -332,17 +262,10 @@
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <defs>
-                            <style>
-                                .cls-1 {
-                                    fill: {{ Request::is('reports/order*') ? 'white' : '#67748e' }}
-                                }
-                            </style>
-                        </defs>
                         <g id="purchase">
-                            <path class="cls-1"
+                            <path fill="{{ Request::is('reports/order*') ? 'white' : '#67748e' }}"
                                 d="M28.3 18H24v-3a3 3 0 0 0-6 0v3h-4.3a1.7 1.7 0 0 0-1.7 1.7v1.6a1.71 1.71 0 0 0 1.39 1.7l.18 1H4.29a.29.29 0 0 1-.29-.29V4.29A.29.29 0 0 1 4.29 4h15.42a.29.29 0 0 1 .29.29V9a1 1 0 0 0 2 0V4.29A2.3 2.3 0 0 0 19.71 2H4.29A2.3 2.3 0 0 0 2 4.29v19.42A2.3 2.3 0 0 0 4.29 26h9.63l.31 1.76A2.7 2.7 0 0 0 16.89 30H21a1 1 0 0 0 0-2h-4.11a.71.71 0 0 1-.69-.58L15.42 23h11.16l-.78 4.42a.71.71 0 0 1-.69.58 1 1 0 0 0 0 2 2.7 2.7 0 0 0 2.66-2.24l.84-4.76A1.71 1.71 0 0 0 30 21.3v-1.6a1.7 1.7 0 0 0-1.7-1.7zm-.3 2v1h-4v-1zm-14 0h4v1h-4zm6-5a1 1 0 0 1 2 0v6h-2z" />
-                            <path class="cls-1"
+                            <path fill="{{ Request::is('reports/order*') ? 'white' : '#67748e' }}"
                                 d="M7 6a1 1 0 1 0 1 1 1 1 0 0 0-1-1zM17 6h-7a1 1 0 0 0 0 2h7a1 1 0 0 0 0-2zM7 10a1 1 0 1 0 1 1 1 1 0 0 0-1-1zM18 11a1 1 0 0 0-1-1h-7a1 1 0 0 0 0 2h7a1 1 0 0 0 1-1zM7 14a1 1 0 1 0 1 1 1 1 0 0 0-1-1zM10 14a1 1 0 0 0 0 2h5a1 1 0 0 0 0-2z" />
                         </g>
                     </svg>

@@ -149,7 +149,7 @@
                     <p class="text-sm text-secondary">Number of orders and revenue per day.</p>
                 </div>
                 <div class="card-body">
-                    <div style="height: 300px;">
+                    <div class="admin-chart-container">
                         <canvas id="velocityChart"></canvas>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                     @forelse($topProducts as $index => $item)
                         <div class="d-flex align-items-center px-3 py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
                             <div class="me-3">
-                                <span class="badge bg-gradient-{{ $index == 0 ? 'warning' : ($index == 1 ? 'secondary' : 'dark') }} rounded-circle p-2" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                                <span class="badge bg-gradient-{{ $index == 0 ? 'warning' : ($index == 1 ? 'secondary' : 'dark') }} rounded-circle p-2 admin-badge-rank">
                                     {{ $index + 1 }}
                                 </span>
                             </div>

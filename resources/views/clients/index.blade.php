@@ -168,12 +168,10 @@
                                                     <div>
                                                         @if ($client->picture)
                                                             <img src="{{ asset('storage/' . $client->picture) }}"
-                                                                class="avatar me-3 rounded-circle shadow-sm"
-                                                                alt="{{ $client->name }}"
-                                                                style="object-fit: cover; width: 48px; height: 48px;">
+                                                                class="avatar me-3 rounded-circle shadow-sm mm-mobile-avatar"
+                                                                alt="{{ $client->name }}">
                                                         @else
-                                                            <div class="avatar me-3 bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center"
-                                                                style="width: 48px; height: 48px;">
+                                                            <div class="avatar me-3 bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center mm-mobile-avatar-placeholder">
                                                                 <span class="text-white font-weight-bold text-sm">
                                                                     {{ strtoupper(substr($client->name, 0, 1)) }}
                                                                 </span>
@@ -190,7 +188,7 @@
                                                 <span class="text-xs font-weight-bold">{{ $client->phone_number ?? '-' }}</span>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-secondary mb-0 text-truncate" style="max-width: 180px;" title="{{ $client->address }}">
+                                                <p class="text-xs text-secondary mb-0 text-truncate admin-address-truncate" title="{{ $client->address }}">
                                                     {{ $client->address ?? '-' }}
                                                 </p>
                                             </td>
@@ -264,10 +262,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .hover-row:hover { background-color: #f8f9fa; transition: background-color 0.3s ease; }
-    </style>
 @endsection
 
 @section('scripts')

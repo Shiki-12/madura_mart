@@ -36,11 +36,9 @@
                                     <div class="position-relative d-inline-block">
                                         @if ($user->picture)
                                             <img src="{{ asset('storage/' . $user->picture) }}"
-                                                class="avatar avatar-xl rounded-circle shadow-sm"
-                                                style="object-fit: cover; width: 100px; height: 100px;">
+                                                class="avatar avatar-xl rounded-circle shadow-sm admin-profile-avatar">
                                         @else
-                                            <div class="avatar avatar-xl bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center"
-                                                style="width: 100px; height: 100px;">
+                                            <div class="avatar avatar-xl bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center admin-profile-avatar-placeholder">
                                                 <span class="text-white font-weight-bold text-lg">{{ substr($user->name, 0, 1) }}</span>
                                             </div>
                                         @endif

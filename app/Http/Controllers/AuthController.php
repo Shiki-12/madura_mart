@@ -142,7 +142,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
+                        
         try {
             User::create([
                 'name' => $request->name,

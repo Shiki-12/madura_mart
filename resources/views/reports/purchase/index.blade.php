@@ -50,7 +50,7 @@
                                     <div class="card-body p-3">
                                         <div class="d-flex align-items-center">
                                             <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md me-3">
-                                                <i class="fas fa-file-invoice text-white opacity-10" style="font-size: 1.2rem;"></i>
+                                                <i class="fas fa-file-invoice text-white opacity-10 admin-icon-stat"></i>
                                             </div>
                                             <div>
                                                 <p class="text-xs text-secondary mb-0 font-weight-bold text-uppercase">Total Notes</p>
@@ -65,7 +65,7 @@
                                     <div class="card-body p-3">
                                         <div class="d-flex align-items-center">
                                             <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md me-3">
-                                                <i class="fas fa-boxes text-white opacity-10" style="font-size: 1.2rem;"></i>
+                                                <i class="fas fa-boxes text-white opacity-10 admin-icon-stat"></i>
                                             </div>
                                             <div>
                                                 <p class="text-xs text-secondary mb-0 font-weight-bold text-uppercase">Items Procured</p>
@@ -80,7 +80,7 @@
                                     <div class="card-body p-3">
                                         <div class="d-flex align-items-center">
                                             <div class="icon icon-shape bg-gradient-danger shadow text-center border-radius-md me-3">
-                                                <i class="fas fa-money-bill-wave text-white opacity-10" style="font-size: 1.2rem;"></i>
+                                                <i class="fas fa-money-bill-wave text-white opacity-10 admin-icon-stat"></i>
                                             </div>
                                             <div>
                                                 <p class="text-xs text-secondary mb-0 font-weight-bold text-uppercase">Total Expenditure</p>
@@ -95,7 +95,7 @@
                                     <div class="card-body p-3">
                                         <div class="d-flex align-items-center">
                                             <div class="icon icon-shape bg-gradient-success shadow text-center border-radius-md me-3">
-                                                <i class="fas fa-calculator text-white opacity-10" style="font-size: 1.2rem;"></i>
+                                                <i class="fas fa-calculator text-white opacity-10 admin-icon-stat"></i>
                                             </div>
                                             <div>
                                                 <p class="text-xs text-secondary mb-0 font-weight-bold text-uppercase">Avg / Note</p>

@@ -147,11 +147,9 @@
                                                 <div>
                                                     @if ($courier->picture)
                                                         <img src="{{ asset('storage/' . $courier->picture) }}"
-                                                            class="avatar me-3 rounded-circle shadow-sm"
-                                                            style="object-fit: cover; width: 48px; height: 48px;">
+                                                            class="avatar me-3 rounded-circle shadow-sm mm-mobile-avatar">
                                                     @else
-                                                        <div class="avatar me-3 bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center"
-                                                            style="width: 48px; height: 48px;">
+                                                        <div class="avatar me-3 bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center mm-mobile-avatar-placeholder">
                                                             <span class="text-white font-weight-bold text-sm">{{ strtoupper(substr($courier->name, 0, 1)) }}</span>
                                                         </div>
                                                     @endif
@@ -236,11 +234,9 @@
                                             <div class="d-flex px-3 py-1 align-items-center">
                                                 @if ($exp->picture)
                                                     <img src="{{ asset('storage/' . $exp->picture) }}"
-                                                        class="avatar me-3 rounded shadow-sm"
-                                                        style="object-fit: cover; width: 40px; height: 40px;">
+                                                        class="avatar me-3 rounded shadow-sm admin-product-thumb">
                                                 @else
-                                                    <div class="avatar me-3 bg-gradient-primary rounded shadow-sm d-flex align-items-center justify-content-center"
-                                                        style="width: 40px; height: 40px;">
+                                                    <div class="avatar me-3 bg-gradient-primary rounded shadow-sm d-flex align-items-center justify-content-center admin-product-thumb">
                                                         <i class="fas fa-truck text-white text-sm"></i>
                                                     </div>
                                                 @endif
@@ -356,10 +352,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .hover-row:hover { background-color: #f8f9fa; transition: background-color 0.3s ease; }
-    </style>
 @endsection
 
 @section('scripts')

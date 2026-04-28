@@ -115,9 +115,8 @@
                                                 @if ($product->picture)
                                                     {{-- Tambahkan onclick --}}
                                                     <img src="{{ asset('storage/' . $product->picture) }}"
-                                                        class="avatar avatar-sm me-3 rounded cursor-pointer product-img-preview" 
+                                                        class="avatar avatar-sm me-3 rounded cursor-pointer product-img-preview admin-product-thumb" 
                                                         alt="{{ $product->name }}"
-                                                        style="width: 40px; height: 40px; object-fit: cover;"
                                                         onclick="showImagePreview(this.src, '{{ $product->name }}')">
                                                 @else
                                                     <img src="https://placehold.co/100x100/grey/white?text=No+Img"
@@ -203,31 +202,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg bg-transparent">
                 <div class="modal-body p-0 text-center">
-                    <img id="previewImageSrc" src="" class="img-fluid rounded shadow-lg" style="max-height: 80vh;" alt="Preview">
+                    <img id="previewImageSrc" src="" class="img-fluid rounded shadow-lg admin-img-lightbox" alt="Preview">
                     <h6 id="previewImageTitle" class="mt-3 text-white font-weight-bold"></h6>
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- CSS CUSTOM --}}
-    <style>
-        .cursor-pointer {
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .cursor-pointer:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        /* Background modal gelap transparan */
-        #imagePreviewModal .modal-content {
-            background: none;
-        }
-        .modal-backdrop.show {
-            opacity: 0.85; /* Lebih gelap agar fokus */
-        }
-    </style>
 @endsection
 
 @section('scripts')

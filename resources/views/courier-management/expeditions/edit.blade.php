@@ -42,11 +42,9 @@
                             <div class="text-center mb-4">
                                 @if ($expedition->picture)
                                     <img src="{{ asset('storage/' . $expedition->picture) }}"
-                                        class="rounded shadow-sm mb-2"
-                                        style="width: 80px; height: 80px; object-fit: cover;">
+                                        class="rounded shadow-sm mb-2 admin-edit-avatar">
                                 @else
-                                    <div class="mx-auto bg-gradient-dark rounded shadow-sm d-flex align-items-center justify-content-center mb-2"
-                                        style="width: 80px; height: 80px;">
+                                    <div class="mx-auto bg-gradient-dark rounded shadow-sm d-flex align-items-center justify-content-center mb-2 admin-edit-avatar-placeholder">
                                         <i class="fas fa-truck text-white text-xl"></i>
                                     </div>
                                 @endif

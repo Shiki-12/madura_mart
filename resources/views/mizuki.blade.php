@@ -9,6 +9,9 @@
     <link rel="icon" type="image/png" href="images/pfp_mizuki.jpeg">
     <link rel="apple-touch-icon" href="pfp_mizuki.jpeg">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/madura-mart.css') }}">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
 
@@ -489,7 +492,7 @@
     </style>
 </head>
 
-<body>
+<body class="mizuki-theme">
     {{-- <!-- Custom Cursor -->
     <div class="cursor-follower"></div> --}}
 
@@ -500,10 +503,16 @@
     <header>
         <div class="logo">夜の東京</div>
         <nav>
-            <a href="{{ url('/') }}">Welcome</a>
             <a href="{{ route('home') }}">Home</a>
-            <a href="{{ url('/mizuki') }}">Mizuki</a>
-            <a href="{{ url('/lagu') }}">Lagu</a>
+            <a href="{{ route('shop.index') }}">Belanja</a>
+            <div class="mizuki-explore-dropdown">
+                <a href="#" class="mizuki-explore-toggle">Explore <i class="fas fa-chevron-down mizuki-explore-arrow"></i></a>
+                <div class="mizuki-explore-menu">
+                    <a href="{{ url('/') }}"><i class="fas fa-door-open"></i> Welcome</a>
+                    <a href="{{ url('/mizuki') }}"><i class="fas fa-user-astronaut"></i> Mizuki</a>
+                    <a href="{{ url('/lagu') }}"><i class="fas fa-music"></i> Lagu</a>
+                </div>
+            </div>
         </nav>
     </header>
 

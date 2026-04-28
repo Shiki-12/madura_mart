@@ -43,7 +43,7 @@
                                         {{-- Customer --}}
                                         <td>
                                             <p class="text-sm font-weight-bold mb-0">{{ $order->user->name ?? 'Guest / Deleted' }}</p>
-                                            <p class="text-xs text-secondary mb-0 text-truncate" style="max-width: 150px;">
+                                            <p class="text-xs text-secondary mb-0 text-truncate admin-order-address-truncate">
                                                 {{ $order->delivery_address }}
                                             </p>
                                         </td>

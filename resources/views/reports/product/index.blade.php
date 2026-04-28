@@ -31,7 +31,7 @@
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-3">
                     <p class="text-xs mb-0 font-weight-bold text-secondary text-uppercase">Stock Value</p>
-                    <h5 class="font-weight-bolder mb-0 text-primary" style="font-size: 0.95rem;">Rp {{ number_format($totalStockValue, 0, ',', '.') }}</h5>
+                    <h5 class="font-weight-bolder mb-0 text-primary admin-stat-sm">Rp {{ number_format($totalStockValue, 0, ',', '.') }}</h5>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
             {{-- Search --}}
             <form action="{{ route('reports.product') }}" method="GET" class="mt-3">
                 <input type="hidden" name="stock_filter" value="{{ $stockFilter }}">
-                <div class="input-group" style="max-width: 350px;">
+                <div class="input-group admin-search-sm">
                     <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
                     <input type="text" name="search" class="form-control border-start-0 ps-0"
                         placeholder="Search product name or serial..." value="{{ $search }}">
@@ -168,11 +168,9 @@
                                 <td class="ps-3">
                                     <div class="d-flex align-items-center">
                                         @if ($product->picture)
-                                            <img src="{{ asset('storage/' . $product->picture) }}" class="avatar me-2 rounded shadow-sm"
-                                                style="width: 36px; height: 36px; object-fit: cover;">
+                                            <img src="{{ asset('storage/' . $product->picture) }}" class="avatar me-2 rounded shadow-sm admin-report-thumb">
                                         @else
-                                            <div class="avatar me-2 bg-gradient-secondary rounded shadow-sm d-flex align-items-center justify-content-center"
-                                                style="width: 36px; height: 36px;">
+                                            <div class="avatar me-2 bg-gradient-secondary rounded shadow-sm d-flex align-items-center justify-content-center admin-report-thumb-placeholder">
                                                 <i class="fas fa-box text-white text-xs"></i>
                                             </div>
                                         @endif

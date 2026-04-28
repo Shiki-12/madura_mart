@@ -122,8 +122,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         @if ($user->picture)
                                             <img src="{{ asset('storage/' . $user->picture) }}"
-                                                class="avatar avatar-sm border-radius-lg shadow-sm"
-                                                style="object-fit: cover;">
+                                                class="avatar avatar-sm border-radius-lg shadow-sm object-fit-cover">
                                         @else
                                             <div
                                                 class="avatar avatar-sm bg-gradient-primary border-radius-lg shadow-sm d-flex align-items-center justify-content-center">

@@ -156,37 +156,6 @@
         </footer>
     </div>
 
-    <style>
-        .dropdown-item {
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-item:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .dropdown-item.text-danger:hover {
-            background-color: rgba(255, 0, 0, 0.1);
-        }
-
-        .dropdown-item button {
-            background: none;
-            border: none;
-            padding: 0;
-            width: 100%;
-        }
-
-        .badge-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.7rem;
-        }
-    </style>
 
     <!-- SweetAlert2 Library -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

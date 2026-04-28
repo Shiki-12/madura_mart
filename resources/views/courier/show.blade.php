@@ -167,7 +167,7 @@
                                     @if ($delivery && $delivery->picture_proof)
                                         <div class="mt-2">
                                             <img src="{{ asset('storage/' . $delivery->picture_proof) }}"
-                                                class="rounded shadow-sm" style="max-height: 120px;">
+                                                class="rounded shadow-sm admin-proof-thumb">
                                             <p class="text-xs text-success mt-1"><i class="fas fa-check me-1"></i>Proof uploaded</p>
                                         </div>
                                     @endif

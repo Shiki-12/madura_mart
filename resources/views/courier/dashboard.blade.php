@@ -131,7 +131,7 @@
                                         <span class="text-xs font-weight-bold">{{ $order->user->name ?? 'Guest' }}</span>
                                     </td>
                                     <td>
-                                        <p class="text-xs text-secondary mb-0 text-truncate" style="max-width: 200px;" title="{{ $order->delivery_address }}">
+                                        <p class="text-xs text-secondary mb-0 text-truncate courier-address-truncate" title="{{ $order->delivery_address }}">
                                             {{ $order->delivery_address }}
                                         </p>
                                     </td>
@@ -208,6 +208,4 @@
             </div>
         @endif
     </div>
-
-    <style>.hover-row:hover { background-color: #f8f9fa; transition: background-color 0.3s ease; }</style>
 @endsection

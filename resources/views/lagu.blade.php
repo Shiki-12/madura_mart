@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/madura-mart.css') }}">
 
     <style>
         /* ============================================================
@@ -752,7 +754,7 @@
     </style>
 </head>
 
-<body>
+<body class="lagu-theme">
     {{-- Floating particles --}}
     <div class="particles-container" id="particles-container"></div>
 
@@ -770,10 +772,16 @@
         <header class="page-header">
             <a href="{{ url('/') }}" class="logo"><span>Madura</span>Mart</a>
             <nav>
-                <a href="{{ url('/') }}">Welcome</a>
                 <a href="{{ route('home') }}">Home</a>
-                <a href="{{ url('/mizuki') }}">Mizuki</a>
-                <a href="{{ url('/lagu') }}">Lagu</a>
+                <a href="{{ route('shop.index') }}">Belanja</a>
+                <div class="lagu-explore-dropdown">
+                    <a href="#" class="lagu-explore-toggle">Explore <i class="fas fa-chevron-down lagu-explore-arrow"></i></a>
+                    <div class="lagu-explore-menu">
+                        <a href="{{ url('/') }}"><i class="fas fa-door-open"></i> Welcome</a>
+                        <a href="{{ url('/mizuki') }}"><i class="fas fa-user-astronaut"></i> Mizuki</a>
+                        <a href="{{ url('/lagu') }}"><i class="fas fa-music"></i> Lagu</a>
+                    </div>
+                </div>
             </nav>
         </header>
 

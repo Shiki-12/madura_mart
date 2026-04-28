@@ -33,17 +33,15 @@
                                 {{-- LOGIKA: Tampilkan Gambar jika ada, jika tidak tampilkan Ikon --}}
                                 @if (Auth::user()->picture)
                                     <img src="{{ asset('storage/' . Auth::user()->picture) }}"
-                                        class="avatar avatar-sm rounded-circle shadow-sm"
-                                        style="object-fit: cover; width: 36px; height: 36px;">
+                                        class="avatar avatar-sm rounded-circle shadow-sm admin-nav-avatar">
                                 @else
-                                    <div class="avatar avatar-sm bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center"
-                                        style="width: 36px; height: 36px;">
+                                    <div class="avatar avatar-sm bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center admin-nav-avatar-placeholder">
                                         <i class="fa fa-user text-white text-sm"></i>
                                     </div>
                                 @endif
 
                                 {{-- Nama & Role (Hanya tampil di layar desktop) --}}
-                                <div class="d-sm-flex d-none flex-column align-items-start ms-1" style="line-height: 1.2;">
+                                <div class="d-sm-flex d-none flex-column align-items-start ms-1 admin-nav-user-info">
                                     <span class="font-weight-bolder text-dark text-sm">{{ Auth::user()->name }}</span>
                                     <span
                                         class="text-xs text-secondary font-weight-bold">{{ ucfirst(Auth::user()->role) }}</span>

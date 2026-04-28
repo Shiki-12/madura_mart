@@ -25,7 +25,7 @@
                     <div class="mb-3">
                         {{-- Icon Toko --}}
                         <div class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-lg mx-auto mb-3">
-                            <i class="fas fa-shopping-bag opacity-10" style="font-size: 1.5rem; line-height: 50px;"></i>
+                            <i class="fas fa-shopping-bag opacity-10 receipt-icon"></i>
                         </div>
                         <h4 class="font-weight-bolder text-dark mb-0">MADURA MART</h4>
                         <p class="text-xs text-secondary mb-0">Jalan Raya Telang No. 123, Bangkalan</p>
@@ -33,7 +33,7 @@
                     </div>
                     
                     {{-- Garis Putus-putus ala Struk --}}
-                    <div style="border-bottom: 2px dashed #ddd;" class="my-3"></div>
+                    <div class="receipt-dashed-line my-3"></div>
                 </div>
 
                 <div class="card-body pt-0">
@@ -70,7 +70,7 @@
                                     <tr>
                                         <td class="ps-2">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm font-weight-bold text-truncate" style="max-width: 140px;">
+                                                <h6 class="mb-0 text-sm font-weight-bold text-truncate receipt-item-name">
                                                     {{ $detail->product->name ?? 'Item Deleted' }}
                                                 </h6>
                                                 <p class="text-xxs text-secondary mb-0">
@@ -93,7 +93,7 @@
                     </div>
                     
                     {{-- Garis Putus-putus --}}
-                    <div style="border-bottom: 2px dashed #ddd;" class="my-3"></div>
+                    <div class="receipt-dashed-line my-3"></div>
 
                     {{-- Total Section --}}
                     <div class="d-flex justify-content-between align-items-center mb-4 px-2">
@@ -133,39 +133,7 @@
     </div>
 </div>
 
-{{-- CSS KHUSUS PRINT (FIXED) --}}
-<style>
-    @media print {
-        /* 1. Sembunyikan SEMUA elemen di body */
-        body * {
-            visibility: hidden;
-        }
 
-        /* 2. Tampilkan HANYA #print-area dan isinya */
-        #print-area, #print-area * {
-            visibility: visible;
-        }
-
-        /* 3. Atur posisi Struk agar menempel di pojok kiri atas kertas */
-        #print-area {
-            position: fixed; /* Pakai fixed agar lepas dari container induk */
-            left: 0;
-            top: 0;
-            width: 100%;
-            margin: 0;
-            padding: 20px;
-            background-color: white; /* Pastikan background putih */
-            z-index: 9999; /* Pastikan dia di layer paling atas */
-            box-shadow: none !important; /* Hilangkan bayangan card */
-            border: none !important; /* Hilangkan border card */
-        }
-
-        /* 4. Sembunyikan elemen interface yang mengganggu */
-        .navbar, .sidenav, .btn, .card-footer, footer, .fixed-plugin {
-            display: none !important;
-        }
-    }
-</style>
 
 {{-- SCRIPT CONFIRM VOID --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

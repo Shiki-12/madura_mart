@@ -3,27 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Distributor Report — {{ \Carbon\Carbon::parse($startDate)->format('d M Y') }} to {{ \Carbon\Carbon::parse($endDate)->format('d M Y') }}</title>
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; color: #333; margin: 20px; }
-        h1 { font-size: 18px; margin-bottom: 5px; }
-        .meta { color: #666; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
-        th { background-color: #f5f5f5; font-weight: 600; text-transform: uppercase; font-size: 10px; }
-        .text-right { text-align: right; }
-        .text-center { text-align: center; }
-        .total-row { background-color: #f0f0f0; font-weight: bold; }
-        @media print { body { margin: 0; } }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/madura-mart.css') }}">
 </head>
-<body onload="window.print()">
+<body class="print-report-body--segoe" onload="window.print()">
     <h1>📦 Distributor Procurement Report</h1>
-    <p class="meta">
+    <p class="print-meta">
         <strong>Period:</strong> {{ \Carbon\Carbon::parse($startDate)->format('d M Y') }} — {{ \Carbon\Carbon::parse($endDate)->format('d M Y') }}<br>
         <strong>Generated:</strong> {{ now()->format('d M Y H:i') }}
     </p>
 
-    <table>
+    <table class="print-table">
         <thead>
             <tr>
                 <th>#</th>
@@ -45,7 +34,7 @@
             @endforeach
         </tbody>
         <tfoot>
-            <tr class="total-row">
+            <tr class="print-total-row">
                 <td colspan="4" class="text-right">GRAND TOTAL</td>
                 <td class="text-right">Rp {{ number_format($totalPurchaseValue, 0, ',', '.') }}</td>
             </tr>

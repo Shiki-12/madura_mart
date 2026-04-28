@@ -20,8 +20,7 @@
                                 <div class="position-relative">
                                     <img src="{{ asset('images/create_banner.png') }}"
                                          alt="Illustration"
-                                         class="img-fluid border-radius-lg shadow-sm"
-                                         style="max-height: 450px; width: 100%; object-fit: cover;">
+                                         class="img-fluid border-radius-lg shadow-sm admin-distributor-img">
                                     <div class="mt-3 text-sm text-muted">
                                         <em>Makise Kurisu 🎶</em>
                                     </div>
@@ -43,7 +42,7 @@
                                                 value="{{ old('name') }}" required autocomplete="off">
 
                                             {{-- Container Error Realtime --}}
-                                            <small id="name-error-msg" class="text-danger fw-bold" style="display:none;"></small>
+                                            <small id="name-error-msg" class="text-danger fw-bold admin-error-msg"></small>
 
                                             {{-- Error Laravel Bawaan (Backup) --}}
                                             @error('name')
@@ -74,7 +73,7 @@
                                                 value="{{ old('phone_number') }}" required autocomplete="off">
 
                                             {{-- Container Error Realtime --}}
-                                            <small id="phone-error-msg" class="text-danger fw-bold" style="display:none;"></small>
+                                            <small id="phone-error-msg" class="text-danger fw-bold admin-error-msg"></small>
 
                                             @error('phone_number')
                                                 <small class="text-danger">{{ $message }}</small>

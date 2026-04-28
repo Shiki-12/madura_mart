@@ -321,14 +321,8 @@
 
                             {{-- KOLOM KANAN: GAMBAR BACKGROUND (Fix CSS) --}}
                             <div class="col-lg-5">
-                                <div class="h-100 bg-cover"
-                                    style="
-                                        background-image: url('{{ asset('images/banner_dashboard.jpg') }}'); 
-                                        background-size: cover; 
-                                        background-position: center; 
-                                        min-height: 300px;
-                                        position: relative;
-                                     ">
+                                <div class="h-100 bg-cover admin-banner-bg"
+                                    style="background-image: url('{{ asset('images/banner_dashboard.jpg') }}');">
                                     {{-- Overlay Gelap (Opsional, agar tulisan di atas gambar terbaca jika ada) --}}
                                     <div class="mask bg-gradient-dark opacity-2"></div>
 

@@ -49,12 +49,10 @@
                             <div class="text-center mb-4">
                                 @if ($client->picture)
                                     <img src="{{ asset('storage/' . $client->picture) }}"
-                                        class="rounded-circle shadow-sm mb-2"
-                                        style="width: 80px; height: 80px; object-fit: cover;"
+                                        class="rounded-circle shadow-sm mb-2 admin-edit-avatar"
                                         alt="{{ $client->name }}">
                                 @else
-                                    <div class="mx-auto bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2"
-                                        style="width: 80px; height: 80px;">
+                                    <div class="mx-auto bg-gradient-info rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2 admin-edit-avatar-placeholder">
                                         <span class="text-white font-weight-bold text-lg">
                                             {{ strtoupper(substr($client->name, 0, 1)) }}
                                         </span>

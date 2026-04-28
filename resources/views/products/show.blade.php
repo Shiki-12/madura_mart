@@ -21,12 +21,11 @@
         {{-- KOLOM KIRI: Gambar Produk Besar --}}
         <div class="col-lg-5 mb-4">
             <div class="card border-0 shadow-sm h-100">
-                <div class="card-body p-2 d-flex align-items-center justify-content-center bg-light rounded-3" style="min-height: 400px;">
+                <div class="card-body p-2 d-flex align-items-center justify-content-center bg-light rounded-3 admin-product-show-container">
                     @if($product->picture)
                         <img src="{{ asset('storage/' . $product->picture) }}" 
                              alt="{{ $product->name }}" 
-                             class="img-fluid rounded-3 shadow-sm" 
-                             style="max-height: 400px; width: 100%; object-fit: cover;">
+                             class="img-fluid rounded-3 shadow-sm admin-product-show-img">
                     @else
                         <div class="text-center text-muted">
                             <i class="fas fa-box-open fa-4x mb-3 opacity-5"></i>

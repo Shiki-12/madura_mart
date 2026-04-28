@@ -34,11 +34,10 @@
                                         <label class="form-label text-xs font-weight-bold text-uppercase mb-2">Product Image</label>
                                         
                                         <div id="drop-area" 
-                                             class="position-relative border-2 border-dashed border-secondary rounded-3 d-flex align-items-center justify-content-center bg-light overflow-hidden" 
-                                             style="height: 350px; cursor: pointer; transition: all 0.3s ease;">
+                                             class="position-relative border-2 border-dashed border-secondary rounded-3 d-flex align-items-center justify-content-center bg-light overflow-hidden admin-drop-zone">
                                             
                                             {{-- Placeholder jika tidak ada gambar --}}
-                                            <div id="placeholder-content" class="text-center p-4 {{ $product->picture ? 'd-none' : '' }}" style="pointer-events: none;">
+                                            <div id="placeholder-content" class="text-center p-4 pe-none {{ $product->picture ? 'd-none' : '' }}">
                                                 <div class="mb-3">
                                                     <i class="fas fa-cloud-upload-alt fa-3x text-secondary opacity-5"></i>
                                                 </div>
@@ -49,12 +48,10 @@
                                             {{-- Image Preview --}}
                                             <img id="img-preview" 
                                                  src="{{ $product->picture ? asset('storage/' . $product->picture) : '' }}" 
-                                                 class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover {{ $product->picture ? '' : 'd-none' }}" 
-                                                 style="pointer-events: none;">
+                                                 class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover pe-none {{ $product->picture ? '' : 'd-none' }}">
                                             
                                             {{-- Drag Overlay --}}
-                                            <div id="drop-overlay" class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 d-flex align-items-center justify-content-center" 
-                                                 style="transition: opacity 0.2s; pointer-events: none;">
+                                            <div id="drop-overlay" class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 d-flex align-items-center justify-content-center admin-drop-overlay">
                                                 <span class="badge bg-gradient-primary">Release to Upload</span>
                                             </div>
                                         </div>
@@ -182,20 +179,7 @@
     </div>
 </div>
 
-<style>
-    .border-dashed { border-style: dashed !important; border-width: 2px !important; }
-    .drag-over { border-color: #cb0c9f !important; background-color: rgba(203, 12, 159, 0.03) !important; }
-    .drag-over #drop-overlay { opacity: 0.9 !important; }
-    .object-fit-cover { object-fit: cover; }
-    .form-control.is-invalid {
-        border-color: #fd5c70;
-        padding-right: calc(1.5em + 0.75rem);
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23fd5c70'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23fd5c70' stroke='none'/%3e%3c/svg%3e");
-        background-repeat: no-repeat;
-        background-position: right calc(0.375em + 0.1875rem) center;
-        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-    }
-</style>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

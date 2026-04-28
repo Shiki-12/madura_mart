@@ -140,8 +140,7 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center px-3">
-                                        <div class="avatar me-3 bg-gradient-primary rounded shadow-sm d-flex align-items-center justify-content-center"
-                                            style="width: 36px; height: 36px;">
+                                        <div class="avatar me-3 bg-gradient-primary rounded shadow-sm d-flex align-items-center justify-content-center admin-report-thumb-placeholder">
                                             <i class="fas fa-building text-white text-xs"></i>
                                         </div>
                                         <div>

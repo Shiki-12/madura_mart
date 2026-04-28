@@ -42,6 +42,9 @@ Route::get('/lagu', function () {
     return view('lagu', ['title' => 'Lagu']);
 })->name('lagu');
 
+// Halaman Toko / Belanja (Publik)
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+
 // Utility: Logout dulu sebelum register kurir (agar session bersih)
 Route::get('/register-courier-logout', [AuthController::class, 'logoutAndRedirectCourier'])->name('register.courier.logout');
 
@@ -81,9 +84,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+});
 
-    // Belanja (Shop) - Semua user yang login bisa akses
-    Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+// Area Khusus Customer & Courier (Belanja)
+Route::middleware(['auth', 'role:customer,courier'])->group(function () {
     Route::post('/shop/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
 });
 

@@ -71,12 +71,10 @@
                                                     <div>
                                                         @if ($user->picture)
                                                             <img src="{{ asset('storage/' . $user->picture) }}"
-                                                                class="avatar avatar me-3 rounded-circle shadow-sm"
-                                                                alt="{{ $user->name }}"
-                                                                style="object-fit: cover; width: 48px; height: 48px;">
+                                                                class="avatar avatar me-3 rounded-circle shadow-sm mm-mobile-avatar"
+                                                                alt="{{ $user->name }}">
                                                         @else
-                                                            <div class="avatar avatar me-3 bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center"
-                                                                style="width: 48px; height: 48px;">
+                                                            <div class="avatar avatar me-3 bg-gradient-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center mm-mobile-avatar-placeholder">
                                                                 <span class="text-white font-weight-bold text-sm">
                                                                     {{ strtoupper(substr($user->name, 0, 1)) }}
                                                                 </span>
@@ -129,8 +127,7 @@
                                                         <span class="text-xs text-secondary">No Phone</span>
                                                     @endif
 
-                                                    <p class="text-xs text-secondary mb-0 text-truncate mx-auto"
-                                                        style="max-width: 150px;" title="{{ $user->address }}">
+                                                    <p class="text-xs text-secondary mb-0 text-truncate mx-auto user-address-truncate" title="{{ $user->address }}">
                                                         {{ $user->address ?? '-' }}
                                                     </p>
                                                 </div>
@@ -223,24 +220,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .hover-row:hover {
-            background-color: #f8f9fa;
-            transition: background-color 0.3s ease;
-        }
-        .input-group-text {
-            transition: all 0.2s ease;
-        }
-        .input-group:focus-within .input-group-text {
-            border-color: #5e72e4;
-            color: #5e72e4;
-        }
-        .input-group:focus-within .form-control {
-            border-color: #5e72e4;
-            box-shadow: none;
-        }
-    </style>
 @endsection
 
 @section('scripts')
