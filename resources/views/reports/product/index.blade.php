@@ -101,7 +101,7 @@
 
     {{-- Product Table --}}
     <div class="card border-0 shadow-lg">
-        <div class="card-header bg-white pb-0">
+        <div class="card-header pb-0">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
                 <h6 class="font-weight-bolder">Stock Level Overview</h6>
                 <div class="d-flex gap-2 flex-wrap">
@@ -127,7 +127,7 @@
             <form action="{{ route('reports.product') }}" method="GET" class="mt-3">
                 <input type="hidden" name="stock_filter" value="{{ $stockFilter }}">
                 <div class="input-group admin-search-sm">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
+                    <span class="input-group-text border-end-0"><i class="fas fa-search"></i></span>
                     <input type="text" name="search" class="form-control border-start-0 ps-0"
                         placeholder="Search product name or serial..." value="{{ $search }}">
                 </div>
@@ -135,8 +135,8 @@
         </div>
         <div class="card-body px-0 pt-3 pb-2">
             <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 table-hover">
-                    <thead class="bg-light">
+                <table class="table align-items-center mb-0 table-hover admin-table">
+                    <thead class="admin-table-head">
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Product</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Serial</th>

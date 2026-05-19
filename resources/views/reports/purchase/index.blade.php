@@ -11,14 +11,14 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 border-0 shadow-sm">
-                <div class="card-header bg-white pb-0">
+                <div class="card-header pb-0">
                     <h6 class="font-weight-bolder">Purchase Reports</h6>
                     <p class="text-sm text-secondary">Filter purchase transactions by date range to generate report.</p>
                 </div>
                 <div class="card-body">
 
                     {{-- FORM FILTER --}}
-                    <form action="{{ route('reports.purchase') }}" method="GET" class="row g-3 align-items-end mb-4 border p-3 rounded bg-light">
+                    <form action="{{ route('reports.purchase') }}" method="GET" class="row g-3 align-items-end mb-4 border p-3 rounded admin-filter-form">
                         <div class="col-md-4">
                             <label class="form-label text-xs font-weight-bold text-uppercase">Start Date</label>
                             <input type="date" name="start_date" class="form-control" value="{{ $startDate }}" required>
@@ -120,8 +120,8 @@
 
                         {{-- TABEL DATA --}}
                         <div class="table-responsive">
-                            <table class="table align-items-center mb-0 table-hover">
-                                <thead class="bg-light">
+                            <table class="table align-items-center mb-0 table-hover admin-table">
+                                <thead class="admin-table-head">
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">#</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date</th>
@@ -169,8 +169,8 @@
                             <div class="mt-4">
                                 <h6 class="font-weight-bolder text-sm">Top Purchased Products</h6>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center mb-0">
-                                        <thead class="bg-light">
+                                    <table class="table align-items-center mb-0 admin-table">
+                                        <thead class="admin-table-head">
                                             <tr>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">#</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Product</th>

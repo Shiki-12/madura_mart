@@ -29,10 +29,10 @@
                     <div class="row g-3 align-items-center">
                         <div class="col-md-4">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text bg-light border-end-0">
+                                <span class="input-group-text border-end-0">
                                     <i class="fas fa-search text-muted"></i>
                                 </span>
-                                <input type="text" name="search" class="form-control border-start-0 bg-light"
+                                <input type="text" name="search" class="form-control border-start-0"
                                     placeholder="Search Note Number..." value="{{ request('search') }}">
                             </div>
                         </div>
@@ -50,8 +50,8 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-light text-secondary">
+                    <table class="table table-hover admin-table align-middle mb-0">
+                        <thead class="text-secondary admin-table-head">
                             <tr>
                                 <th class="ps-4 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" width="5%">#</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Note Number</th>
@@ -103,21 +103,29 @@
                                     <td class="align-middle text-center">
                                         {{-- Tombol Detail (FIXED ROUTE) --}}
                                         <a href="{{ route('purchase.show', $purchase->id) }}"
-                                           class="text-secondary font-weight-bold text-xs me-2"
+                                           class="action-link action-link-view font-weight-bold text-xs me-2"
                                            data-bs-toggle="tooltip" title="View Detail">
-                                            <i class="fas fa-eye text-info"></i>
+                                            <i class="fas fa-eye"></i>
                                         </a>
+
+                                        {{-- Tombol Edit --}}
+                                        <button type="button"
+                                            onclick="confirmPurchaseAction('edit', '{{ $purchase->id }}')"
+                                            class="btn btn-link action-link action-link-edit font-weight-bold text-xs p-0 mb-0 me-2 border-0"
+                                            data-bs-toggle="tooltip" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
 
                                         {{-- Tombol Delete --}}
                                         <form action="{{ route('purchase.destroy', $purchase->id) }}" method="POST" class="d-inline"
                                             id="delete-form-{{ $purchase->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="#" onclick="confirmDelete(event, '{{ $purchase->id }}', '{{ $purchase->note_number }}')"
-                                               class="text-secondary font-weight-bold text-xs"
+                                            <button type="button" onclick="confirmPurchaseAction('delete', '{{ $purchase->id }}')"
+                                               class="btn btn-link action-link action-link-delete font-weight-bold text-xs p-0 mb-0 border-0"
                                                data-bs-toggle="tooltip" title="Delete">
-                                                <i class="fas fa-trash text-danger"></i>
-                                            </a>
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -153,27 +161,117 @@
                 icon: 'success',
                 title: 'Success!',
                 text: "{{ session('success') }}",
-                timer: 3000,
-                showConfirmButton: false
+                confirmButtonText: 'OK'
             });
         @endif
 
-        function confirmDelete(event, id, note) {
-            event.preventDefault();
+        @if(session('error'))
             Swal.fire({
-                title: 'Delete Purchase?',
-                text: "Deleting purchase note '" + note + "' will also remove its items history.",
-                icon: 'warning',
+                icon: 'error',
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                confirmButtonText: 'OK'
+            });
+        @endif
+
+        async function confirmPurchaseAction(action, purchaseId) {
+            const passwordResult = await Swal.fire({
+                title: 'Password required!',
+                text: 'Enter your account password to continue.',
+                input: 'password',
+                inputAttributes: {
+                    autocomplete: 'current-password'
+                },
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
                 cancelButtonColor: '#344767',
-                confirmButtonText: 'Yes, Delete!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + id).submit();
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Password is required.';
+                    }
                 }
             });
+
+            if (!passwordResult.isConfirmed) {
+                return;
+            }
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const confirmUrlTemplate = @json(route('purchase.confirm-password', ['purchase' => '__PURCHASE_ID__']));
+            const confirmUrl = confirmUrlTemplate.replace('__PURCHASE_ID__', purchaseId);
+
+            try {
+                const response = await fetch(confirmUrl, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        password: passwordResult.value,
+                        action: action
+                    })
+                });
+
+                const data = await response.json().catch(() => ({
+                    message: 'Unable to confirm password.'
+                }));
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Password is incorrect.');
+                }
+
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Nice!',
+                    text: 'Your password is correct.',
+                    timer: 900,
+                    showConfirmButton: false
+                });
+
+                if (action === 'edit') {
+                    const editConfirm = await Swal.fire({
+                        icon: 'question',
+                        title: 'Edit this purchase?',
+                        text: 'Do you want to edit this purchase?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, edit it',
+                        cancelButtonText: 'Cancel',
+                        confirmButtonColor: '#f59e0b',
+                        cancelButtonColor: '#344767'
+                    });
+
+                    if (editConfirm.isConfirmed) {
+                        window.location.href = data.redirect;
+                    }
+
+                    return;
+                }
+
+                const deleteConfirm = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Delete this purchase?',
+                    text: 'This action will reverse the stock and cannot be undone.',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'Cancel',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#344767'
+                });
+
+                if (deleteConfirm.isConfirmed) {
+                    document.getElementById('delete-form-' + purchaseId).submit();
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Access denied',
+                    text: error.message || 'Password is incorrect.',
+                    confirmButtonText: 'OK'
+                });
+            }
         }
     </script>
 @endsection

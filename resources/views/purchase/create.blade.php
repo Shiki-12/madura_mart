@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-header pb-0 bg-white">
+                    <div class="card-header pb-0">
                         <h6 class="font-weight-bolder text-primary">Create New Purchase</h6>
                         <p class="text-xs text-muted">Record incoming goods and set selling price automatically.</p>
                     </div>
@@ -69,8 +69,8 @@
                             <h6 class="font-weight-bolder text-dark mb-3">Items List</h6>
 
                             <div class="table-responsive">
-                                <table class="table align-items-center mb-0" id="items-table">
-                                    <thead class="bg-light text-secondary">
+                                <table class="table admin-table align-items-center mb-0" id="items-table">
+                                    <thead class="text-secondary admin-table-head">
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" width="30%">Product</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" width="10%">Qty</th>
@@ -116,13 +116,13 @@
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text text-xs text-success font-weight-bold">Rp</span>
                                                     {{-- Readonly: Ini cuma kalkulator visual --}}
-                                                    <input type="text" class="form-control new-sell-price bg-white text-success font-weight-bold" value="0" readonly>
+                                                    <input type="text" class="form-control new-sell-price text-success font-weight-bold" value="0" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text text-xs">Rp</span>
-                                                    <input type="text" class="form-control subtotal-input bg-white" value="0" readonly>
+                                                    <input type="text" class="form-control subtotal-input" value="0" readonly>
                                                 </div>
                                             </td>
                                             <td class="text-center">

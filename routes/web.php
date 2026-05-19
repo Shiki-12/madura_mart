@@ -115,6 +115,8 @@ Route::middleware(['auth', 'role:owner,admin'])->group(function () {
 
     // Modul Purchase (Kulakan Barang Masuk)
     Route::post('/purchase/check-unique', [PurchaseController::class, 'checkUniqueNoteNumber'])->name('purchase.check-unique');
+    Route::post('/purchase/{purchase}/confirm-password', [PurchaseController::class, 'confirmPassword'])
+        ->name('purchase.confirm-password');
     Route::resource('purchase', PurchaseController::class);
 
     // Modul Sales (Kasir Barang Keluar)

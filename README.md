@@ -123,7 +123,7 @@ After running the database seeders, you can access the system using the master o
 - **Password**: `adminpassword`
 
 - **Email**: `test@example.com`
-- **Password**: `tes12345`
+- **Password**: `password`
 
 *(Other dummy accounts for couriers and customers are auto-generated with the password `password` if you wish to test different role views).*
 

@@ -91,13 +91,13 @@
 
     {{-- Main Card --}}
     <div class="card border-0 shadow-lg mb-4">
-        <div class="card-header bg-white pb-0">
+        <div class="card-header pb-0">
             <h6 class="font-weight-bolder">Distributor Procurement Overview</h6>
         </div>
         <div class="card-body">
 
             {{-- Date Filter --}}
-            <form action="{{ route('reports.distributor') }}" method="GET" class="row g-3 align-items-end mb-4 border p-3 rounded bg-light">
+            <form action="{{ route('reports.distributor') }}" method="GET" class="row g-3 align-items-end mb-4 border p-3 rounded admin-filter-form">
                 <div class="col-md-4">
                     <label class="form-label text-xs font-weight-bold text-uppercase">Start Date</label>
                     <input type="date" name="start_date" class="form-control" value="{{ $startDate }}" required>
@@ -127,8 +127,8 @@
 
             {{-- Distributor Table --}}
             <div class="table-responsive">
-                <table class="table align-items-center mb-0 table-hover">
-                    <thead class="bg-light">
+                <table class="table align-items-center mb-0 table-hover admin-table">
+                    <thead class="admin-table-head">
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Distributor</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Purchases</th>
@@ -177,13 +177,13 @@
     {{-- Top Purchased Products --}}
     @if($topProducts->count() > 0)
     <div class="card border-0 shadow-lg">
-        <div class="card-header bg-white pb-0">
+        <div class="card-header pb-0">
             <h6 class="font-weight-bolder"><i class="fas fa-trophy text-warning me-2"></i>Top Procured Products</h6>
             <p class="text-sm text-secondary">Most purchased products from distributors in this period.</p>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0 admin-table">
                     <thead>
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">#</th>

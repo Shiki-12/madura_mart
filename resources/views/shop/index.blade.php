@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/madura-mart.css') }}">
+    <script>
+        (function(){var t=localStorage.getItem('mm_theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark')}})();
+    </script>
 </head>
 <body class="mm-public">
 
@@ -55,6 +58,12 @@
                             </ul>
                         </li>
                         <li><a href="{{ route('shop.index') }}" class="mm-nav-active">Belanja</a></li>
+                        <li>
+                            <button class="mm-theme-toggle" id="themeToggleDesktop" aria-label="Toggle dark mode">
+                                <svg class="mm-theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                                <svg class="mm-theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                            </button>
+                        </li>
                         @auth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 mm-profile-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -117,6 +126,10 @@
             <a href="{{ route('login') }}" class="mm-nav-login-link">Masuk</a>
             <a href="{{ route('register') }}">Daftar</a>
         @endauth
+        <button class="mm-mobile-theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <span id="mobileThemeLabel">Mode Gelap</span>
+        </button>
     </div>
 
     {{-- SHOP HERO --}}
@@ -457,6 +470,32 @@
             localStorage.removeItem('mm_cart'); cart = [];
         @endif
         renderCart();
+    </script>
+
+    {{-- Theme Switcher --}}
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const stored = localStorage.getItem('mm_theme');
+            if (stored === 'dark') root.setAttribute('data-theme', 'dark');
+
+            function toggle() {
+                const isDark = root.getAttribute('data-theme') === 'dark';
+                const next = isDark ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                localStorage.setItem('mm_theme', next);
+                updateMobileLabel(next);
+            }
+
+            function updateMobileLabel(theme) {
+                var lbl = document.getElementById('mobileThemeLabel');
+                if (lbl) lbl.textContent = theme === 'dark' ? 'Mode Terang' : 'Mode Gelap';
+            }
+
+            document.getElementById('themeToggleDesktop')?.addEventListener('click', toggle);
+            document.getElementById('themeToggleMobile')?.addEventListener('click', toggle);
+            updateMobileLabel(root.getAttribute('data-theme') || 'light');
+        })();
     </script>
 </body>
 </html>

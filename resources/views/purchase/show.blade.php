@@ -20,7 +20,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card border-0 shadow-lg">
-                    <div class="card-header bg-white border-bottom p-4">
+                    <div class="card-header border-bottom p-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="text-uppercase text-secondary text-xs font-weight-bolder mb-1">Invoice Number
@@ -62,9 +62,9 @@
 
                         {{-- Tabel Barang --}}
                         {{-- Tabel Barang (Updated) --}}
-                        <div class="table-responsive border-radius-lg bg-light p-3">
+                        <div class="table-responsive border-radius-lg admin-table-wrap p-3">
                             <h6 class="font-weight-bolder text-dark mb-3 ps-2">Items Purchased</h6>
-                            <table class="table align-items-center mb-0">
+                            <table class="table admin-table align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#
@@ -162,12 +162,12 @@
                     </div>
 
                     {{-- Footer Actions --}}
-                    <div class="card-footer bg-white text-end">
+                    <div class="card-footer text-end">
                         <form action="{{ route('purchase.destroy', $purchase->id) }}" method="POST" class="d-inline"
                             id="delete-form-detail">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="confirmDeleteDetail()" class="btn btn-outline-danger mb-0">
+                            <button type="button" onclick="confirmPurchaseAction('delete', '{{ $purchase->id }}')" class="btn btn-outline-danger mb-0">
                                 <i class="fas fa-trash me-1"></i> Delete Invoice
                             </button>
                         </form>
@@ -182,20 +182,85 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDeleteDetail() {
-            Swal.fire({
-                title: 'Delete this Invoice?',
-                text: "Stock will be reversed (decreased). This action cannot be undone!",
-                icon: 'warning',
+        async function confirmPurchaseAction(action, purchaseId) {
+            const passwordResult = await Swal.fire({
+                title: 'Password required!',
+                text: 'Enter your account password to continue.',
+                input: 'password',
+                inputAttributes: {
+                    autocomplete: 'current-password'
+                },
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Yes, Delete!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-detail').submit();
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+                cancelButtonColor: '#344767',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Password is required.';
+                    }
                 }
             });
+
+            if (!passwordResult.isConfirmed) {
+                return;
+            }
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const confirmUrlTemplate = @json(route('purchase.confirm-password', ['purchase' => '__PURCHASE_ID__']));
+            const confirmUrl = confirmUrlTemplate.replace('__PURCHASE_ID__', purchaseId);
+
+            try {
+                const response = await fetch(confirmUrl, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        password: passwordResult.value,
+                        action: action
+                    })
+                });
+
+                const data = await response.json().catch(() => ({
+                    message: 'Unable to confirm password.'
+                }));
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Password is incorrect.');
+                }
+
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Nice!',
+                    text: 'Your password is correct.',
+                    timer: 900,
+                    showConfirmButton: false
+                });
+
+                const deleteConfirm = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Delete this purchase?',
+                    text: 'This action will reverse the stock and cannot be undone.',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'Cancel',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#344767'
+                });
+
+                if (deleteConfirm.isConfirmed) {
+                    document.getElementById('delete-form-detail').submit();
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Access denied',
+                    text: error.message || 'Password is incorrect.',
+                    confirmButtonText: 'OK'
+                });
+            }
         }
     </script>
 @endsection

@@ -144,7 +144,7 @@
         {{-- Sales Velocity Chart --}}
         <div class="col-lg-8 mb-4">
             <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-white pb-0">
+                <div class="card-header pb-0">
                     <h6 class="font-weight-bolder"><i class="fas fa-chart-area text-primary me-2"></i>Daily Sales Velocity</h6>
                     <p class="text-sm text-secondary">Number of orders and revenue per day.</p>
                 </div>
@@ -159,7 +159,7 @@
         {{-- Top Products --}}
         <div class="col-lg-4 mb-4">
             <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-white pb-0">
+                <div class="card-header pb-0">
                     <h6 class="font-weight-bolder"><i class="fas fa-trophy text-warning me-2"></i>Top Products</h6>
                     <p class="text-sm text-secondary">Best-selling products in this period.</p>
                 </div>
@@ -222,13 +222,13 @@
 
     {{-- Orders Table --}}
     <div class="card border-0 shadow-lg">
-        <div class="card-header bg-white pb-0">
+        <div class="card-header pb-0">
             <h6 class="font-weight-bolder">Order Details</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 table-hover">
-                    <thead class="bg-light">
+                <table class="table align-items-center mb-0 table-hover admin-table">
+                    <thead class="admin-table-head">
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Invoice</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Customer</th>

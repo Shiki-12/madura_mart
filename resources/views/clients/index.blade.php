@@ -20,14 +20,14 @@
                     {{-- Search --}}
                     <form action="{{ route('clients.index') }}" method="GET" class="d-none d-md-flex me-2">
                         <div class="input-group">
-                            <span class="input-group-text text-body bg-white border-end-0">
+                            <span class="input-group-text text-body border-end-0">
                                 <i class="fas fa-search" aria-hidden="true"></i>
                             </span>
                             <input type="text" name="search" class="form-control border-start-0 ps-0"
                                 placeholder="Search client..." value="{{ request('search') }}">
                         </div>
                     </form>
-                    <a href="{{ route('clients.create') }}" class="btn bg-white text-primary mb-0 shadow-sm">
+                    <a href="{{ route('clients.create') }}" class="btn btn-outline-primary mb-0 shadow-sm">
                         <i class="fas fa-user-plus me-1"></i> Add Client
                     </a>
                 </div>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0 align-middle">
+                            <table class="table admin-table align-items-center mb-0 align-middle">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client / Email</th>
@@ -215,14 +215,15 @@
                                                         <input type="hidden" name="is_active" value="{{ $client->is_active ? 0 : 1 }}">
                                                         <button type="submit" class="btn btn-link p-0 mb-0"
                                                             data-bs-toggle="tooltip" title="{{ $client->is_active ? 'Deactivate' : 'Activate' }}">
-                                                            <i class="fas {{ $client->is_active ? 'fa-toggle-on text-success' : 'fa-toggle-off text-secondary' }} text-lg"></i>
+                                                            <i class="fas {{ $client->is_active ? 'fa-toggle-on action-link-toggle-on' : 'fa-toggle-off action-link-toggle-off' }} text-lg"></i>
                                                         </button>
                                                     </form>
 
                                                     {{-- Edit --}}
                                                     <a href="{{ route('clients.edit', $client->id) }}"
+                                                        class="action-link action-link-edit"
                                                         data-bs-toggle="tooltip" title="Edit Client">
-                                                        <i class="fas fa-user-edit text-secondary text-sm"></i>
+                                                        <i class="fas fa-user-edit text-sm"></i>
                                                     </a>
 
                                                     {{-- Delete --}}
@@ -230,7 +231,7 @@
                                                         onsubmit="return confirm('Are you sure you want to delete this client?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-link text-danger p-0 mb-0 border-0"
+                                                        <button type="submit" class="btn btn-link action-link action-link-delete p-0 mb-0 border-0"
                                                             data-bs-toggle="tooltip" title="Delete Client">
                                                             <i class="far fa-trash-alt text-sm"></i>
                                                         </button>

@@ -187,7 +187,9 @@
                                     <div class="d-flex align-items-center">
                                         <button
                                             class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center">
-                                            <i class="fas fa-shopping-bag"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+                                            </svg>
                                         </button>
                                         <div class="d-flex flex-column">
                                             <h6 class="mb-1 text-dark text-sm">Sale #{{ $sale->id }}</h6>
@@ -256,7 +258,10 @@
                         <ul class="list-group">
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex align-items-center">
-                                    <i class="fab fa-laravel text-lg text-danger me-3"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-3 text-danger">
+                                        <polyline points="16 18 22 12 16 6"></polyline>
+                                        <polyline points="8 6 2 12 8 18"></polyline>
+                                    </svg>
                                     <div class="d-flex flex-column">
                                         <h6 class="mb-1 text-dark text-sm">Laravel Version</h6>
                                         <span class="text-xs">Framework Core</span>
@@ -267,7 +272,12 @@
                             </li>
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex align-items-center">
-                                    <i class="fab fa-php text-lg text-primary me-3"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-3 text-primary">
+                                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                                    </svg>
                                     <div class="d-flex flex-column">
                                         <h6 class="mb-1 text-dark text-sm">PHP Version</h6>
                                         <span class="text-xs">Server Side</span>
@@ -277,7 +287,11 @@
                             </li>
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                                 <div class="d-flex align-items-center">
-                                    <i class="fas fa-database text-lg text-warning me-3"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="me-3 text-warning">
+                                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                    </svg>
                                     <div class="d-flex flex-column">
                                         <h6 class="mb-1 text-dark text-sm">Database</h6>
                                         <span class="text-xs">Madura Mart</span>
@@ -333,7 +347,7 @@
                                         <p class="text-white text-sm opacity-8 mb-0">
                                             "Kepuasan Pelanggan adalah Prioritas Kami."
                                         </p>
-                                        <span class="badge bg-white text-dark mt-3">v1.0.0 Stable</span>
+                                        <span class="badge bg-dark text-white mt-3">v1.0.0 Stable</span>
                                     </div>
                                 </div>
                             </div>

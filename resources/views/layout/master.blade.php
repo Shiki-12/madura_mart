@@ -13,7 +13,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="utf-8" />
@@ -40,6 +40,9 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <script>
+        (function(){var t=localStorage.getItem('mm_theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.add('dark')}})();
+    </script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -369,6 +372,26 @@
                 currentIndex = (currentIndex + 1) % images.length;
                 logoImage.src = images[currentIndex];
             }, 1000);
+        })();
+    </script>
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const stored = localStorage.getItem('mm_theme');
+            if (stored === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+                root.classList.add('dark');
+            }
+
+            function toggle() {
+                const isDark = root.getAttribute('data-theme') === 'dark';
+                const next = isDark ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                root.classList.toggle('dark', next === 'dark');
+                localStorage.setItem('mm_theme', next);
+            }
+
+            document.getElementById('adminThemeToggle')?.addEventListener('click', toggle);
         })();
     </script>
 </body>

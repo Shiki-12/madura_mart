@@ -30,17 +30,17 @@
                         {{-- Search --}}
                         <div class="col-md-4">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text bg-light border-end-0">
+                                <span class="input-group-text border-end-0">
                                     <i class="fas fa-search text-muted"></i>
                                 </span>
-                                <input type="text" name="search" class="form-control border-start-0 bg-light"
+                                <input type="text" name="search" class="form-control border-start-0"
                                     placeholder="Search product name, SKU..." value="{{ request('search') }}">
                             </div>
                         </div>
 
                         {{-- Category --}}
                         <div class="col-md-3">
-                            <select name="category" class="form-select form-select-sm bg-light"
+                            <select name="category" class="form-select form-select-sm"
                                 onchange="this.form.submit()">
                                 <option value="All Categories">All Categories</option>
                                 <option value="Food & Snacks"
@@ -57,7 +57,7 @@
 
                         {{-- Status --}}
                         <div class="col-md-3">
-                            <select name="status" class="form-select form-select-sm bg-light"
+                            <select name="status" class="form-select form-select-sm"
                                 onchange="this.form.submit()">
                                 <option value="All Status">All Status</option>
                                 <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
@@ -84,8 +84,8 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-light text-secondary">
+                    <table class="table table-hover admin-table align-middle mb-0">
+                        <thead class="text-secondary admin-table-head">
                             <tr>
                                 <th class="ps-4 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                     width="5%">#</th>
@@ -153,15 +153,15 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <a href="{{ route('products.edit', $product->id) }}"
-                                            class="text-secondary font-weight-bold text-xs me-2" data-bs-toggle="tooltip"
+                                            class="action-link action-link-edit font-weight-bold text-xs me-2" data-bs-toggle="tooltip"
                                             title="Edit product">
-                                            <i class="fas fa-edit text-info"></i>
+                                            <i class="fas fa-edit"></i>
                                         </a>
 
                                         <a href="{{ route('products.show', $product->id) }}"
-                                            class="text-secondary font-weight-bold text-xs me-2" data-bs-toggle="tooltip"
+                                            class="action-link action-link-view font-weight-bold text-xs me-2" data-bs-toggle="tooltip"
                                             title="View Detail">
-                                            <i class="fas fa-eye text-primary"></i>
+                                            <i class="fas fa-eye"></i>
                                         </a>
 
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST"
@@ -170,9 +170,9 @@
                                             @method('DELETE')
                                             <a href="#"
                                                 onclick="confirmDelete(event, '{{ $product->id }}', '{{ $product->name }}')"
-                                                class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip"
+                                                class="action-link action-link-delete font-weight-bold text-xs" data-bs-toggle="tooltip"
                                                 title="Delete product">
-                                                <i class="fas fa-trash text-danger"></i>
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </form>
                                     </td>
